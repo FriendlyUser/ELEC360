@@ -1,0 +1,191 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>A1</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-25"><meta name="DC.source" content="A1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">ELEC 360 --- Assignment 1</a></li><li><a href="#2">Question 1 (A) -- Laplace Transforms</a></li><li><a href="#3">Question 1 (B) -- Inverse Laplace Transforms</a></li><li><a href="#4">Question 2 --- Transfer function of electric circuit</a></li><li><a href="#5">Question 7 B-5-10</a></li></ul></div><h2 id="1">ELEC 360 --- Assignment 1</h2><p>All matlab code and calculations will be verified using matlab even though I have the solutions manual lol. "Global Variables" --- Used in multiple questions</p><pre class="codeinput">syms <span class="string">s</span> <span class="string">t</span> <span class="string">w</span> <span class="string">a</span>
+format <span class="string">compact</span>
+</pre><h2 id="2">Question 1 (A) -- Laplace Transforms</h2><pre class="codeinput">f1 = t^2
+laplace(f1)
+f2 = sin(w*t)
+laplace(f2)
+</pre><pre class="codeoutput">f1 =
+t^2
+ans =
+2/s^3
+f2 =
+sin(t*w)
+ans =
+w/(s^2 + w^2)
+</pre><h2 id="3">Question 1 (B) -- Inverse Laplace Transforms</h2><pre class="codeinput">F1 = 1 /(s+a)^2
+ilaplace(F1)        <span class="comment">% i)</span>
+F2 = (s+a)/((s+a)^2)+w^2    <span class="comment">% prof messed up the question</span>
+ilaplace(F2)        <span class="comment">% ii)</span>
+F3 = (s+3)/(s+1)^3  <span class="comment">% iii)</span>
+F3 = partfrac(F3)
+ilaplace(F3)
+</pre><pre class="codeoutput">F1 =
+1/(a + s)^2
+ans =
+t*exp(-a*t)
+F2 =
+1/(a + s) + w^2
+ans =
+dirac(t)*w^2 + exp(-a*t)
+F3 =
+(s + 3)/(s + 1)^3
+F3 =
+1/(s + 1)^2 + 2/(s + 1)^3
+ans =
+t*exp(-t) + t^2*exp(-t)
+</pre><h2 id="4">Question 2 --- Transfer function of electric circuit</h2><pre class="codeinput">syms <span class="string">R1</span> <span class="string">R2</span> <span class="string">L</span> <span class="string">C</span> <span class="string">i1</span> <span class="string">i2</span> <span class="string">ei</span> <span class="string">eo</span>
+ei = R1*i1+L*diff(i1-i2)
+laplace(ei)
+eo = -1/C*int(i2)
+laplace(eo) <span class="comment">% ill-suited for matlab, just looked at the solutions manual,</span>
+</pre><pre class="codeoutput">ei =
+L + R1*i1
+ans =
+L/s + R1/s^2
+eo =
+-i2^2/(2*C)
+ans =
+-1/(C*s^3)
+</pre><h2 id="5">Question 7 B-5-10</h2><p>Remember that the ramp response is the integral of the step response. Thus, you can multiply the step response by 1/s and you get the ramp.</p><pre class="codeinput">s = tf(<span class="string">'s'</span>);
+C = 10;
+R = s^2+2*s+10;
+step(C/R)   <span class="comment">% Step response</span>
+</pre><img vspace="5" hspace="5" src="A1_01.png" alt=""> <p>ramp response</p><pre class="codeinput"><span class="comment">%use help timeoptions</span>
+h = stepplot(C/(R*s))
+p = getoptions(h);
+p.Title.String =(<span class="string">'Unit-Ramp  Response'</span>);
+p.Ylim  = [0 10];
+p.Xlim  = [0 10];
+setoptions(h,p);
+</pre><pre class="codeoutput">h =
+	resppack.timeplot
+</pre><img vspace="5" hspace="5" src="A1_02.png" alt=""> <p>impulse response</p><pre class="codeinput">h = impulseplot(C/R)
+p = getoptions(h);
+p.Title.String =(<span class="string">'Impulse  Response'</span>);
+setoptions(h,p);
+</pre><pre class="codeoutput">h =
+	resppack.timeplot
+</pre><img vspace="5" hspace="5" src="A1_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ELEC 360 REPLACE_WITH_DASH_DASH- Assignment 1
+% All matlab code and calculations will be verified using matlab
+% even though I have the solutions manual lol.
+% "Global Variables" REPLACE_WITH_DASH_DASH- Used in multiple questions
+syms s t w a
+format compact
+%% Question 1 (A) REPLACE_WITH_DASH_DASH Laplace Transforms
+f1 = t^2
+laplace(f1)
+f2 = sin(w*t)
+laplace(f2)
+
+%% Question 1 (B) REPLACE_WITH_DASH_DASH Inverse Laplace Transforms
+F1 = 1 /(s+a)^2
+ilaplace(F1)        % i)
+F2 = (s+a)/((s+a)^2)+w^2    % prof messed up the question
+ilaplace(F2)        % ii)
+F3 = (s+3)/(s+1)^3  % iii)
+F3 = partfrac(F3)
+ilaplace(F3)
+
+%% Question 2 REPLACE_WITH_DASH_DASH- Transfer function of electric circuit
+syms R1 R2 L C i1 i2 ei eo
+ei = R1*i1+L*diff(i1-i2)
+laplace(ei)
+eo = -1/C*int(i2)
+laplace(eo) % ill-suited for matlab, just looked at the solutions manual, 
+
+%% Question 7 B-5-10
+% Remember that the ramp response is the integral of the step response. 
+% Thus, you can multiply the step response by 1/s and you get the ramp.
+
+s = tf('s');
+C = 10;
+R = s^2+2*s+10;
+step(C/R)   % Step response
+
+%%
+% ramp response 
+%use help timeoptions 
+h = stepplot(C/(R*s))
+p = getoptions(h);
+p.Title.String =('Unit-Ramp  Response');
+p.Ylim  = [0 10];
+p.Xlim  = [0 10];
+setoptions(h,p);
+%%
+% impulse response
+h = impulseplot(C/R)
+p = getoptions(h);
+p.Title.String =('Impulse  Response');
+setoptions(h,p);
+##### SOURCE END #####
+--></body></html>

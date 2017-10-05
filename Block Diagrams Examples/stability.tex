@@ -1,0 +1,295 @@
+\documentclass[12pt]{article}
+
+%\usepackage{html}
+\begin{document}
+\begin{center}
+{\LARGE \bf Stability Analysis}
+\end{center}
+
+\section*{Locations of poles}
+
+As discussed previously, given the transfer function of a system:
+\[
+T(s)=\frac{N(s)}{D(s)}=\frac{\sum_{k=0}^m b_k s^k}{\sum_{k=0}^n a_k s^k}
+=\frac{\prod_{k=1}^m (s-s_{z_k})}{\prod_{k=1}^n (s-s_{p_k})} 
+\]
+(where $a_0$ is always assumed to be 1 without loss of generality), we 
+can determine whether it is stable by checking if all of its poles $p_i's$
+$(i=1,2,\cdots,n)$ (roots of the characteristic polynomial $D(s)$) are 
+located on the left plane (LP) of the S-plane, i.e., the real part of each
+pole is negative:
+\[ Re[p_i]<0 \]
+This criterion of stability is easy to understand and test, but it requires
+finding the roots of the denominator polynomial, which may not be easy when
+the order $n$ is higher than two. It is therefore desirable to determine
+the stability of the system based on the coefficients of the denominator
+without solving it to find its roots. 
+
+One necessary condition for stability is all coefficients of $D(s)$ are 
+positive $a_k>0$ (most obvious for $n<3$). Although this condition is easy
+to check, it is not sufficient, i.e., the system may still be unstable even 
+if $a_k>0$ for all $k=1,2,\cdots,n$. We need to find a necessary and 
+sufficient condition.
+
+\section*{Routh's criterion}
+
+Routh (1874) developed a a necessary and sufficient condition for stability
+based on Routh array, which states:
+
+{\bf Routh's criterion: } 
+A system is stable if and only if all the elements in the first column of the
+Routh array are possitive.
+
+{\bf Routh array: } The first two rows of the Routh array are composed of
+the even and odd coefficients of the characteristic polynomial, respectively,
+while the remaining rows are composed of elements derived from the first
+two rows:
+\[ \begin{array}{lllll}
+\mbox{row n}   & a_0 & a_2 & a_4 & \cdots \\
+\mbox{row n-1} & a_1 & a_3 & a_5 & \cdots \\
+\mbox{row n-2} & b_1 & b_2 & b_3 & \cdots \\
+\mbox{row n-3} & c_1 & c_2 & c_3 & \cdots \\
+\cdots & \cdots & \cdots & \cdots & \cdots \\
+\mbox{row 2} & * & * &  & \cdots \\
+\mbox{row 1} & * &   &  & \cdots \\
+\mbox{row 0} & * &   &  & \cdots \end{array} \]
+The elements of the third row are computed as follows:
+\[ b_1=-\frac{det\left[\begin{array}{cc}a_0&a_2\\a_1&a_3\end{array}\right]}{a_1}
+=\frac{a_1a_2-a_0a_3}{a_1} \]
+\[ b_2=-\frac{det\left[\begin{array}{cc}a_0&a_4\\a_1&a_5\end{array}\right]}{a_1}
+=\frac{a_1a_4-a_0a_5}{a_1} \]
+\[ b_3=-\frac{det\left[\begin{array}{cc}a_0&a_6\\a_1&a_7\end{array}\right]}{a_1}
+=\frac{a_1a_6-a_0a_7}{a_1} \]
+The elements of the forth row are computed as follows:
+\[ c_1=-\frac{det\left[\begin{array}{cc}a_1&a_3\\b_1&b_2\end{array}\right]}{b_1}
+=\frac{b_1a_3-a_1b_2}{b_1} \]
+\[ c_2=-\frac{det\left[\begin{array}{cc}a_1&a_5\\b_1&b_3\end{array}\right]}{b_1}
+=\frac{b_1a_5-a_1b_3}{b_1} \]
+\[ c_3=-\frac{det\left[\begin{array}{cc}a_1&a_7\\b_1&b_4\end{array}\right]}{b_1}
+=\frac{b_1a_7-a_1b_4}{b_1} \]
+The elements from the third row on are computed based on the determinant of a
+2 by 2 array composed of the two elements of the first column of the previous
+two rows and the two elements of the subsequent columns. Any missing coefficient
+is represented by a zero.
+
+{\bf Example 0: }
+\[ D(s)=a_0s^3+a_1s^2+a_2s+a_3=0 \]
+\[ \begin{array}{rrr}
+\mbox{row 3} & a_0 & a_2 \\
+\mbox{row 2} & a_1 & a_3 \\
+\mbox{row 1} & (a_2a_1-a_0a_3)/a_1 & \\
+\mbox{row 0} & a_3 & 
+\end{array} \]
+For this system to be stable, we must have $a_2a_1-a_0a_3>0$. 
+
+{\bf Example 1: }
+\[ D(s)=s^4+2s^3+3s^2+4s+5=0 \]
+\[ \begin{array}{rrrr}
+\mbox{row 4}  & 1 & 3 & 5 \\
+\mbox{row 3}  & 2 & 4 & 0 \\
+\mbox{row 3'} & 1 & 2 & 0 \\
+\mbox{row 2}  & 1 & 5 &   \\
+\mbox{row 1}  & -3 &  &   \\
+\mbox{row 0}  & 5  &  &   
+\end{array} \]
+There are two sign changes indicating two poles on RP. Note that row 3 is divided
+by 2 to become row 3' without affecting the result.
+
+{ Example 2: }
+
+\[ D(s)=s^6+4s^5+3s^4+2s^3+s^2+4s+4 \]
+with $a_0=1, a_1=4, a_2=3, a_3=2, a_4=1, a_5=4, a_6=4$. First we find the Routh 
+array:
+\[ \begin{array}{rrrrr}
+\mbox{row 6} & 1 & 3 & 1 & 4 \\
+\mbox{row 5} & 4 & 2 & 4 & 0 \\
+\mbox{row 4} & (4\cdot 3-1\cdot 2)/4=2.5 & (4\cdot 1-4\cdot 1)/4=0 & (4\cdot 4-1\cdot 0)/4=4 & \\
+\mbox{row 3} & (2.5\cdot 2-4\cdot 0)/2.5=2 & (2.5\cdot 4-4\cdot 4)/2.5=-2.4 & 0 & \\
+\mbox{row 2} & (2\cdot 0-2.5\cdot (-2.4))/2=3 & (2\cdot 4-2.5\cdot 0)=4 & 0 & \\
+\mbox{row 1} & (3\cdot (-2.4)-2\cdot 4)/3=-76/15 &  &  & \\
+\mbox{row 0} & (-76/15\cdot 4-0\cdot 3)/(-76/15)=4 &  &  & 
+\end{array} \]
+The elements in the first column are: 1, 4, 2.5, 2, 3, -76/15, 4 with two sign 
+changes (3 to -76/15 and -76/15 to 4), there are two poles on the RP and the
+system is not stable. Solving the characteristic equation, we can get the five
+roots: $-3.26, 0.68\pm 0.75i, -0.60\pm 0.99i,-0.89$.
+
+{\bf Example 3:}
+
+The transfer function of the feedforward pass of a feedback system is 
+\[ H(s)=K\;\frac{s+1}{s(s-1)(s+6)} \]
+and the feedback gain is $G(s)=-1$ (negative feedback). The overall transfer 
+function is therefore:
+\[ T(s)=\frac{H(s)}{1-H(s)G(s)}=\frac{K\;\frac{s+1}{s(s+1)(s+2)}}{1+\frac{s+1}{s(s+1)(s+2)}}
+=\frac{K(s+1)}{s(s-1)(s+6)+K(s+1)} \]
+The characteristic equation is
+\[ s^3+5 s^2+(K-6) s+K=0 \]
+Routh's criterion is used To find the range of the gain $K$ for stability:
+\[ \begin{array}{rrr}
+\mbox{row 3} & 1 & K-6 \\
+\mbox{row 2} & 5 & K   \\
+\mbox{row 1} & (4K-30)/5 & 0 \\
+\mbox{row 0} & K & 0 
+\end{array} \]
+For all elements of the first column to be positive, we have $K>0$ and $K>7.5$.
+Consider the following three cases:
+\begin{itemize}
+\item When $K=9>7.5$, the roots of the characteristic equation are
+$p_0=-4.77$, $p_{1,2}=-0.17\pm 1.37$, representing respectively an exponentially 
+decaying term and a sinusoid also exponentially decaying.
+
+\item When $K=7.5$, the characteristic equation is
+\[ D(s)=s^3+5s^2+1.5s+7.5=(s+5)(s^2+1.5)=(s+5)(s+j\sqrt{1.5})(s-j\sqrt{1.5})=0 \]
+with three poles $p_0=-5$ representing an exponential decay and a complex conjugate
+pair $p_{1,2}=\pm i\sqrt{1.5}$ representing a sinusoidal oscillation.
+
+\item When $K=5<7.5$, the roots of the characteristic equation are
+$p_0=-5.36$, $p_{1,2}=0.18\pm 0.95 i$, representing respectively an exponentially 
+decaying term and a sinusoid which grows exponentially.
+\end{itemize}
+
+{\bf Example 4:}
+Consider a PI controller $K+K_I/s$ with gains $K$ and $K_I$ controlling a plant
+$1/(s+1)(s+2)$ as shown below. The closed-loop transfer function is
+\[ T(s)=\frac{H(s)}{1+G(s)H(s)}=\frac{(K+\frac{K_I}{s})\frac{1}{(s+1)(s+2)}}{1+(K+\frac{K_I}{s})\frac{1}{(s+1)(s+2)}}
+=\frac{sK+K_I}{s(s+1)(s+2)+sK+K_I}
+\]
+The characteristic equaion is
+\[ s(s+1)(s+2)+sK+K_I=s^3+3s^2+(K+2)s+K_I=0 \]
+The Routh array is
+\[ \begin{array}{rrr}
+\mbox{row 3} & 1 & K+2 \\
+\mbox{row 2} & 3 & K_I \\
+\mbox{row 1} & (6+3K-K_I)/3 &  \\
+\mbox{row 0} & K_I & 
+\end{array} \]
+For the system to be stable, we must have $K_I>0$ and $K>K_I/3-2$.
+
+
+
+
+
+{\bf Example 5 (homework):}
+
+The transfer function of the feedforward pass of a feedback system is 
+\[ H(s)=\frac{K}{s(s+1)(s+2)} \]
+and the feedback gain is just $G(s)=-1$ (negative feedback). The overall transfer 
+function is therefore:
+\[ T(s)=\frac{H(s)}{1-H(s)G(s)}=\frac{K}{s(s+1)(s+2)+K} \]
+and the characteristic equation is
+\[ D(s)=s^3+3s^2+2s+K=0 \]
+Routh's criterion is used To find the range of the gain $K$ for stability:
+\[ \begin{array}{rrr}
+\mbox{row 3} & 1 & 2 \\
+\mbox{row 2} & 3 & K \\
+\mbox{row 1} & (6-K)/3 & 0 \\
+\mbox{row 0} & K &  \\
+\end{array} \]
+For all elements of the first column to be positive, we have $K>0$ and $K<6$, i.e.,
+$0<K<6$. Consider the following five cases:
+\begin{itemize}
+\item When $K=-1<0$, we have
+\[ T(s)=\frac{-1}{s^3+3s^2+2s-1}=\frac{-1}{(s-0.32)(s+1.66+0.56i)(s+1.66-0.56i)}\]
+with three poles $p_0=0.32$ representing an exponentially growing term, and
+$p_{1,2}=1.66\pm 0.56i$ representing a decaying sinusoid. The system is unstable.
+\item When $K=0$, we have
+\[ T(s)=\frac{0}{s^3+3s^2+2s}=0 \]
+\item When $0<K=3<6$, we have
+\[ T(s)=\frac{3}{s^3+3s^2+2s+3}=\frac{6}{(s+3)(s+i\sqrt{2})(s-i\sqrt{2})} \]
+with three poles $p_0=-2.67$ representing an exponential decay and a complex conjugate
+pair $p_{1,2}=-0.16\pm 1.05i$ representing a decaying sinusoid. The system is stable.
+\item When $K=6$, we have
+\[ T(s)=\frac{6}{s^3+3s^2+2s+6}=\frac{6}{(s+3)(s+i\sqrt{2})(s-i\sqrt{2})} \]
+with three poles $p_0=-3$ representing an exponential decay and a complex conjugate
+pair $p_{1,2}=\pm i\sqrt{2}$ representing a sinusoidal oscillation.
+\item When $K=8>6$, we have
+\[ T(s)=\frac{8}{s^3+3s^2+2s+8}=\frac{8}{(s-3.17)(s-0.08+1.59i)(s-0.08-1.59i)} \]
+with three poles $p_0=3.17$ representing an exponentially growing term and a complex 
+conjugate pair $p_{1,2}=-0.08 \pm i\sqrt{2}$ representing a decaying sinusoid. The 
+system is unstable.
+\end{itemize}
+
+
+{\bf Special Case 1:}
+
+If the first column contains a zero, the elements in the following row cannot be
+evaluated (divided by zero). In this case, the zero will be replaced by a small
+value $\epsilon>0$ and the elements of the following rows can be obtained in 
+terms of $\epsilon$. At the end, we take the limit $\epsilon\rightarrow 0$.
+
+{\bf Example 6:}
+\[ D(s)=s^5+3s^4+2s^3+6s^2+6s+9=0 \]
+\[ \begin{array}{lrrr}
+\mbox{row 5} & 1 & 2 & 6 \\
+\mbox{row 4} & 3 & 6 & 9 \\
+\mbox{row 4'}& 1 & 2 & 3 \\
+\mbox{row 3} & 0 & 3 &   \\
+\mbox{row 3'}& \epsilon & 3 &   \\
+\mbox{row 2} & (2\epsilon-3)/\epsilon & 3 &  \\
+\mbox{row 1} & 3-3\epsilon^2/(2\epsilon-3) & 0 &  \\
+\mbox{row 0} & 3 & 0 &  \\
+\end{array} \]
+Taking the limit $\epsilon\rightarrow 0$, the first element in row 2 is negative,
+while the first element in row 1 is positive, i.e., there are two sign changes
+in the first column indicating there are two roots on the RP. In fact, the five
+roots are $-2.9, 0.66\pm 1.29i, -0.70\pm 0.99$.
+
+{\bf Special Case 2:}
+
+It is possible that all elements of a row, assumed to be the ith row, are zero. 
+In such case, the rest of the Routh array can still be obtained by the following
+steps:
+\begin{enumerate}
+\item treat the previous (i+1)th row as an auxiliary polynomial $P(s)$
+\item take derivative of $P(s)$, and use the resulting coefficients as the
+  elements of the ith row
+\item continue as normal to obtain the rest elements of the array.
+\end{enumerate}
+
+{\bf Example 1: }
+\[ D(s)=s^5+2s^4+24s^3+48s^2-25s-50=0 \]
+\[ \begin{array}{lrrr}
+\mbox{row 5} & 1 & 24 & -25 \\
+\mbox{row 4} & 2 & 48 & -50 \\
+\mbox{row 4'}& 1 & 24 & -25 \\
+\mbox{row 3} & 0 &  0 &     \\
+\mbox{row 3'}& 4 &  48 &    \\
+\mbox{row 3''}& 1 &  12 &   \\
+\mbox{row 2} & 24 & -50 &   \\
+\mbox{row 1} & 14.08 & 0 &  \\
+\mbox{row 0} & -50  &  &    
+\end{array} \]
+As all elements in row 3 are zero, an auxiliary polynomial is formed using the elements
+of the previoius row and its derivative is obtained:
+\[ P(s)=s^4+24s^2-25,\;\;\;\;\;\frac{d}{ds}P(s)=4s^3+48s \]
+The coefficients of $P'(s)$ are then used as the elements of the ith row and the process
+continues as normal. As there is only one sign change in the first column, there is one
+root on the RP.
+
+The auxiliary polynomial $P(s)=s^4+24s^2-25=(s^2-1)(s^2+25)$ can be solved to find its
+roots $s=\pm 1$ and $s=\pm i5$. They always lie radially opposite in the S-plane. the 
+original characteristic polynomial can be factored as
+\[ D(s)=s^5+2s^4+24s^3+48s^2-25s-50=(s^4+24s^2-25)(s+2)=0 \]
+It can be seen that the roots of $D(s)$ include those of $D(s)$, with an additional
+one $s=-2$.
+
+{\bf Example 2: }
+\[ D(s)=s^5+5s^4+11s^3+23s^2+28s+12=0 \]
+\[ \begin{array}{lrrr}
+\mbox{row 5} & 1 & 11 & 28 \\
+\mbox{row 4} & 5 & 23 & 12 \\
+\mbox{row 3} & 6.4 & 25.6 &\\
+\mbox{row 2} & 3 & 12 &    \\
+\mbox{row 1} & 0 & 0  &    \\
+\mbox{row 1'}& 6 & 0  &    \\
+\mbox{row 0} & 12 &   &    
+\end{array} \]
+where the auxiliary polynomial is $3s^2+12$ and its derivative is $6s$. There is
+no sign changes in the first column, therefore all roots of $D(s)$ are on the LP.
+The roots of the auxiliary polynomial is $3s^2+12=3(s^2+4)$ are $s=\pm 2i$ (on the
+opposit sides of the origin). The original polynomial can be factored as
+\[ s^5+5s^4+11s^3+23s^2+28s+12=(s^2+4)(s+1)^2(s+3)=0 \]
+with roots $-1$, $-1$, $-3$ in addition to the roots $\pm 2i$ of $P(s)$.
+
+
+\end{document}

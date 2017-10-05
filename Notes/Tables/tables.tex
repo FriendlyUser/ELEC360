@@ -1,0 +1,1116 @@
+\documentclass[12pt]{article}
+\usepackage{epsf}
+\usepackage{graphicx}
+\usepackage{amsfonts, amstext, amscd, amssymb, amsmath}
+% ----------------------------------------------------------------
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+% THEOREMS -------------------------------------------------------
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\numberwithin{equation}{section}
+% MATH -----------------------------------------------------------
+
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\Real}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\BX}{\mathbf{B}(X)}
+\newcommand{\A}{\mathcal{A}}
+\newbox\hugehatbox
+
+% %%%%%%%%%%%%%%% Definitions from Maggie's macro's file
+
+% \phase makes a measured spherical angle symbol, like in amstex.
+\newcommand{\phase}{\mbox{$<\!\!\!)\,$}}
+
+% macros for log-like functions.
+\newcommand{\sinc}{{\rm sinc}}
+%\newcommand{\arg}{{\rm arg}}
+\newcommand{\Arg}{{\rm ARG}}
+
+% numerous macros for the names of units.
+\newcommand{\Hz}{{\rm Hz}}              % Hertz
+\newcommand{\rad}{{\rm rad}}            % radians
+\newcommand{\second}{{\rm sec}}         % seconds
+\newcommand{\dB}{{\rm dB}}              % decibels
+
+% macros for even and odd parts.
+\newcommand{\Ev}{\mbox{$\cal E\!$\it v}}
+\newcommand{\Od}{\mbox{$\cal O$\it d}}
+
+% macro to put vertical padding in array rows with inline equations.
+\newcommand{\linestrut}{\vphantom{%
+\mbox{${}_{\mathstrut}^{\mathstrut}$}%
+}}
+
+% macro to put vertical padding in array rows with displayed
+% equations.
+\newcommand{\dispstrut}{\vphantom{%
+\mbox{$\displaystyle\int_{\mathstrut}^{\mathstrut}$}%
+}}
+
+
+\newenvironment{property}{
+\par
+\vspace*{.125in} \refstepcounter{PRPN}
+\begin{quote}
+{\bf Property \thePRPN :} }{\end{quote}}
+
+\newcommand{\R}{\mbox{$\Re e\{s\}$}}
+
+\newcommand{\I}{\mbox{$\Im m\{s\}$}}
+
+\newcommand{\Rs}{\mbox{$\Re e\{s_0\}$}}
+
+\newcommand{\Ic}{\mbox{$\Im m\{c\}$}}
+
+
+% %%%%%%%%%%%% Contents of original macros.tex
+
+\newcommand{\dashline}[2]
+{\setlength{\unitlength}{1pt}
+\begin{picture}({#1},3)(0,0)
+\multiput(0,0)(10,0){#2}{\line(1,0){5}}
+\end{picture}}
+
+\newcommand{\hugehat}[1]{
+        \setbox\hugehatbox=\hbox{$#1$}
+        \thinlines
+        \setlength{\unitlength}{0.01\wd\hugehatbox}
+        \copy\hugehatbox\kern-\wd\hugehatbox\kern-0.65em\raise0.1ex\hbox{
+        \raise\ht\hugehatbox\hbox{\rule{0em}{20\unitlength}
+                                  \begin{picture}(100,15)
+                                  \put(50,12.5){\line(-4,-1){50}}
+                                  \put(50,12.5){\line(4,-1){50}}
+                                  \end{picture} }}
+        \hbox{\rule{0em}{\ht\hugehatbox}\kern-0.2em
+        \raise1ex\hbox{\rule{0em}{\ht\hugehatbox}}}
+        }
+
+
+
+\newcommand{\zvect}{\mbox{\bf 0}}  %% do zero vector specifically
+\newcommand{\vect}[1]{{
+        \mathchoice{\mbox{\boldmath $#1$}}
+                   {\mbox{\boldmath $#1$}}
+                   {\mbox{\scriptsize\pmb{$#1$}}}
+                   {\mbox{\scriptsize\pmb{$#1$}}}}}
+\def\smvect#1{\pmb{$#1$}}
+%%% an option for the subscript sizes of the above
+\newcommand{\subvect}[1]{\ifcat A#1 {\bf #1} \else
+                   {\mbox{\scriptsize\pmb{$#1$}}} \fi}
+%\newcommand{\transpose}{^{\top\rule{0em}{1.3ex}}}
+\newcommand{\DefinedAs}{\mathrel{\mathop{\setbox0=\hbox{\raise-0.4ex\hbox{$-$}}
+\setbox1=\hbox{\raise0.6ex\hbox{\scriptsize$\Delta$}} \hbox{\copy0
+\kern-0.5\wd0 \kern-0.5\wd1 \copy1}}}}
+\newcommand{\bydef}{\DefinedAs}
+%\newcommand{\tsp}{\transpose}
+\newcommand{\hugesumbox}[2]{ \hspace*{1em} \parbox[t]{#1}{
+        \setlength{\baselineskip}{2.5\baselineskip}
+        \setlength{\parindent}{-1em} $ #2 $ }}
+\newcommand{\rowv}[1]{\vect{#1}\tsp}
+\newcommand{\recip}[1]{\frac{1}{#1}}
+\newcommand{\expec}{E}
+
+\newbox\setsymbox
+\newcommand{\reals}{
+        \setbox\setsymbox=\hbox{\sf R}
+        \rule[-0.0pt]{0.7pt}{\ht\setsymbox}
+        \rule[-0.0pt]{0.1em}{0.4pt}\kern-0.1em
+        \lower0.2pt\hbox{\rule[\ht\setsymbox]{0.1em}{0.4pt}\kern-0.1em}
+        \copy\setsymbox}
+
+
+% ----------------------------------------------------------------
+\begin{document}
+\pagestyle{empty}
+% ----------------------------------------------------------------
+
+%
+% CTFS PROPERTIES
+%
+
+\begin{table}[tbp]
+\vspace*{-1.0in}
+\caption{\bf Properties of the Continuous-Time Fourier Series} \label{tab:4.2}
+\vspace*{-0.4in}
+\begin{center}
+$$x(t) = \sum_{k=-\infty}^{+\infty} a_k e^{jk\omega_0 t} = \sum_{k=-\infty}^{+\infty} a_k e^{jk(2\pi/T) t}$$
+$$ a_k = \frac{1}{T}\int_T x(t) e^{-jk\omega_0t}dt = \frac{1}{T}\int_T x(t) e^{-jk(2\pi/T)t}dt$$
+\hspace*{-4pc}
+\begin{tabular}{p{1.40in}ll}\hline
+& \\
+{\bf Property}
+  & {\bf Periodic Signal}
+  & {\bf Fourier Series Coefficients}
+  \\
+& \\ \hline
+& \\
+  & $\displaystyle \left.
+    \begin{array}{r}
+      x(t) \\
+      y(t)
+    \end{array} \right\}
+    \begin{array}{l}
+      \mbox{Periodic with period T and}\\
+ \mbox{fundamental frequency } \omega_0 = 2 \pi/T
+    \end{array}$
+  & $\displaystyle
+    \begin{array}{l}
+      a_{k} \\
+      b_{k}
+    \end{array}$
+  \\
+\multicolumn{3}{l}{ } \\
+{\small Linearity}
+  & $\displaystyle Ax(t)+By(t)$
+  & $\displaystyle Aa_{k}+Bb_{k}$
+  \\
+{\small Time-Shifting}
+  & $\displaystyle x(t-t_{0})$
+  & $\displaystyle a_{k}e^{-jk \omega_0
+t_0}=a_{k}e^{-jk(2\pi/T)t_{0}}$ \\
+
+{\small Frequency-Shifting}
+  & $\displaystyle e^{jM \omega_0 t}=e^{jM(2\pi/T)t}x(t)$
+  & $\displaystyle a_{k-M}$
+  \\
+{\small Conjugation}
+  & $\displaystyle x^{*}(t)$
+  & $\displaystyle a^{*}_{-k}$
+  \\
+{\small Time Reversal}
+  & $\displaystyle x(-t)$
+  & $\displaystyle a_{-k}$
+  \\
+{\small Time Scaling}
+  & $\displaystyle x(\alpha t), \alpha>0$
+    (periodic with period $T/\alpha$)
+  & $\displaystyle a_{k}$
+  \\
+{\small Periodic Convolution}
+  & $\displaystyle \int_{T} x(\tau) y(t-\tau)d\tau$
+  & $\displaystyle Ta_{k}b_{k}$
+  \\
+{\small Multiplication \dispstrut}
+  & $\displaystyle x(t)y(t)$
+  & $\displaystyle \sum^{+\infty}_{l=-\infty} a_{l} b_{k-l}$
+  \\
+{\small Differentiation \dispstrut}
+  & $\displaystyle \frac{dx(t)}{dt}$
+  & $\displaystyle jk \omega_0 a_k = jk\frac{2\pi}{T}a_{k}$
+  \\
+{\small Integration \dispstrut}
+  & $\displaystyle \int^{t}_{-\infty} x(t) dt
+    \begin{array}{l}
+      ({\rm finite\mbox{-}valued\ and} \\
+       {\rm periodic\ only\ if\ } a_{0}=0)
+    \end{array}$
+  & $\displaystyle \left(\frac{1}{jk
+\omega_0}\right)a_{k}=\left(\frac{1}{jk(2\pi/T)}\right)a_{k}$
+  \\
+{\small $\vcenter{Conjugate Symmetry for Real Signals}$}
+  & $\displaystyle x(t)$ real
+  & $\displaystyle \!\!\! \left\{ \!\!\!\!
+    \begin{array}{l}
+      a_{k}=a^{*}_{-k} \\
+      \Re e\{a_{k}\}=\Re e\{a_{-k}\}\\
+      \Im m\{a_{k}\}=-\Im m \{a_{-k}\}\\
+      |a_{k}|=|a_{-k}| \\
+      \phase a_{k} =-\phase a_{-k}
+    \end{array} \right.$
+  \\
+{\small $\vcenter{Real and Even Signals}$}
+  & $\displaystyle x(t)$ real and even
+  & $\displaystyle a_k$ real and even
+  \\
+  \\
+{\small $\vcenter{Real and Odd Signals}$}
+  & $\displaystyle x(t)$ real and odd
+  & $\displaystyle a_k$ purely imaginary and odd
+  \\
+  \\
+{\small $\vcenter{Even-Odd Decomposition of Real Signals}$}
+  & $\displaystyle \left\{
+    \begin{array}{ll}
+      x_{e}(t)=\Ev \{x(t)\} & [x(t)\ {\rm real}] \\
+      x_{o}(t)=\Od \{x(t)\} & [x(t)\ {\rm real}]
+    \end{array} \right.$
+  & $\displaystyle
+    \begin{array}{l}
+      \Re e\{a_{k}\} \\
+      j\Im m\{a_{k}\}
+    \end{array}$
+  \\
+\multicolumn{3}{l}{ } \\
+\multicolumn{3}{c}{Parseval's Relation for Periodic Signals} \\
+\multicolumn{3}{c}{$\displaystyle \frac{1}{T} \int_{T}|x(t)|^{2}
+dt =
+\sum^{+\infty}_{k=-\infty} |a_{k}|^{2}$} \\
+& & \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+%
+% DTFS PROPERTIES
+%
+
+\begin{table}[tbp]
+\vspace*{-1.0in}
+\caption{\bf Properties of the Discrete-Time Fourier Series}
+\label{tab:5.2-new}
+\vspace*{-0.4in}
+\begin{center}
+$$ x[n] = \sum_{k=<N>} a_k e^{jk\omega_0 n} = \sum_{k=<N>} a_k e^{jk(2\pi/N) n}$$
+$$ a_k = \frac{1}{N}\sum_{n=<N>} x[n] e^{-jk\omega_0n} = \frac{1}{N}\sum_{n=<N>} x[n] e^{-jk(2\pi/N)n}$$
+\hspace*{-7pc}\begin{tabular}{p{1.5in}ll} \hline
+& \\
+    {\bf Property}
+  & {\bf Periodic signal}
+  & {\bf Fourier series coefficients}
+  \\
+  & \\ \hline
+  & \\
+  & $\displaystyle \left.
+    \begin{array}{r}
+      x[n] \\
+      y[n]
+    \end{array} \right\}
+    \parbox{2.25in}{\small Periodic with period $N$ and fundamental
+                 frequency $\omega_{0}=2 \pi/N$}$
+  & $\displaystyle \left.
+    \begin{array}{l}
+      a_{k} \\
+      b_{k}
+    \end{array} \right\}
+    \begin{array}{l}
+      {\rm Periodic\ with} \\
+      {\rm period}\ N
+   \end{array}$
+  \\
+\multicolumn{3}{l}{ } \\
+{\small Linearity}
+  & $\displaystyle Ax[n]+By[n]$
+  & $\displaystyle Aa_{k}+Bb_{k}$
+\\
+{\small Time shift}
+  &$ \displaystyle x[n-n_{0}]$
+  & $\displaystyle a_{k} e^{-jk(2\pi/N)n_{0}}$
+  \\
+{\small Frequency Shift}
+  & $\displaystyle e^{jM(2\pi/N)n} x[n]$
+  & $\displaystyle a_{k-M}$
+  \\
+{\small Conjugation}
+  & $\displaystyle x^{*}[n]$
+  & $\displaystyle a^{*}_{-k}$
+  \\
+{\small Time Reversal}
+  & $\displaystyle x[-n]$
+  & $\displaystyle a_{-k}$
+  \\
+{\small Time Scaling}
+  & $\displaystyle x_{(m)}[n]=\left\{
+     \begin{array}{ll}
+     x[n/m] & {\rm if}\ n\ {\rm is\ a\ multiple\ of}\ m \\
+     0      & {\rm if}\ n\ {\rm is\ not\ a\ multiple\ of}\ m
+   \end{array} \right.$
+ & $\displaystyle \frac{1}{m}a_{k} \left(
+   \parbox{7pc}{\raggedright \small viewed as periodic with period $mN$}\right)$
+ \\
+ & \hspace*{.10in}{\small (periodic with period $mN$)} & \\
+{\small Periodic Convolution}
+ & $\displaystyle \sum_{r=\langle N\rangle}x[r]y[n-r]$
+ & $\displaystyle Na_{k}b_{k}$
+ \\
+{\small Multiplication}
+ & $\displaystyle x[n]y[n]$
+ & $\displaystyle \sum_{l=\langle N\rangle} a_{l}b_{k-l}$
+\\
+{\small First Difference}
+ & $\displaystyle{x[n]-x[n-1]}$
+ & $\displaystyle (1-e^{-jk(2\pi/N)})a_{k}$
+\\
+{\small Running Sum \dispstrut}
+ & $\displaystyle \sum^{n}_{k=-\infty}x[k] \left(
+   \parbox{10pc}{\raggedright\small\rm finite-valued and periodic only if
+   $a_0=0$} \right)$
+ & $\displaystyle \left(\frac{1}{(1-e^{-jk(2\pi/N)})}\right)a_{k}$
+ \\
+{\small $\vcenter{Conjugate Symmetry for Real Signals}$}
+ & $\displaystyle x[n]$ real
+ & $\displaystyle \!\!\! \left\{ \!\!\!\!
+   \begin{array}{l}
+     a_{k}=a^{*}_{-k} \\
+     \Re e\{a_{k}\}=\Re e\{a_{-k}\}\\
+     \Im m\{a_{k}\}=-\Im m \{a_{-k}\}\\
+    |a_{k}|=|a_{-k}|\\
+    \phase a_{k} =-\phase a_{-k}
+  \end{array}\right.$
+\\
+
+{\small $\vcenter{Real and Even Signals}$}
+ & $\displaystyle x[n]$ real and even
+ & $\displaystyle a_k$ real and even
+ \\
+ \\
+{\small $\vcenter{Real and Odd Signals}$}
+ & $\displaystyle x[n]$ real and odd
+ & $\displaystyle a_k$ purely imaginary and odd
+ \\
+ \\
+{\small $\vcenter{Even-Odd Decomposition of Real Signals}$} &
+$\displaystyle
+  \begin{array}{ll}
+    x_{e}[n] = \Ev \{x[n]\} & [x[n]\ {\rm real}] \\%
+    x_{o}[n] = \Od \{x[n]\} & [x[n]\ {\rm real}]
+  \end{array}$
+& $\displaystyle
+  \begin{array}{l}
+    \Re e\{a_{k}\} \\
+    j\Im m\{a_{k}\}
+  \end{array}$
+\\
+\multicolumn{3}{l}{ } \\
+\multicolumn{3}{c}{Parseval's Relation for Periodic Signals} \\
+\multicolumn{3}{c}{
+ $\displaystyle \frac{1}{N} \sum_{n=\langle N\rangle} |x[n]|^{2} =
+\sum_{k=\langle N\rangle} |a_{k}|^{2}$} \\
+ & \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+%\end{document} % END HERE FOR QUIZ 1
+
+%
+% CTFT PROPERTIES
+%
+
+\begin{table}[htbp]
+\vspace*{-1.2in}
+\caption{\bf Properties of the Continuous-Time Fourier Transform}
+\vspace*{-0.4in}
+\begin{center}
+$$x(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} X(j\omega) e^{j\omega t} d\omega$$
+$$X(j\omega) = \int_{-\infty}^{\infty} x(t) e^{-j\omega t} dt$$
+\hspace*{-5pc}
+\begin{tabular}{p{2.25in}ll} \hline
+& & \\
+     {\bf Property}
+  & {\bf Aperiodic Signal}
+  & {\bf Fourier transform}
+  \\
+& & \\ \hline
+& & \\
+ & $\displaystyle x(t)$
+  & $\displaystyle X(j\omega)$
+  \\
+ & $\displaystyle y(t)$
+  & $\displaystyle Y(j\omega)$
+  \\
+\multicolumn{3}{l}{ } \\
+ Linearity
+  & $\displaystyle ax(t)+by(t)$
+  & $\displaystyle aX(j\omega)+bY(j\omega)$
+  \\
+ Time-shifting
+  & $\displaystyle x(t-t_{0})$
+  & $\displaystyle e^{-j\omega t_{0}}X(j\omega)$
+  \\
+ Frequency-shifting
+  & $\displaystyle e^{j\omega_{0}t}x(t)$
+  & $\displaystyle X(j(\omega-\omega_0))$
+  \\
+ Conjugation
+  & $\displaystyle x^{*}(t)$
+  & $\displaystyle X^{*}(-j\omega)$
+  \\
+ Time-Reversal
+  & $\displaystyle x(-t)$
+  & $\displaystyle X(-j\omega)$
+  \\
+ $\vcenter{\mbox{Time- and} Frequency-Scaling}$
+  & $\displaystyle x(at)$
+  & $\displaystyle \frac{1}{|a|}X\left(\frac{j\omega}{a}\right)$
+  \\
+ Convolution \linestrut
+  & $\displaystyle x(t)*y(t)$
+  & $\displaystyle X(j\omega) Y(j\omega)$
+  \\
+ Multiplication \dispstrut
+  & $\displaystyle x(t)y(t)$
+  & $\displaystyle \frac{1}{2\pi} X(j\omega)*Y(j\omega)$
+  \\
+ $\vcenter{\mbox{Differentiation in} Time}$
+  & $\displaystyle \frac{d}{dt}x(t)$
+  & $\displaystyle j\omega X(j\omega)$
+  \\
+ Integration \dispstrut
+  & $\displaystyle \int_{-\infty}^{t}x(t) dt$
+  & $\displaystyle \frac{1}{j\omega} X(j\omega) + \pi X(0)
+    \delta(\omega)$
+  \\
+ $\vcenter{Differentiation in Frequency}$
+  & $\displaystyle tx(t)$
+  & $\displaystyle j\frac{d}{d\omega} X(j\omega)$
+  \\
+ $\vcenter{Conjugate Symmetry for Real Signals}$
+  & $\displaystyle x(t)$ real
+  & $\displaystyle \!\!\! \left\{ \!\!\!\!
+    \begin{array}{l}
+      X(j\omega) = X^{*}(-j\omega) \\
+      \Re e\{X(j\omega)\} = \Re e\{X(-j\omega)\} \\
+      \Im m\{X(j\omega)\}=-\Im m \{X(-j\omega)\} \\
+      |X(j\omega)| = |X(-j\omega)| \\
+      \phase X(j\omega) = -\phase X(-j\omega)
+    \end{array} \right.$
+  \\
+ $\vcenter{Symmetry for Real and Even Signals}$
+  & $\displaystyle x(t)$ real and even
+  & $X(j\omega)$ real and even
+  \\
+ $\vcenter{Symmetry for Real and Odd Signals}$
+  & $\displaystyle x(t)$ real and odd
+  & $X(j\omega)$ purely imaginary and odd
+  \\
+ $\vcenter{Even-Odd Decomposition for Real Signals}$
+  & $\begin{array}{ll}
+      x_{e}(t) = \Ev \{x(t)\} & [x(t)\ {\rm real}]\\
+      x_{o}(t) = \Od \{x(t)\} & [x(t)\ {\rm real}]
+    \end{array}$
+  & $\begin{array}{ll}
+      \Re e\{X(j\omega)\}\\
+      j\Im m\{X(j\omega)\}
+    \end{array}$
+  \\
+\multicolumn{3}{l}{ } \\
+& & \\
+ \multicolumn{3}{c}{Parseval's Relation for Aperiodic Signals} \\
+ \multicolumn{3}{c}{$\displaystyle
+\int^{+\infty}_{-\infty} |x(t)|^{2} dt = \frac{1}{2\pi}
+\int^{+\infty}_{-\infty} |X(j\omega)|^{2} d\omega$} \\
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+%
+% CTFT PAIRS
+%
+
+\begin{table}[htb]
+\vspace*{-1.0in}
+\caption{\bf Basic Continuous-Time Fourier Transform Pairs}
+\begin{center}
+\hspace*{-0.7in}
+\begin{small}
+\begin{tabular}{l|l|l} \hline
+& & \\
+& & {\bf Fourier series coefficients} \\
+{\bf Signal}
+  & {\bf Fourier transform }
+  & \hspace{.40in}{\bf (if periodic)}
+  \\
+& &\\ \hline
+$\displaystyle\sum^{+\infty}_{k=-\infty}a_{k}e^{jk\omega_{0}t}$
+  & $\displaystyle 2\pi \sum^{+\infty}_{k=-\infty} a_{k}
+    \delta(\omega-k\omega_{0})$
+  & $\displaystyle a_{k}$
+  \\ \hline
+$\displaystyle e^{j\omega_{0}t}$
+  & $\displaystyle 2\pi\delta(\omega - \omega_0)$
+  & $\displaystyle
+    \begin{array}{ll}
+      a_{1}=1 & \\
+      a_{k}=0, & {\rm otherwise}
+    \end{array}$
+  \\ \hline
+$\displaystyle \cos \omega_{0}t$
+  & $\displaystyle \pi[\delta(\omega-\omega_{0}) +
+    \delta(\omega+\omega_{0})]$
+  & $\displaystyle
+    \begin{array}{l}
+      a_{1} = a_{-1} = \frac{1}{2} \\
+      a_{k}=0,\;\;\;{\rm otherwise}
+    \end{array}$
+  \\ \hline
+$\displaystyle \sin \omega_{0}t$
+  & $\displaystyle \frac{\pi}{j} [\delta(\omega-\omega_{0}) -
+    \delta(\omega+\omega_{0})]$
+  & $\displaystyle
+    \begin{array}{l}
+      a_{1} = -a_{-1} = \frac{1}{2j} \\
+      a_{k}=0,\;\;\;{\rm otherwise}
+    \end{array}$
+  \\ \hline
+$\displaystyle x(t)=1$
+  & $\displaystyle 2\pi\delta(\omega)$
+  & $\displaystyle
+    \begin{array}{l}
+      a_{0} = 1, \;\;\; a_{k}=0, \; k\neq 0 \\
+      \left(
+      \parbox{12pc}{\rm this is the Fourier series representation for
+        any choice of $T>0$}
+      \right)
+    \end{array}$
+  \\ \hline
+$\displaystyle
+  \begin{array}{l} \;\;\;\;
+    {\rm Periodic\;\; square\;\; wave} \\
+    x(t) = \left\{
+    \begin{array}{ll}
+      1, & |t|<T_{1} \\
+      0, & T_{1} < |t| \leq \frac{T}{2}
+    \end{array}
+    \right.
+    \\
+    {\rm and} \\
+    x(t+T) = x(t)
+  \end{array}$
+  & $\displaystyle \sum^{+\infty}_{k=-\infty} \frac{2\sin k
+    \omega_{0}T_{1}}{k}\delta(\omega - k\omega_{0})$
+  & $\displaystyle \frac{\omega_{0}T_{1}}{\pi} \; {\rm sinc} \; \left(
+    \frac{k \omega_{0} T_{1}}{\pi} \right) = \frac{\sin k \omega_{0}
+    T_{1}}{k \pi}$
+  \\ \hline
+$\displaystyle \sum^{+\infty}_{n=-\infty} \delta(t-nT)$
+  & $\displaystyle \frac{2\pi}{T} \sum^{+\infty}_{k=-\infty} \delta
+    \left( \omega-\frac{2\pi k}{T} \right)$
+  & $\displaystyle a_{k} = \frac{1}{T}$ for all $k$
+  \\ \hline
+$\displaystyle x(t) \left\{
+  \begin{array}{ll}
+    1, & |t|<T_{1} \\
+    0, & |t|>T_{1}
+  \end{array} \right.$
+  & $\displaystyle \frac{2\sin\omega T_{1}}{\omega}$
+  & \hspace{.25in} ---
+  \\ \hline
+$\displaystyle \frac{\sin Wt}{\pi t}$
+  & $\displaystyle X(j\omega) = \left\{
+    \begin{array}{ll}
+      1, & |\omega|< W \\
+      0, & |\omega|>W
+    \end{array} \right.$
+  & \hspace{.25in} ---
+  \\ \hline
+$\delta(t)$
+  & 1
+  & \hspace{.25in} ---
+  \\ \hline
+$u(t)$
+  & $\displaystyle \frac{1}{j\omega} + \pi\delta(\omega)$
+  & \hspace{.25in} ---
+  \\ \hline
+$\delta(t-t_{0})$
+  & $e^{-j\omega t_{0}}$
+  & \hspace{.25in} ---
+  \\ \hline
+$\displaystyle e^{-at}u(t), \Re e\{a\}>0$
+  & $\displaystyle \frac{1}{a + j\omega} $
+  & \hspace{.25in} ---
+  \\ \hline
+$\displaystyle te^{-at}u(t), \Re e\{a\}>0$
+  & $\displaystyle \frac{1}{(a+j\omega)^{2}}$
+  & \hspace{.25in}---
+  \\ \hline
+$\displaystyle
+  \begin{array}{c}
+    \frac{t^{n-1}}{(n -1)!} e^{-at}u(t), \\
+    \Re e\{a\}>0
+  \end{array}$
+  & $\displaystyle \frac{1}{(a + j\omega)^{n}}$
+  & \hspace{.25in} ---
+  \\ \hline
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+\clearpage
+
+%
+% DTFT PROPERTIES
+%
+
+\begin{table}[htb]
+\vspace*{-1.25in}
+\caption{\bf Properties of the Discrete-Time Fourier Transform}
+\vspace*{-0.4in}
+\begin{center}
+$$ x[n] = \frac{1}{2\pi} \int_{2\pi} X(e^{j\omega}) e^{j\omega n} d\omega$$
+$$ X(e^{j\omega}) = \sum_{n = -\infty}^{+\infty} x[n] e^{-j\omega n}$$
+\hspace*{-5.5pc}
+\begin{tabular}{p{2.0in}ll}\hline
+& &\\
+ {\bf Property}
+  & {\bf Aperiodic Signal}
+  & {\bf Fourier transform} \\
+ & & \\ \hline
+ & &\\
+ & $\displaystyle \begin{array}{l}
+   x[n] \\
+   y[n]
+\end{array}$
+  & $\displaystyle \left. \begin{array}{l}
+    X(e^{j\omega}) \\
+    Y(e^{j\omega})
+  \end{array} \right\} \begin{array}{l}
+    {\rm Periodic\ with}\\
+    {\rm period\ } 2\pi
+  \end{array}$ \\
+   Linearity
+  & $\displaystyle ax[n]+by[n]$
+  & $\displaystyle aX(e^{j\omega}) + bY(e^{j\omega})$ \\
+   Time-Shifting
+  & $\displaystyle x[n-n_{0}]$
+  & $\displaystyle e^{-j\omega n_{0}} X(e^{j\omega})$ \\
+   Frequency-Shifting
+  & $\displaystyle e^{j\omega_{0}n}x[n]$
+  & $\displaystyle X(e^{j(\omega - \omega_0)} )$ \\
+   Conjugation
+  & $\displaystyle x^{*}[n]$
+  & $\displaystyle X^{*}(e^{-j\omega})$ \\
+   Time Reversal
+  & $\displaystyle x[-n]$
+  & $\displaystyle X(e^{-j\omega})$ \\
+   Time Expansions
+  & $\displaystyle x_{(k)}[n] = \left\{ \!\!\!\!
+    \begin{array}{ll}
+      x[n/k], & {\rm if~} n =    \mbox{multiple of } k\\
+      0,      & {\rm if~} n \neq \mbox{multiple of } k
+    \end{array}\right.$
+  & $\displaystyle X(e^{jk\omega})$ \\
+   Convolution
+  & $\displaystyle x[n]*y[n]$
+  & $\displaystyle X(e^{j\omega}) Y(e^{j\omega})$ \\
+   Multiplication
+  & $\displaystyle x[n] y[n]$
+  & $\displaystyle \frac{1}{2\pi} \int_{2\pi} X(e^{j\theta})
+    Y(e^{j(\omega-\theta)}) d\theta$ \\
+& & \\
+   Differencing in Time
+  & $\displaystyle x[n]-x[n-1]$
+  & $\displaystyle(1-e^{-j\omega}) X(e^{j\omega})$ \\
+   Accumulation
+  & $\displaystyle \sum^{n}_{k=-\infty} x[k]$
+  & $\displaystyle \frac{1}{1-e^{-j\omega}} X(e^{j\omega})$ \\
+  & & $\displaystyle + \pi X(e^{j0}) \sum^{+\infty}_{k=-\infty} \delta(\omega-2\pi k)$ \\
+   Differentiation in Frequency
+  & $\displaystyle nx[n]$
+  & $\displaystyle j \frac{dX(e^{j\omega})}{d\omega}$ \\
+& & \\
+
+   Conjugate  Symmetry for Real Signals
+  & $\displaystyle x[n] \mbox{\ real}$
+  & $\displaystyle \!\!\!\!\left\{ \!\!\!\!
+    \begin{array}{l}
+      X(e^{j\omega}) = X^{*}(e^{-j\omega}) \\
+      \Re e\{X(e^{j\omega})\}=\Re e\{X(e^{-j\omega})\} \\
+      \Im m\{X(e^{j\omega})\}=-\Im m \{X(e^{-j\omega})\} \\
+      |X(e^{j\omega})|=|X(e^{-j\omega})| \\
+      \phase X(e^{j\omega}) =-\phase X(e^{-j\omega})
+  \end{array}\right.$ \\
+& & \\
+
+   Symmetry for Real, Even Signals & $x[n]$ real and even
+  & $X(e^{j\omega})$ real and even\\
+
+   Symmetry for Real, Odd Signals & $x[n]$ real and odd
+  & \parbox{1.5in}{$X(e^{j\omega})$ purely \\ imaginary and odd} \\
+
+   $\vcenter{Even-odd Decomposition of Real Signals}$
+  & $\begin{array}{ll}
+      \displaystyle x_{e}[n] = \Ev \{x[n]\} & [x[n]\ {\rm real}] \\
+      \displaystyle x_{o}[n] = \Od \{x[n]\} & [x[n]\ {\rm real}]
+    \end{array}$
+  & $\begin{array}{l}
+      \displaystyle \Re e\{X(e^{j\omega})\} \\
+      \displaystyle j\Im m\{X(e^{j\omega})\}
+    \end{array}$
+  \\
+& & \\
+   \multicolumn{3}{c}{Parseval's Relation for Aperiodic Signals} \\
+  \multicolumn{3}{c}{$\displaystyle
+    \sum^{+\infty}_{n=-\infty} |x[n]|^{2}= \frac{1}{2\pi} \int_{2\pi}
+    |X(e^{j\omega})|^{2} d\omega$} \\
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+%
+% DTFT PAIRS
+%
+
+\begin{table}[htbp]
+\begin{center}
+\vspace*{-2.0pc}
+\caption{\bf Basic Discrete-Time Fourier Transform Pairs}
+ \hspace*{-8.6pc}
+\begin{tabular}{l|l|l}\hline
+& & \\
+& & {\bf Fourier series coefficients} \\
+{\bf Signal}
+  & {\bf Fourier transform}
+  & \hspace{.40in}{\bf (if periodic)}
+  \\
+& &\\ \hline {\footnotesize $\displaystyle \sum_{k=\langle
+N\rangle} a_{k}
+  e^{jk(2\pi /N)n}$}
+  & {\footnotesize $\displaystyle  2\pi \sum^{+\infty}_{k=-\infty}
+    a_{k} \delta\left(\omega-\frac{2\pi k}{N}\right)$}
+  & $\displaystyle a_{k}$ \\ \hline
+  %
+$\displaystyle e^{j\omega_{0}n}$ &{\footnotesize $\displaystyle
+2\pi\sum^{+\infty}_{l=-\infty}\delta(\omega - \omega_0-2\pi l)$} &
+{\footnotesize $\displaystyle  \begin{array}{lrl}{\rm (a)} &
+\omega_{0} & =  \frac{2\pi m}{N}\\& a_{k} & =
+\left\{\begin{array}{ll}1, & k=m,m\pm N,m\pm 2N,\ldots\\ 0, &{\rm
+otherwise}\end{array}\right.\\{\rm (b)} & \frac{\omega_{0}}{2\pi}
+&{\rm irrational}\Rightarrow\;\;{\rm
+The\;\;signal\;\;is\;\;aperiodic}\end{array}$}\\\hline
+%
+$\displaystyle \cos \omega_{0}n$ & {\footnotesize $\displaystyle
+\pi\sum^{+\infty}_{l=-\infty}\{\delta(\omega- \omega_{0}-2\pi
+l)+\delta(\omega+ \omega_{0}-2\pi l)\}$} & {\footnotesize
+$\displaystyle  \begin{array}{lrl}{\rm (a)} & \omega_{0} & =
+\frac{2\pi m}{N}\\ & a_{k} & =
+\left\{\begin{array}{ll}\frac{1}{2}, & k=\pm m,\pm m\pm N,\pm m\pm
+2N,\ldots\\ 0, &{\rm otherwise}\end{array}\right.\\{\rm (b)} &
+\frac{\omega_{0}}{2\pi}& {\rm irrational}\Rightarrow\;\;{\rm
+The\;\;signal\;\;is\;\;aperiodic}\end{array}$}\\\hline
+%
+$\displaystyle \sin \omega_{0}n$ & {\footnotesize $\displaystyle
+\frac{\pi}{j}\sum^{+\infty}_{l=-\infty}\{\delta(\omega-
+\omega_{0}-2\pi l)-\delta(\omega + \omega_{0}-2\pi l)\}$} &
+{\footnotesize $\displaystyle  \begin{array}{lrl}{\rm (a)} &
+\omega_{0} &=\frac{2\pi r}{N}\\a_{k}
+& = & \left\{\begin{array}{rl}\frac{1}{2j}, & k=r,r\pm N,r\pm 2N,\ldots\\
+-\frac{1}{2j}, & k=-r,-r\pm N,-r\pm 2N,\ldots\\ \!\!\!\!0, &{\rm
+otherwise}\end{array}\right.\\
+{\rm (b)} & \frac{\omega_{0}}{2\pi} & {\rm irrational}\Rightarrow
+{\rm The\;\;signal\;\;is\;\;aperiodic}\end{array}$}\\\hline
+%
+$\displaystyle x[n]=1$ & {\footnotesize $\displaystyle
+2\pi\sum^{+\infty}_{l=-\infty}\delta(\omega-2\pi l)$} &
+{\footnotesize $\displaystyle a_{k}=\left\{\begin{array}{ll}1, &
+k=0,\pm N,\pm 2N,\ldots\\ 0, & {\rm
+otherwise}\end{array}\right.$}\\\hline
+%
+{\footnotesize $\displaystyle \begin{array}{l}\;\;\;\;{\rm Periodic\;\; square\;\; wave}\\
+x[n] =\left\{\begin{array}{ll}1, & |n|\leq N_{1}\\ 0, &
+N_{1}<|n|\leq N/2\end{array}\right.\\ {\rm and}\\ x[n+N] =
+x[n]\end{array}$} & {\footnotesize $\displaystyle  2\pi
+\sum^{+\infty}_{k=-\infty} a_{k}\delta\left(\omega -\frac{2\pi
+k}{N}\right)$} & {\footnotesize $\displaystyle
+\begin{array}{rcl}a_{k} & = & \frac{\sin[(2\pi
+k/N)(N_{1}+\frac{1}{2})]}{N\sin[2\pi k/2N]},\;\; k\neq 0,\pm N,\pm
+2N,\ldots\\ a_{k} &=&\frac{2N_{1}+1}{N},\;\; k=0,\pm N,\pm
+2N,\ldots\end{array}$}\\\hline
+%
+{\footnotesize $\displaystyle \sum^{+\infty}_{k=-\infty}
+\delta[n-kN]$} & {\footnotesize $\displaystyle  \frac{2\pi}{N}
+\sum^{+\infty}_{k=-\infty} \delta\left(\omega-\frac{2\pi
+k}{N}\right)$} & $\displaystyle a_{k}=\frac{1}{N}$ for all
+$k$\\\hline
+%
+$\displaystyle a^{n}u[n],\;\;\;|a|<1$ & {\footnotesize
+$\displaystyle \frac{1}{1-ae^{-j\omega}}$} &
+\hspace{.25in}---\\\hline {\footnotesize $\displaystyle  x[n]
+\left\{\begin{array}{ll}1, & |n|\leq N_{1}\\ 0, &
+|n|>N_{1}\end{array}\right.$} & {\footnotesize $\displaystyle
+\frac{\sin [\omega(N_{1}+\frac{1}{2})]}{\sin (\omega/2)}$} &
+\hspace{.25in}
+---\\\hline {\footnotesize $\displaystyle
+\begin{array}{l}\frac{\sin Wn}{\pi n}=\frac{W}{\pi}\;{\rm
+sinc}\;\left(\frac{Wn}{\pi}\right)\\ 0<W<\pi\end{array}$} &
+{\footnotesize $\displaystyle  \begin{array}{l} X(e^{j\omega})
+=\left\{\begin{array}{ll}1, & 0\leq |\omega|\leq W\\ 0, &
+W<|\omega|\leq \pi\end{array}\right.\\X(e^{j\omega}) {\rm
+periodic\;\;with\;\;period}\;\;2\pi\end{array}$} & \hspace{.25in}
+---\\\hline
+%
+$\displaystyle \delta[n]$ & 1 & \hspace{.25in}
+---\\\hline
+%
+$\displaystyle u[n]$ & {\footnotesize $\displaystyle
+\frac{1}{1-e^{-j\omega}} +
+\sum^{+\infty}_{k=-\infty}\pi\delta(\omega-2\pi k)$} &
+\hspace{.25in} ---\\\hline $\displaystyle \delta[n-n_{0}]$ &
+$\displaystyle e^{-j\omega n_{0}}$ & \hspace{.25in} ---\\\hline
+$\displaystyle (n+1)a^{n}u[n],\;\;|a|<1$ & {\footnotesize
+$\displaystyle \frac{1}{(1-ae^{-j\omega})^{2}}$} &\hspace{.25in}
+---\\\hline {\footnotesize $\displaystyle
+\frac{(n+r-1)!}{n!(r-1)!}a^{n}u[n],\;\;|a|<1$} & {\footnotesize
+$\displaystyle \frac{1}{(1-ae^{-j\omega})^{r}}$}
+&\hspace{.25in}---\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+%\end{document} % END HERE FOR QUIZ 2
+
+%
+% LAPLACE PROPERTIES
+%
+
+\begin{table}[htbp]
+  \begin{center}
+\vspace*{-1.0in}
+
+    \caption{\bf Properties of the Laplace Transform}
+ \hspace*{-1.0in}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{l|c|c|p{2in}}
+      {\bf Property} & {\bf Signal} & {\bf Transform} &{ \bf ROC}
+      \vspace*{-3ex}\\
+                                %
+      \hline
+                                %
+      &$x(t)$ &$X(s)$ & $R$ \\
+                                %
+      &$x_{1}(t)$ &$X_{1}(s)$ & $R_{1}$ \\
+                                %
+      &$x_{2}(t)$ &$X_{2}(s)$ & $R_{2}$ \\
+      Linearity &$ax_{1}(t) + bx_{2}(t)$&$aX_{1}(s) +
+      bX_{2}(s)$ &At least $R_{1} \cap R_{2}$ \\
+      Time shifting                          %
+      &$x(t-t_{0})$ & $e^{-st_{0}}X(s)$ &R \\
+      Shifting in the $s$-Domain                          %
+      &$e^{s_{0}t}x(t)$ & $X(s-s_{0})$
+      & Shifted version of R [i.e., $s\/$ is in the
+      ROC if $(s-s_{0})$ is in R] \\
+      Time scaling                          %
+      &$x(at)$
+      &$\displaystyle\frac{1}{|a|}X\left(
+        \displaystyle\frac{s}{a}
+      \right)$ & ``Scaled'' ROC (i.e., $s\/$ is in
+      the ROC if (s/a) is in R) \\
+       Conjugation                         %
+       & \(x^* (t)\) & \(X^* (s^*)\) & R
+      \\
+      Convolution                          %
+     &$x_{1}(t) \ast x_{2}(t)$
+      &$X_{1}(s)X_{2}(s)$ &At least $R_{1} \cap
+      R_{2}$\\
+      Differentiation in the Time Domain                          %
+      &$\displaystyle\frac{d}{dt}x(t)$
+      &$sX(s)$ &At least R \\
+      Differentiation in the $s$-Domain                                %
+      &$-tx(t)$
+      &$\displaystyle\frac{d}{ds}X(s)$ & R \\
+      Integration in the Time Domain               %
+      &$\displaystyle
+      \int_{-\infty}^{t}x(\tau)d(\tau)$
+      &$\displaystyle\frac{1}{s}X(s)$ &At least $R \cap \{\R >
+      0\}$  \\
+                                %
+      \hline
+\multicolumn{4}{c}{Initial- and Final Value Theorems} \\
+
+\multicolumn{4}{l}{If $x(t)=0$ for $ t < 0$ and $x(t)$ contains no impulses or higher-order singularities at $t=0$, then}  \\
+\multicolumn{4}{c}{$x(0^+) = \lim_{s\to \infty} sX(s)$}\\
+\multicolumn{4}{l}{If $x(t)=0$ for $ t<0$ and $x(t)$ has a finite limit as $ t\to \infty$, then}\\
+\multicolumn{4}{c}{$\lim_{t\to\infty} x(t) = \lim_{s\to 0}sX(s)$}\\
+\hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\clearpage
+
+%
+% LAPLACE PAIRS
+%
+
+\begin{table}[htbp]
+   \vspace*{-1.0in}
+  \begin{center}
+
+    \caption{\bf Laplace Transforms of Elementary
+      Functions}
+    \renewcommand{\arraystretch}{2.00}
+    \begin{tabular}{l|c|l} \\
+      {\bf Signal} &{\bf Transform} &{\bf ROC} \\ % \vspace{-5ex}\\
+      &&\\
+      \hline 1. $\delta(t)$ &1 & All
+      s \\
+      2. $u(t)$ &$\displaystyle\frac{1}{s}$ &$\R > 0$ \\
+      3. $-u(-t)$ &$\displaystyle\frac{1}{s}$ &$\R < 0$ \\
+      4. $\displaystyle\frac{t^{n-1}}{(n-1)!}u(t)$
+      &$\displaystyle\frac{1}{s^{n}}$ &$\R > 0$ \\
+      5. $-\displaystyle\frac{t^{n-1}}{(n-1)!}u(-t)$
+      &$\displaystyle\frac{1}{s^{n}}$ &$\R < 0$ \\
+      6. $e^{-\alpha t}u(t)$ &$\displaystyle\frac{1}{s + \alpha}$
+      &$\R > -\Re e \{ \alpha\} $  \\
+      7. $-e^{-\alpha t}u(-t)$ &$\displaystyle\frac{1}{s +
+        \alpha}$ &$\R < -\Re e \{ \alpha\} $ \\
+      8. $\displaystyle\frac{t^{n-1}}{(n-1)!}e^{-\alpha t}u(t)$
+      &$\displaystyle\frac{1}{(s + \alpha)^{n}}$ &$\R > -\Re e \{ \alpha\} $ \\
+      9. $\displaystyle-{\frac{t^{n-1}}{(n-1)!}e^{-\alpha t}u(-t)}$
+      &$\displaystyle\frac{1}{(s + \alpha)^{n}}$ &$\R < -\Re e \{ \alpha\} $ \\
+
+      10. $\delta(t-T)$ & $e^{-sT}$ &All s \\
+      11. $[\cos
+      \omega_{0}t]u(t)$ & $\displaystyle\frac{s}{s^{2}+
+        \omega^{2}_{0}}$ &$\R > 0$ \\
+      12. $[\sin \omega_{0}t]u(t)$ &
+      $\displaystyle\frac{\omega_{0}}{s^{2}+ \omega^{2}_{0}}$ &$\R >
+      0$ \\
+      13. $[e^{-\alpha t}\cos \omega_{0}t]u(t)$
+      &$\displaystyle\frac{s + \alpha}{(s+\alpha)^{2} +
+        \omega^{2}_{0}}$ &$\R > -\Re e\{ \alpha\} $\\
+      14. $[e^{-\alpha t}\sin
+      \omega_{0}t]u(t)$ &$\displaystyle\frac{\omega_{0}}{(s +
+        \alpha)^{2} + \omega^{2}_{0}}$ &$\R >-\Re e\{ \alpha\} $ \\
+      15. $u_n(t)=\displaystyle\frac{d^{n}\delta(t)}{dt^{n}}$&$s^{n}$
+      &All s \\
+      16. $u_{-n}(t)=\underbrace{u(t)\ast \cdots \ast u(t)}_{n \text{ times}}$
+      &$\displaystyle\frac{1}{s^{n}}$ &$\R > 0$ \\
+    \end{tabular}
+  \end{center}
+\end{table}
+\clearpage
+
+%
+% Z PROPERTIES
+%
+
+\begin{table}[htbp]
+\begin{center}
+\vspace*{-1.0in}
+\caption{\bf Properties of the $z$-Transform}
+\hspace*{-1.0in}
+\begin{tabular}{llll} \hline
+Property & Sequence  & Transform & ROC \\ \hline
+\\
+         & $x[n]$      & $X(z)$      & $R$ \\
+         & $x_1[n]$    & $X_1(z)$    & $R_1$ \\
+         & $x_2[n]$    & $X_2(z)$    & $R_2$ \\
+
+\\
+Linearity     & $ax_1[n] + bx_2[n]$
+          & $aX_1(z) + b X_2(z)$
+           & At least the intersection\\
+           & & &of $R_1$ and $R_2$\\
+
+\\
+
+Time shifting  & $x[n - n_0] $ &  $z^{-n_0} X(z)$ & $R$ except for the\\
+                                & & & possible addition or \\
+                               &  & & deletion of the origin\\
+
+\\
+
+Scaling in the   & $e^{j\omega_0 n} x[n]$ & $X(e^{-j\omega _0} z)$ & $R$ \\
+$z$-Domain        & $z_0^n x[n]$  & $ X\left(\frac{z}{z_0}\right)$ & $z_0 R$ \\
+        & $ a^n x[n] $   & $ X(a^{-1}z) $ & Scaled version of $R$ \\
+                & & &  (i.e., $|a|  R $ = the \\
+                & & &   set of points $\{|a|z\}$ \\
+                & & &   for $z$ in $R$)\\
+\\
+
+Time reversal     & $ x[-n]$   & $ X(z^{-1}) $ & Inverted $R$ (i.e., $R^{-1}$ \\
+                                   & & &  = the set of points \\
+                       & & & $z^{-1}$ where $z$ is in $R$)\\
+Time expansion  & \(\displaystyle
+ x_{(k)}[n] =  \left\{
+     \begin{array}{ll}
+       x[r], & \mbox{$n = r k$}\\
+       0,    & \mbox{$n \not= r k$}
+     \end{array}
+   \right.
+\) & $  X(z^k) $  & $R^{1/k}$ \\
+& ~~~~~~~~~~~~for some integer $r$ & & (i.e., the set of points $z^{1/k}$ \\
+& & & where $z$ is in $R$)\\
+%%%
+\\
+Conjugation  & $x^{\ast}[n]$ &$X^{\ast}(z^{\ast})$ & R \\ \\
+
+Convolution  & $ x_1 [n] * x_2[n]$ & $ X_1(z)X_2(z) $ & At least the intersection\\
+                 & & & of $R_1$ and $R_2$\\ \\
+First difference & $x[n]-x[n-1] $ & $(1-z^{-1})X(z)$ & At least the\\
+               & & & intersection of $ R$ and  $|z| > 0$ \\ \\
+Accumulation & $ \sum_{k = - \infty}^n x[k]$ & $\frac{1}{1 - z^{-1}}X(z)$ & At least the\\
+               & & & intersection of $ R$ and  $|z| > 1$ \\ \\
+\label{prp:10.5.6}
+Differentiation   & $ n x[n] $  & $ -z \frac{d X(z)}{d z} $ & $R$ \\
+in the $z$-Domain & & & \\
+& & & \\
+\multicolumn{4}{c}{Initial Value Theorem} \\
+\multicolumn{4}{c}{If $x[n]=0$ for $ n< 0$, then}\\
+\multicolumn{4}{c}{$x[0]=\lim_{z\to\infty}X(z)$}
+\\ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\clearpage
+
+%
+% Z PAIRS
+%
+
+\begin{table}[htbp]
+\vspace*{-1.0in}
+\begin{center}
+\caption{\bf Some Common $z$-Transform Pairs}
+
+\begin{tabular}{lll}
+& & \\ \hline
+Signal                   & Transform         & ROC \\ \hline
+\\
+1.  $\delta[n]$          & 1                  & All $z$ \\
+\\
+2.  $ u[n] $             & $ \frac{1}{1 - z^{-1}}$  &  $|z| > 1$ \\
+\\
+3.  $ u[-n - 1] $        & $ \frac{1}{1 - z^{-1}}$  & $ |z| < 1$ \\
+  \\
+\\
+4.  $ \delta[n - m] $    & $ z^{-m} $  & All $z$ except\\  & &0 (if $ m > 0$) or \\
+& & $\infty$ (if $m < 0$) \\
+\\
+5.  $ \alpha^n u[n]$      & $\frac{1}{1 - \alpha z^{-1}} $
+   & $|z| > |\alpha|$ \\
+\\
+6.  $ - \alpha^n u[-n - 1]$ & $\frac{1}{1 - \alpha z^{-1}}$
+   & $ |z| < |\alpha|$ \\
+\\
+7.  $ n\alpha^n u[n] $       & $\frac{\alpha z^{-1}}{(1 - \alpha
+z^{-1})^2} $
+   & $|z| > |\alpha|$ \\
+\\
+8.  $ -n \alpha^n u[-n - 1]$ & $\frac{\alpha z^{-1}}{(1 - \alpha
+z^{-1})^2} $
+   & $ |z| < |\alpha |$ \\
+\\
+9.  $ [\cos \omega_0 n]u[n]$ & $\frac{1 - [\cos \omega_0
+]z^{-1}}{1 - [2 \cos         \omega_0]z^{-1} + z^{-2}}$
+& $ |z| > 1 $ \\
+\\
+10. $ [\sin \omega_0 n]u[n]$
+    & $\frac{[\sin \omega_0]z^{-1}}{1 - [2 \cos \omega_0]z^{-1} + z^{-2}}$
+    & $ |z| > 1 $ \\
+\\
+11.  $ [r^n \cos \omega_0 n]u[n]$
+    & $ \frac{1 - [r\cos \omega_0 ]z^{-1}}{1 - [2 r \cos \omega_0]z^{-1} + r^2  z^{-2}}$
+    & $|z| > r $ \\
+\\
+12.  $ [r^n \sin \omega_0 n]u[n]$
+    & $\frac{[r \sin \omega_0]z^{-1}}{1 - [2r \cos \omega_0]z^{-1} + r^2  z^{-2}}$
+    & $|z| > r $ \\ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\end{document}

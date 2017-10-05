@@ -1,0 +1,189 @@
+<html><head><style type="text/css">pre { margin: 1px }
+			.fmt0 {  } /* normal */
+			.fmt1 {  } /* background */
+			.fmt2 { background-color: #ffcabf; } /* line:error */
+			.fmt3 { background-color: #fffbbf; } /* line:warning */
+			.fmt4 { background-color: #bfd6ff; } /* line:badbox */
+			.fmt5 {  } /* line:bookmark */
+			.fmt6 {  } /* line:bookmark0 */
+			.fmt7 {  } /* line:bookmark1 */
+			.fmt8 {  } /* line:bookmark2 */
+			.fmt9 {  } /* line:bookmark3 */
+			.fmt10 {  } /* line:bookmark4 */
+			.fmt11 {  } /* line:bookmark5 */
+			.fmt12 {  } /* line:bookmark6 */
+			.fmt13 {  } /* line:bookmark7 */
+			.fmt14 {  } /* line:bookmark8 */
+			.fmt15 {  } /* line:bookmark9 */
+			.fmt16 { color: #555580; } /* magicComment */
+			.fmt17 { background-color: #a8cf83; } /* commentTodo */
+			.fmt18 { color: #808080; } /* comment */
+			.fmt19 { color: #800000; } /* keyword */
+			.fmt20 { font-weight: 700;color: #0095ff; } /* extra-keyword */
+			.fmt21 { color: #808000; } /* math-keyword */
+			.fmt22 { border-bottom: 1px solid #0000ff;color: #0000ff; } /* link */
+			.fmt23 { font-weight: 700;color: #0055ff; } /* align-ampersand */
+			.fmt24 { color: #008080; } /* verbatim */
+			.fmt25 { color: #800000; } /* sweave-block */
+			.fmt26 { font-weight: 700;color: #0095ff; } /* sweave-delimiter */
+			.fmt27 { color: #800000; } /* pweave-block */
+			.fmt28 { font-weight: 700;color: #0095ff; } /* pweave-delimiter */
+			.fmt29 { font-weight: 700;color: #804000; } /* picture */
+			.fmt30 { color: #c06000; } /* picture-keyword */
+			.fmt31 { font-weight: 700;background-color: #ffff7f; } /* braceMatch */
+			.fmt32 { font-weight: 700;color: #ffff7f;background-color: #c00000; } /* braceMismatch */
+			.fmt33 { color: #000000;background-color: #ffef0b; } /* search */
+			.fmt34 { color: #008000; } /* numbers */
+			.fmt35 { color: #509600; } /* math-delimiter */
+			.fmt36 { color: #ff0000; } /* text */
+			.fmt37 { color: #ff0088; } /* escapeseq */
+			.fmt38 { border-bottom: 1px dashed #ff0000; } /* spellingMistake */
+			.fmt39 { border-bottom: 1px dashed #008000; } /* wordRepetition */
+			.fmt40 { border-bottom: 1px dashed #008000; } /* wordRepetitionLongRange */
+			.fmt41 { text-decoration: line-through; } /* badWord */
+			.fmt42 { border-bottom: 1px dashed #000080; } /* grammarMistake */
+			.fmt43 { background-color: #00ffa0; } /* grammarMistakeSpecial1 */
+			.fmt44 { background-color: #00c0ff; } /* grammarMistakeSpecial2 */
+			.fmt45 { background-color: #00ff00; } /* grammarMistakeSpecial3 */
+			.fmt46 { background-color: #c8ff61; } /* grammarMistakeSpecial4 */
+			.fmt47 { background-color: #ffbf9f; } /* latexSyntaxMistake */
+			.fmt48 { font-style: italic;color: #0000ff; } /* temporaryCodeCompletion */
+			.fmt49 { color: #000080; } /* environment */
+			.fmt50 { color: #008000; } /* referencePresent */
+			.fmt51 { border-bottom: 1px dashed #008000;color: #008000; } /* referenceMissing */
+			.fmt52 { border-bottom: 1px dashed #800080;color: #800080; } /* referenceMultiple */
+			.fmt53 { color: #008000; } /* citationPresent */
+			.fmt54 { border-bottom: 1px dashed #008000;color: #008000; } /* citationMissing */
+			.fmt55 { color: #008000; } /* packagePresent */
+			.fmt56 { border-bottom: 1px dashed #008000;color: #008000; } /* packageMissing */
+			.fmt57 { font-weight: 700;color: #000000; } /* structure */
+			.fmt58 { background-color: #eeeeff; } /* current */
+			.fmt59 { background-color: #b2d8ff; } /* selection */
+			.fmt60 { background-color: #ffaaaa; } /* replacement */
+			.fmt61 { text-decoration: line-through;background-color: #ffaaaa; } /* diffDelete */
+			.fmt62 { background-color: #aaffaa; } /* diffAdd */
+			.fmt63 { background-color: #ffff50; } /* diffReplace */
+			.fmt64 { background-color: #ddffcc; } /* previewSelection */
+			.fmt65 { font-weight: 700;color: #0095ff; } /* txs-test */
+			.fmt66 { font-weight: 700; } /* txs-test-summary */
+			.fmt67 { color: #008000; } /* txs-test-pass */
+			.fmt68 { color: #c00000; } /* txs-test-fail */
+			.fmt69 { color: #ea8800; } /* txs-test-warn */
+			.fmt70 { color: #808000; } /* txs-test-qdebug */
+			.fmt71 { color: #ffa500; } /* dtx:guard */
+			.fmt72 { font-weight: 700;color: #006400; } /* dtx:macro */
+			.fmt73 { color: #008080; } /* dtx:verbatim */
+			.fmt74 { color: #cc8100; } /* dtx:specialchar */
+			.fmt75 { font-weight: 700;color: #10c010; } /* dtx:commands */
+			.fmt76 { color: #b200ff; } /* lua:keyword */
+			.fmt77 { color: #808080; } /* lua:comment */
+			.fmt78 { color: #804000; } /* asymptote:block */
+			.fmt79 { color: #800080; } /* asymptote:keyword */
+			.fmt80 { color: #808000; } /* asymptote:type */
+			.fmt81 { color: #008000; } /* asymptote:numbers */
+			.fmt82 { color: #000080; } /* asymptote:string */
+			.fmt83 { color: #808080; } /* asymptote:comment */
+			.fmt84 { color: #808080; } /* qtscript:comment */
+			.fmt85 { color: #008000; } /* qtscript:string */
+			.fmt86 { color: #000080; } /* qtscript:number */
+			.fmt87 { color: #808000; } /* qtscript:keyword */
+			.fmt88 { color: #800000; } /* qtscript:txs-variable */
+			.fmt89 { font-style: italic; } /* qtscript:txs-function */
+			.fmt90 { background-color: #ffff7f; } /* preedit */
+		</style></head><body><pre><span class="fmt19">\documentclass</span>{<span class="fmt55">standalone</span>} </pre>
+		<pre> </pre>
+		<pre><span class="fmt19">\usepackage</span>{<span class="fmt55">blox</span>} </pre>
+		<pre><span class="fmt19">\usepackage</span>{<span class="fmt55">tikz</span>} </pre>
+		<pre><span class="fmt19">\usetikzlibrary</span>{positioning} </pre>
+		<pre><span class="fmt19">\newcommand</span>{<span class="fmt19">\equal</span>}{=} </pre>
+		<pre><span class="fmt19">\usepackage</span>{<span class="fmt55">tikz</span>} </pre>
+		<pre><span class="fmt19">\usetikzlibrary</span>{intersections} </pre>
+		<pre><span class="fmt19">\usepackage</span>{<span class="fmt56">tkz-euclide</span>} </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Radius</span><span class="fmt18"> </span><span class="fmt18">for</span><span class="fmt18"> </span><span class="fmt18">arc</span><span class="fmt18"> </span><span class="fmt18">over</span><span class="fmt18"> </span><span class="fmt18">intersection</span> </pre>
+		<pre><span class="fmt19">\def\radius</span>{1.mm}  </pre>
+		<pre> </pre>
+		<pre><span class="fmt18">%%%%</span><span class="fmt18"> </span><span class="fmt18">Adapted</span><span class="fmt18"> </span><span class="fmt18">from</span><span class="fmt18"> </span><span class="fmt18">Mark</span><span class="fmt18"> </span><span class="fmt18">Wibrow</span> </pre>
+		<pre><span class="fmt18">%\tikzset{%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">	</span><span class="fmt18">connect/.style</span><span class="fmt18"> </span><span class="fmt18">args={(#1)</span><span class="fmt18"> </span><span class="fmt18">to</span><span class="fmt18"> </span><span class="fmt18">(#2)</span><span class="fmt18"> </span><span class="fmt18">over</span><span class="fmt18"> </span><span class="fmt18">(#3)</span><span class="fmt18"> </span><span class="fmt18">by</span><span class="fmt18"> </span><span class="fmt18">#4}{%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">		</span><span class="fmt18">insert</span><span class="fmt18"> </span><span class="fmt18">path={%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">			</span><span class="fmt18">let</span><span class="fmt18"> </span><span class="fmt18">\p1=($(#1)-(#3)$),</span><span class="fmt18"> </span><span class="fmt18">\n1={veclen(\x1,\y1)},</span><span class="fmt18"> </span><span class="fmt18">\n2={abs(#4)}</span><span class="fmt18">  </span><span class="fmt18">in%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">			</span><span class="fmt18">(#1)</span><span class="fmt18"> </span><span class="fmt18">--%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">			</span><span class="fmt18">($(#1)!\n1-\n2!(#3)$)</span><span class="fmt18"> </span><span class="fmt18">..</span><span class="fmt18"> </span><span class="fmt18">controls</span><span class="fmt18"> </span><span class="fmt18">+(0:\n2/2)</span><span class="fmt18"> </span><span class="fmt18">and</span><span class="fmt18"> </span><span class="fmt18">+(180:\n2/2)</span><span class="fmt18"> </span><span class="fmt18">..%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">			</span><span class="fmt18">+(\n2,#4)%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">			</span><span class="fmt18">..</span><span class="fmt18"> </span><span class="fmt18">controls</span><span class="fmt18"> </span><span class="fmt18">+(0:\n2/2)</span><span class="fmt18"> </span><span class="fmt18">and</span><span class="fmt18"> </span><span class="fmt18">+(180:\n2/2)</span><span class="fmt18"> </span><span class="fmt18">..</span><span class="fmt18"> </span><span class="fmt18">($(#1)!\n1+\n2!(#3)$)</span><span class="fmt18"> </span><span class="fmt18">--</span><span class="fmt18"> </span><span class="fmt18">(#2)%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">		</span><span class="fmt18">}%</span> </pre>
+		<pre><span class="fmt18">%</span><span class="fmt18">	</span><span class="fmt18">}%</span> </pre>
+		<pre><span class="fmt18">%}</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt19">\tikzset</span>{ </pre>
+		<pre>	connect/.style <span class="fmt38">args</span>={(#1) to (#2) over (#3) by #4}{ </pre>
+		<pre>		insert path={ </pre>
+		<pre>			let <span class="fmt19">\p</span>1=(<span class="fmt35">$</span><span class="fmt34">(#1)-(#3)</span><span class="fmt35">$</span>), <span class="fmt19">\n</span>1={<span class="fmt38">veclen</span>(<span class="fmt19">\x</span>1,<span class="fmt19"><span class="fmt47">\y</span></span>1)},  </pre>
+		<pre>			<span class="fmt19">\n</span>2={<span class="fmt38">atan</span>2(<span class="fmt19"><span class="fmt47">\y</span></span>1,<span class="fmt19">\x</span>1)}, <span class="fmt19">\n</span>3={abs(#4)}, <span class="fmt19">\n</span>4={#4>0 ?180:-180}  in  </pre>
+		<pre>			(#1) -- (<span class="fmt35">$</span><span class="fmt34">(#1)!</span><span class="fmt21">\n</span><span class="fmt34">1-</span><span class="fmt21">\n</span><span class="fmt34">3!(#3)</span><span class="fmt35">$</span>)  </pre>
+		<pre>			arc (<span class="fmt19">\n</span>2:<span class="fmt19">\n</span>2+<span class="fmt19">\n</span>4:<span class="fmt19">\n</span>3) -- (#2) </pre>
+		<pre>		} </pre>
+		<pre>	}, </pre>
+		<pre>} </pre>
+		<pre> </pre>
+		<pre><span class="fmt20">\begin{</span><span class="fmt20"><span class="fmt49">document</span></span><span class="fmt20">}</span> </pre>
+		<pre><span class="fmt20">\begin{</span><span class="fmt20"><span class="fmt49">tikzpicture</span></span><span class="fmt20">}</span> </pre>
+		<pre><span class="fmt30">\bXInput</span><span class="fmt29">{A}</span><span class="fmt29">				</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Input</span> </pre>
+		<pre><span class="fmt30">\bXComp</span><span class="fmt29">{B}{A}</span><span class="fmt29">			</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">First</span><span class="fmt18"> </span><span class="fmt18">adder</span> </pre>
+		<pre><span class="fmt30">\bXLink</span><span class="fmt29">[</span><span class="fmt35">$</span><span class="fmt34">R(s)</span><span class="fmt35">$</span><span class="fmt29">]{A}{B}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Input</span><span class="fmt18"> </span><span class="fmt18">Label</span> </pre>
+		<pre><span class="fmt30">\bXBloc</span><span class="fmt29">[2]{C}{</span><span class="fmt35">$</span><span class="fmt34">G_1</span><span class="fmt35">$</span><span class="fmt29">}{B}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Block</span><span class="fmt18"> </span><span class="fmt18">G1</span> </pre>
+		<pre><span class="fmt30">\bXLink</span><span class="fmt29">{B}{C}</span><span class="fmt29">			</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">First</span><span class="fmt18"> </span><span class="fmt18">added</span><span class="fmt18"> </span><span class="fmt18">--</span><span class="fmt18"> </span><span class="fmt18">G1</span> </pre>
+		<pre><span class="fmt30">\bXComp</span><span class="fmt29">{D}{C}</span><span class="fmt29">			</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Second</span><span class="fmt18"> </span><span class="fmt18">adder</span> </pre>
+		<pre><span class="fmt30">\bXComp</span><span class="fmt29">{E}{D}</span><span class="fmt29">			</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Third</span><span class="fmt18"> </span><span class="fmt18">adder</span> </pre>
+		<pre><span class="fmt30">\bXBranchx</span><span class="fmt29">[3]{E}{EH1}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Branch</span><span class="fmt18"> </span><span class="fmt18">for</span><span class="fmt18"> </span><span class="fmt18">H1,</span><span class="fmt18"> </span><span class="fmt18">G2</span> </pre>
+		<pre><span class="fmt30">\bXBloc</span><span class="fmt29">[2]{EH2}{</span><span class="fmt35">$</span><span class="fmt34">G_2</span><span class="fmt35">$</span><span class="fmt29">}{EH1}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Block</span><span class="fmt18"> </span><span class="fmt18">G2</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[-5]{EH2}{EV2}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Branch</span><span class="fmt18"> </span><span class="fmt18">up</span><span class="fmt18"> </span><span class="fmt18">for</span><span class="fmt18"> </span><span class="fmt18">H1</span><span class="fmt18"> </span><span class="fmt18">--</span><span class="fmt18"> </span><span class="fmt18">above</span><span class="fmt18"> </span><span class="fmt18">G1</span> </pre>
+		<pre><span class="fmt30">\bXBloc</span><span class="fmt29">[-1.5]{H2}{</span><span class="fmt35">$</span><span class="fmt34">H_1</span><span class="fmt35">$</span><span class="fmt29">}{EV2}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Block</span><span class="fmt18"> </span><span class="fmt18">H1</span> </pre>
+		<pre><span class="fmt30">\bXBranchx</span><span class="fmt29">[-3.5]{H2}{H2left}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Branch</span><span class="fmt18"> </span><span class="fmt18">for</span><span class="fmt18"> </span><span class="fmt18">H1,</span><span class="fmt18"> </span><span class="fmt18">G2</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt30">\bXBranchx</span><span class="fmt29">[3]{EH2}{Bran2}</span><span class="fmt29">		</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Branch</span><span class="fmt18"> </span><span class="fmt18">after</span><span class="fmt18"> </span><span class="fmt18">G2</span><span class="fmt18"> </span><span class="fmt18">and</span><span class="fmt18"> </span><span class="fmt18">for</span><span class="fmt18"> </span><span class="fmt18">H2</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[5]{Bran2}{Bran2Down}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">beneath</span><span class="fmt18"> </span><span class="fmt18">branch</span><span class="fmt18"> </span><span class="fmt18">2</span> </pre>
+		<pre><span class="fmt30">\bXBloc</span><span class="fmt29">[-4.5]{H2Block}{</span><span class="fmt35">$</span><span class="fmt34">H_2</span><span class="fmt35">$</span><span class="fmt29">}{Bran2Down}</span> </pre>
+		<pre><span class="fmt30">\bXSuma</span><span class="fmt29">{adder4}{Bran2}</span> </pre>
+		<pre><span class="fmt30">\bXLink</span><span class="fmt29">{C}{D}</span> </pre>
+		<pre><span class="fmt30">\bXLink</span><span class="fmt29">{D}{E}</span> </pre>
+		<pre><span class="fmt30">\bXLink</span><span class="fmt29">{E}{EH2}</span> </pre>
+		<pre><span class="fmt30">\bXLink</span><span class="fmt29">{EH2}{adder4}</span><span class="fmt29">		</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">G2</span><span class="fmt18"> </span><span class="fmt18">to</span><span class="fmt18"> </span><span class="fmt18">adder</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt30">\bXBloc</span><span class="fmt29">[3]{G3Block}{</span><span class="fmt35">$</span><span class="fmt34">G_3</span><span class="fmt35">$</span><span class="fmt29">}{adder4}</span><span class="fmt29"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">G3</span> </pre>
+		<pre><span class="fmt30">\bXBranchx</span><span class="fmt29">[4]{G3Block}{BranEnd}</span><span class="fmt29"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">branch</span><span class="fmt18"> </span><span class="fmt18">before</span><span class="fmt18"> </span><span class="fmt18">output</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[7.5]{BranEnd}{H3BlockRight}</span><span class="fmt29"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Right</span><span class="fmt18"> </span><span class="fmt18">H3</span><span class="fmt18"> </span><span class="fmt18">Block</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[2.5]{H3BlockRight}{BranEndReturn}</span><span class="fmt29"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Right</span><span class="fmt18"> </span><span class="fmt18">H3</span><span class="fmt18"> </span><span class="fmt18">Block</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[7.5]{E}{adder3down}</span><span class="fmt29"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">Below</span><span class="fmt18"> </span><span class="fmt18">adder3</span> </pre>
+		<pre><span class="fmt30">\bXBloc</span><span class="fmt29">[-7.5]{H3Block}{</span><span class="fmt35">$</span><span class="fmt34">H_3</span><span class="fmt35">$</span><span class="fmt29">}{H3BlockRight}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">H3</span><span class="fmt18"> </span><span class="fmt18">Block</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29"> </span><span class="fmt29">(BranEnd.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(H3BlockRight.center);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29"> </span><span class="fmt29">(H3BlockRight.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(H3Block);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29"> </span><span class="fmt29">(H3BlockRight.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(BranEndReturn.center);</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[10]{B}{adder1Down}</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29"> </span><span class="fmt29">(BranEndReturn.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(adder1Down);</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[5]{D}{adder2down}</span><span class="fmt29">	</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">beneath</span><span class="fmt18"> </span><span class="fmt18">adder2</span> </pre>
+		<pre><span class="fmt30">\bXBranchy</span><span class="fmt29">[-5]{adder4}{adder4up}</span><span class="fmt29">		</span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">beneath</span><span class="fmt18"> </span><span class="fmt18">adder4</span> </pre>
+		<pre><span class="fmt18">%\bXLinkyx{EH1.center}{H2}</span><span class="fmt18"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">--</span><span class="fmt18"> </span><span class="fmt18">Connection</span><span class="fmt18"> </span><span class="fmt18">for</span><span class="fmt18"> </span><span class="fmt18">branch</span><span class="fmt18"> </span><span class="fmt18">1</span><span class="fmt18"> </span><span class="fmt18">and</span><span class="fmt18"> </span><span class="fmt18">H1</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29">  </span><span class="fmt29">(EH1.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(H2left.center);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29"> </span><span class="fmt29">(H2left.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(H2);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29"> </span><span class="fmt29">(Bran2Down.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(H2Block);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29"> </span><span class="fmt29">(Bran2Down.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(Bran2.center);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-,name</span><span class="fmt29"> </span><span class="fmt29">path=H2</span><span class="fmt29"> </span><span class="fmt29">to</span><span class="fmt29"> </span><span class="fmt29">adder2down]</span><span class="fmt29"> </span><span class="fmt29">(H2Block)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(adder2down.center);</span><span class="fmt29"> </span><span class="fmt18">%</span><span class="fmt18"> </span><span class="fmt18">used</span><span class="fmt18"> </span><span class="fmt18">in</span><span class="fmt18"> </span><span class="fmt18">intersection</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29"> </span><span class="fmt29">(adder2down.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(D);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29">  </span><span class="fmt29">(H2)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(adder4up.center);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29">  </span><span class="fmt29">(adder4up.center)</span><span class="fmt29">   </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(adder4);</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29"> </span><span class="fmt29">(adder4)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(G3Block);</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt30">\node</span><span class="fmt29">[right</span><span class="fmt29"> </span><span class="fmt29">=</span><span class="fmt29"> </span><span class="fmt29">0.5cm</span><span class="fmt29"> </span><span class="fmt29">of</span><span class="fmt29"> </span><span class="fmt29">BranEnd]</span><span class="fmt29"> </span><span class="fmt29">(end)</span><span class="fmt29"> </span><span class="fmt29">{</span><span class="fmt35">$</span><span class="fmt34">C(s)</span><span class="fmt35">$</span><span class="fmt29">};</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->]</span><span class="fmt29"> </span><span class="fmt29">(G3Block)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(end);</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[-]</span><span class="fmt29"> </span><span class="fmt29">(H3Block)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(adder3down.center);</span> </pre>
+		<pre><span class="fmt30">\path</span><span class="fmt29">[name</span><span class="fmt29"> </span><span class="fmt29">path=line]</span><span class="fmt29"> </span><span class="fmt29">(adder3down.center)</span><span class="fmt29"> </span><span class="fmt29">--</span><span class="fmt29"> </span><span class="fmt29">(E);</span> </pre>
+		<pre><span class="fmt30">\path</span><span class="fmt29">[name</span><span class="fmt29"> </span><span class="fmt29">intersections={of=H2</span><span class="fmt29"> </span><span class="fmt29">to</span><span class="fmt29"> </span><span class="fmt29">adder2down</span><span class="fmt29"> </span><span class="fmt29">and</span><span class="fmt29"> </span><span class="fmt29">line,by=inter}];</span> </pre>
+		<pre><span class="fmt30">\draw</span><span class="fmt29">[->,connect=(adder3down.center)</span><span class="fmt29"> </span><span class="fmt29">to</span><span class="fmt29"> </span><span class="fmt29">(E)</span><span class="fmt29"> </span><span class="fmt29">over</span><span class="fmt29"> </span><span class="fmt29">(inter)</span><span class="fmt29"> </span><span class="fmt29">by</span><span class="fmt29"> </span><span class="fmt29">3pt</span><span class="fmt29"> </span><span class="fmt29">];</span> </pre>
+		<pre> </pre>
+		<pre><span class="fmt30">\bXLinkxy</span><span class="fmt29">{BranEndReturn}{B}</span> </pre>
+		<pre><span class="fmt29"> </span><span class="fmt18">%\bXLinkyx{Bran2}{H2Block}</span> </pre>
+		<pre><span class="fmt20">\end{</span><span class="fmt20"><span class="fmt49">tikzpicture</span></span><span class="fmt20">}</span> </pre>
+		<pre><span class="fmt20">\end{</span><span class="fmt20"><span class="fmt49">document</span></span><span class="fmt20">}</span> </pre></body></html>

@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsfonts, amstext, amscd, amssymb, amsmath}
+
+%% Laplace Transform Tables
+
+\newcommand{\Real}{\mathbb R}
+
+\newcommand{\R}{\mbox{$\Re e\{s\}$}}
+
+\newcommand{\I}{\mbox{$\Im m\{s\}$}}
+
+\newcommand{\Rs}{\mbox{$\Re e\{s_0\}$}}
+
+\newcommand{\Ic}{\mbox{$\Im m\{c\}$}}
+
+\begin{document}
+%
+% LAPLACE PROPERTIES
+%
+
+\begin{table}[htbp]
+	\begin{center}
+		\vspace*{-1.0in}
+		
+		\caption{\bf Properties of the Laplace Transform}
+		\hspace*{-1.0in}
+		\renewcommand{\arraystretch}{2}
+		\begin{tabular}{l|c|c|p{2in}}
+			{\bf Property} & {\bf Signal} & {\bf Transform} &{ \bf ROC}
+			\vspace*{-3ex}\\
+			%
+			\hline
+			%
+			&$x(t)$ &$X(s)$ & $R$ \\
+			%
+			&$x_{1}(t)$ &$X_{1}(s)$ & $R_{1}$ \\
+			%
+			&$x_{2}(t)$ &$X_{2}(s)$ & $R_{2}$ \\
+			Linearity &$ax_{1}(t) + bx_{2}(t)$&$aX_{1}(s) +
+			bX_{2}(s)$ &At least $R_{1} \cap R_{2}$ \\
+			Time shifting                          %
+			&$x(t-t_{0})$ & $e^{-st_{0}}X(s)$ &R \\
+			Shifting in the $s$-Domain                          %
+			&$e^{s_{0}t}x(t)$ & $X(s-s_{0})$
+			& Shifted version of R [i.e., $s\/$ is in the
+			ROC if $(s-s_{0})$ is in R] \\
+			Time scaling                          %
+			&$x(at)$
+			&$\displaystyle\frac{1}{|a|}X\left(
+			\displaystyle\frac{s}{a}
+			\right)$ & ``Scaled'' ROC (i.e., $s\/$ is in
+			the ROC if (s/a) is in R) \\
+			Conjugation                         %
+			& \(x^* (t)\) & \(X^* (s^*)\) & R
+			\\
+			Convolution                          %
+			&$x_{1}(t) \ast x_{2}(t)$
+			&$X_{1}(s)X_{2}(s)$ &At least $R_{1} \cap
+			R_{2}$\\
+			Differentiation in the Time Domain                          %
+			&$\displaystyle\frac{d}{dt}x(t)$
+			&$sX(s)$ &At least R \\
+			Differentiation in the $s$-Domain                                %
+			&$-tx(t)$
+			&$\displaystyle\frac{d}{ds}X(s)$ & R \\
+			Integration in the Time Domain               %
+			&$\displaystyle
+			\int_{-\infty}^{t}x(\tau)d(\tau)$
+			&$\displaystyle\frac{1}{s}X(s)$ &At least $R \cap \{\R >
+			0\}$  \\
+			%
+			\hline
+			\multicolumn{4}{c}{Initial- and Final Value Theorems} \\
+			
+			\multicolumn{4}{l}{If $x(t)=0$ for $ t < 0$ and $x(t)$ contains no impulses or higher-order singularities at $t=0$, then}  \\
+			\multicolumn{4}{c}{$x(0^+) = \lim_{s\to \infty} sX(s)$}\\
+			\multicolumn{4}{l}{If $x(t)=0$ for $ t<0$ and $x(t)$ has a finite limit as $ t\to \infty$, then}\\
+			\multicolumn{4}{c}{$\lim_{t\to\infty} x(t) = \lim_{s\to 0}sX(s)$}\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+\clearpage
+
+%
+% LAPLACE PAIRS
+%
+
+\begin{table}[htbp]
+	\vspace*{-1.0in}
+	\begin{center}
+		
+		\caption{\bf Laplace Transforms of Elementary
+			Functions}
+		\renewcommand{\arraystretch}{2.00}
+		\begin{tabular}{l|c|l} \\
+			{\bf Signal} &{\bf Transform} &{\bf ROC} \\ % \vspace{-5ex}\\
+			&&\\
+			\hline 1. $\delta(t)$ &1 & All
+			s \\
+			2. $u(t)$ &$\displaystyle\frac{1}{s}$ &$\R > 0$ \\
+			3. $-u(-t)$ &$\displaystyle\frac{1}{s}$ &$\R < 0$ \\
+			4. $\displaystyle\frac{t^{n-1}}{(n-1)!}u(t)$
+			&$\displaystyle\frac{1}{s^{n}}$ &$\R > 0$ \\
+			5. $-\displaystyle\frac{t^{n-1}}{(n-1)!}u(-t)$
+			&$\displaystyle\frac{1}{s^{n}}$ &$\R < 0$ \\
+			6. $e^{-\alpha t}u(t)$ &$\displaystyle\frac{1}{s + \alpha}$
+			&$\R > -\Re e \{ \alpha\} $  \\
+			7. $-e^{-\alpha t}u(-t)$ &$\displaystyle\frac{1}{s +
+				\alpha}$ &$\R < -\Re e \{ \alpha\} $ \\
+			8. $\displaystyle\frac{t^{n-1}}{(n-1)!}e^{-\alpha t}u(t)$
+			&$\displaystyle\frac{1}{(s + \alpha)^{n}}$ &$\R > -\Re e \{ \alpha\} $ \\
+			9. $\displaystyle-{\frac{t^{n-1}}{(n-1)!}e^{-\alpha t}u(-t)}$
+			&$\displaystyle\frac{1}{(s + \alpha)^{n}}$ &$\R < -\Re e \{ \alpha\} $ \\
+			
+			10. $\delta(t-T)$ & $e^{-sT}$ &All s \\
+			11. $[\cos
+			\omega_{0}t]u(t)$ & $\displaystyle\frac{s}{s^{2}+
+				\omega^{2}_{0}}$ &$\R > 0$ \\
+			12. $[\sin \omega_{0}t]u(t)$ &
+			$\displaystyle\frac{\omega_{0}}{s^{2}+ \omega^{2}_{0}}$ &$\R >
+			0$ \\
+			13. $[e^{-\alpha t}\cos \omega_{0}t]u(t)$
+			&$\displaystyle\frac{s + \alpha}{(s+\alpha)^{2} +
+				\omega^{2}_{0}}$ &$\R > -\Re e\{ \alpha\} $\\
+			14. $[e^{-\alpha t}\sin
+			\omega_{0}t]u(t)$ &$\displaystyle\frac{\omega_{0}}{(s +
+				\alpha)^{2} + \omega^{2}_{0}}$ &$\R >-\Re e\{ \alpha\} $ \\
+			15. $u_n(t)=\displaystyle\frac{d^{n}\delta(t)}{dt^{n}}$&$s^{n}$
+			&All s \\
+			16. $u_{-n}(t)=\underbrace{u(t)\ast \cdots \ast u(t)}_{n \text{ times}}$
+			&$\displaystyle\frac{1}{s^{n}}$ &$\R > 0$ \\
+		\end{tabular}
+	\end{center}
+\end{table}
+\clearpage
+
+\end{document}

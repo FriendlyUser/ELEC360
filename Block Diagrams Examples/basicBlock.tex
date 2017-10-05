@@ -1,0 +1,182 @@
+\documentclass{article}
+
+\usepackage{blox}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usetikzlibrary{circuits}
+\begin{document}
+
+%
+%
+%\begin{tikzpicture}
+%\bXInput{A}
+%\bXComp{B}{A}
+%\bXLink[r]{A}{B}
+%\bXBloc[2]{C}{$\frac{z-p}{s+p}$}{B}
+%\bXLink[u]{B}{C}
+%\bXSuma{D}{C}
+%%\bXLink{D}{W}
+%\bXLink[$x_3$]{C}{D}
+%\bXBloc[2]{E}{$\frac{K}{s}$}{D}
+%\bXLink{D}{E}
+%\bXBloc[2]{F}{$\frac{1}{s+a}$}{E}
+%\bXLink[$x_2$]{E}{F}
+%
+%\bXOutput{G}{F}
+%\bXLink[$x_1$]{F}{G}
+%\bXReturn{F-G}{B}{$x_1$}
+%%\bXOutput{E}{D}
+%%\bXLink[y]{D}{E}
+%%\bXReturn{D-E}{B}{H}
+%
+%% arrows
+%\node[right = 0.05cm of B] (b1) {};
+%\node[right = 0.05cm of G] (end) {$y$};
+%\node[below = 0.15cm of b1] (b15) {};
+%\node[above = 1cm of D] (c2) {};
+%\node[left = 2.2cm of c2] (c1) {};
+%\draw[-]
+%(c1.center) -- (b1.center);
+%\draw[-]
+%(c1.center) -- (c2.center);
+%\draw[->]
+%(c2.center) -- (D);
+%\end{tikzpicture}
+%\newline
+%
+%---Spam is good--- \newline
+%\begin{tikzpicture}
+%\bXInput[r]{A}
+%\bXLoop[1.5]{A}{c/Md,d/kid,e/$4<$}
+%\end{tikzpicture}
+%
+%\tikzset{add/.style n args={4}{
+%		minimum width=6mm,
+%		path picture={
+%			\draw[black] 
+%			(path picture bounding box.south east) -- (path picture bounding box.north west)
+%			(path picture bounding box.south west) -- (path picture bounding box.north east);
+%			\node at ($(path picture bounding box.south)+(0,0.13)$)     {\tiny #1};
+%			\node at ($(path picture bounding box.west)+(0.13,0)$)      {\tiny #2};
+%			\node at ($(path picture bounding box.north)+(0,-0.13)$)        {\tiny #3};
+%			\node at ($(path picture bounding box.east)+(-0.13,0)$)     {\tiny #4};
+%		}
+%	}
+%}
+%
+%\begin{center}
+%	\begin{tikzpicture}
+%	\bXInput{U}
+%	\bXBranchx[2]{U}{N1}
+%	\bXBranchx[4]{N1}{N2}
+%	\bXBloc[2]{G1}{$G_1$}{N2}
+%		\bXLink{U}{G1}
+%	\bXBranchy[4]{N1}{g2}
+%	\bXBloc[-1.5]{G2}{$G_2$}{g2}
+%		\bXLinkxy{N1}{G2}
+%	\bXBranchy[4]{N2}{g3}
+%	\bXBloc[-1.5]{G3}{$G_3$}{g3}
+%		\bXLinkxy{N2}{G3}
+%	\end{tikzpicture}
+%\end{center}
+%
+
+%
+%\begin{tikzpicture}
+%\bXInput{A}
+%\bXComp{B}{A}
+%\bXLink[r]{A}{B}
+%\bXBloc[2]{C}{$\frac{z-p}{s+p}$}{B}
+%\bXLink[u]{B}{C}
+%\bXSuma{D}{C}
+%%\bXLink{D}{W}
+%\bXLink[$x_3$]{C}{D}
+%\bXBloc[2]{E}{$\frac{K}{s}$}{D}
+%\bXLink{D}{E}
+%\bXBloc[2]{F}{$\frac{1}{s+a}$}{E}
+%\bXLink[$x_2$]{E}{F}
+%
+%\bXBranchx[10]{F}{G}
+%\bXLink[$x_1$]{F}{G}
+%\bXReturn{F-G}{B}{$x_1$}
+%
+%\bXBranchx[1.25]{B}{BX1}
+%\bXBranchy[-5]{BX1}{B2}
+%\bXBranchy[-5]{D}{D2}
+%%\bXLinkyx{B}{B3}
+%
+%\node[right = 0.05cm of G] (end) {$y$};
+%\draw[-]
+%(BX1.center) -- (B2.center);
+%\draw[-]
+%(B2.center) -- (D2.center);
+%\draw[->]
+%(D2.center) -- (D);
+%%\bXOutput{E}{D}
+%%\bXLink[y]{D}{E}
+%%\bXReturn{D-E}{B}{H}
+%\end{tikzpicture}
+
+\hfill \break
+
+\begin{tikzpicture}
+\bXInput{A}
+\bXComp{B}{A}
+\bXLink[R]{A}{B}
+\bXCompa{C}{B}
+\bXLink{B}{C}
+\bXSumb{D}{C}
+\bXLink{C}{D}
+\bXBloc[2]{E}{$G_1$}{D}
+\bXLink{D}{E}
+\bXBloc[2]{F}{$G_2$}{E}
+\bXLink{E}{F}
+
+\bXBranchx[5]{F}{FX1}
+
+\bXBranchy[5]{FX1}{FDown1}
+\draw[-] (F) -- (FX1.center);
+\draw[-] (FX1.center) -- (FDown1.center);
+\bXBranchx[-5.5]{FDown1}{FRight1}
+\draw[->] (FDown1.center) -- (FRight1.center);
+\bXBloc[-3.5]{H1}{$H_1$}{FRight1}
+\bXBranchy[5]{D}{DDown1}
+\draw[->] (DDown1.center) -- (D);
+\draw[-] (H1) -- (DDown1.center);
+
+\bXBloc[]{G}{$G_3$}{FX1}
+%\draw[-]  (F)  -- (FX1);
+\draw[->] (FX1) -- (G.center);
+
+\bXBranchx[3]{G}{GX1}
+\bXBranchx[3]{GX1}{GX2}
+\bXBranchx[3]{GX2}{GX3}
+\bXBranchy[-5]{GX2}{GUp1}
+
+\bXBranchx[1.5]{GX2}{GX4}
+\bXBranchy[7.5]{GX4}{GDown1}
+%\draw[-] (G) -- (GX1.center);
+%\draw[-] (G) -- (GX1.center);
+%\draw[-] (GX1.center) -- (GUp1.center);
+%\bXLinkxy{GX1}{GUp1}
+\draw[-] (GX1.center) -- (GX2.center);
+\draw[-] (GX2.center) -- (GUp1.center);
+\draw[->] (GX2.center) -- (GX3.center);
+\node[right = 0.05cm of GX3] (end) {$C$};
+
+\draw[-] (GX4.center) -- (GDown1.center);
+
+\bXBranchy[7.5]{B}{BDown1}
+\bXLink{BDown1.center}{B}
+\draw[-] (GDown1.center) -- (BDown1.center);
+
+
+%% Top Part
+
+\bXBranchx[-20]{GUp1}{GLUp1}
+\bXBloc[-0]{BlockHG}{$\frac{H_2}{G_1}$}{GLUp1}
+\draw[->] (GUp1.center) -- (BlockHG);
+\bXLinkxy{BlockHG}{C}
+\end{tikzpicture}
+\end{document}

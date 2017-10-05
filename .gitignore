@@ -1,0 +1,37 @@
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.xdy
+
+# PDF output - usually a bad idea to keep this in Git
+*.pdf
+
+# Zip files
+*.zip
+
+# Latexmk
+*.fdb_latexmk
+
+# SyncTeX
+*.synctex.gz
+
+# LaTeX Beamer
+*.snm
+*.vrb
+*.nav
+*.out
+*.ilg
+
+# BibTeX
+*.bbl
+*.blg
+
+# SVN Files, and text files
+*.svn
+*.txt 
+# folders specific for me
+/Notes/repo/
+/Notes/Ref/
+/Assignments/A1/Circuits/.svn
+/Assignments/A1/Circuits/repo
