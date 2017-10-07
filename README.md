@@ -55,6 +55,8 @@ A list of files that are ignore is included below
 /Assignments/A1/Circuits/repo
 ```
 
+## Course Outline
+
 **Course Objectives**
 
 ```
