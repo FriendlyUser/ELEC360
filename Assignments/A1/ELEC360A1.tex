@@ -137,31 +137,31 @@
 	\end{enumerate}
 \end{problem}
 
-\begin{problem}{1 (B) --- Inverse Laplace Transforms} \hfill \break
-		\begin{enumerate}[i)]
-			\item $\displaystyle \frac{1}{(s+a)^2}$ 
-			\hfill \break
-			Using Laplace Transform property --- \textbf{Multiplication by Power of t} \newline
-			If $\mathscr{L}[f(t)]=F(s)$, then $\mathscr{L}[t^nf(t)]=(-1)^n\frac{\diff^n}{\diff s^n}=(-1)^nF^{(n)}(s)$
-				\begin{align*}
-					&\mathscr{L}[e^{-at}] = \frac{1}{s+a}, \quad \mathscr{L}[te^{-at}]=\frac{1}{(s+a)^2} \\
-					&\boxed{\mathscr{L^{-1}} \left[\frac{1}{(s+a)^2}\right] = te^{-st}}
-				\end{align*} 
-			\item $\displaystyle \frac{s+a}{(s+a)^2}+\omega^2=\frac{s}{(s+a)^2}+\frac{a}{(s+a)^2}+\omega^2$ \newline
-				\begin{align*}
-					& \mathscr{L^{-1}}[\frac{s}{(s+a)^2}+\frac{a}{(s+a)^2}+\omega^2] \\
-					& \text{Using} \quad \mathscr{L^{-1}}[\frac{s}{(s+a)^2}]= \cos(at), \quad \mathscr{L^{-1}}[\frac{a}{(s+a)^2}] = \sin(at), \quad \mathscr{L^{-1}}[\omega^2]=\omega^2 \delta(t) \\
-					& \mathscr{L^{-1}} \left[\frac{s+a}{(s+a)^2}+\omega^2 \right]= \cos(at) + \sin(at)+ \omega^2 \delta(t) \\
-					& \boxed{\mathscr{L^{-1}} \left[\frac{s+a}{(s+a)^2}+\omega^2 \right] = e^{at}+\omega^2 \delta(t)}
-				\end{align*}
-				% I think the prof messed up the question, refer to matlab work
-			\item  $\displaystyle \frac{s+3}{(s+1)^3} = \frac{1}{(s+1)^2}+\frac{2}{(s+1)^3} $ \newline
-			\begin{align*}
-			& \mathscr{L}^{-1}[\frac{n!}{(s-a)^{n+1}}] = t^n e^{at} \\
-			& \boxed{\mathscr{L}^{-1} \left[\frac{s+3}{(s+1)^3} \right]= te^{-t}+t^2e^{-t}}
-			\end{align*}
-		\end{enumerate}
-\end{problem}
+%\begin{problem}{1 (B) --- Inverse Laplace Transforms} \hfill \break
+%		\begin{enumerate}[i)]
+%			\item $\displaystyle \frac{1}{(s+a)^2}$ 
+%			\hfill \break
+%			Using Laplace Transform property --- \textbf{Multiplication by Power of t} \newline
+%			If $\mathscr{L}[f(t)]=F(s)$, then $\mathscr{L}[t^nf(t)]=(-1)^n\frac{\diff^n}{\diff s^n}=(-1)^nF^{(n)}(s)$
+%				\begin{align*}
+%					&\mathscr{L}[e^{-at}] = \frac{1}{s+a}, \quad \mathscr{L}[te^{-at}]=\frac{1}{(s+a)^2} \\
+%					&\boxed{\mathscr{L^{-1}} \left[\frac{1}{(s+a)^2}\right] = te^{-st}}
+%				\end{align*} 
+%			\item $\displaystyle \frac{s+a}{(s+a)^2}+\omega^2=\frac{s}{(s+a)^2}+\frac{a}{(s+a)^2}+\omega^2$ \newline
+%				\begin{align*}
+%					& \mathscr{L^{-1}}[\frac{s}{(s+a)^2}+\frac{a}{(s+a)^2}+\omega^2] \\
+%					& \text{Using} \quad \mathscr{L^{-1}}[\frac{s}{(s+a)^2}]= \cos(at), \quad \mathscr{L^{-1}}[\frac{a}{(s+a)^2}] = \sin(at), \quad \mathscr{L^{-1}}[\omega^2]=\omega^2 \delta(t) \\
+%					& \mathscr{L^{-1}} \left[\frac{s+a}{(s+a)^2}+\omega^2 \right]= \cos(at) + \sin(at)+ \omega^2 \delta(t) \\
+%					& \boxed{\mathscr{L^{-1}} \left[\frac{s+a}{(s+a)^2}+\omega^2 \right] = e^{at}+\omega^2 \delta(t)}
+%				\end{align*}
+%				% I think the prof messed up the question, refer to matlab work
+%			\item  $\displaystyle \frac{s+3}{(s+1)^3} = \frac{1}{(s+1)^2}+\frac{2}{(s+1)^3} $ \newline
+%			\begin{align*}
+%			& \mathscr{L}^{-1}[\frac{n!}{(s-a)^{n+1}}] = t^n e^{at} \\
+%			& \boxed{\mathscr{L}^{-1} \left[\frac{s+3}{(s+1)^3} \right]= te^{-t}+t^2e^{-t}}
+%			\end{align*}
+%		\end{enumerate}
+%\end{problem}
 
 \begin{problem}{2 --- B-3-7 --- obtain transfer function } \hfill \break
 The voltage drop across an inductor can be expressed as $v_L = L \frac{\diff i}{\diff t}$, the voltage drop across an capacitor is $v_C =\frac{1}{C} \int i \diff t$ for a relaxed state. Using Mesh Analysis: 
@@ -205,7 +205,7 @@ The transfer function $\displaystyle \frac{E_o}{E_i}$ is:
 \begin{problem}{3 ---  (B)-3-11 --- obtain transfer function} \hfill\newline
 %\textbf{Voltage division} to solve for the voltage at point A, --- no need to be techincally incorrect
 Finding the voltage at point A and B, $e_a$ expressed as a fraction of the input voltage, $e_i$
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{Circuits/Q3Circuit}
 	\caption{Operational-amplifier circuit for Problem 3}
@@ -273,7 +273,7 @@ Eliminating $I_a$ by using equations \ref{eq:Q4:1} and \ref{eq:Q4:2}: \newline
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{Circuits/Q5BlockDiagram}
+	\includegraphics[width=0.7\linewidth]{Circuits/Q5BlockDiagram}
 	\caption{Block Diagram for (B)-2--3}
 	\label{fig:q5blockdiagram}
 \end{figure}
@@ -296,7 +296,7 @@ Moving $G_2$ to the left, past a pickoff point results in:
 Combining $\frac{H_1}{G_2}$ and unity, switching the order of the adders before $G_2$ and then using the feedback form results in:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Circuits/Q5BlockDiagram3}
+	\includegraphics[width=1\linewidth]{Circuits/Q5BlockDiagram3}
 	\caption{Partially simplifed Block Diagram}
 	\label{fig:q5blockdiagram3}
 \end{figure}
@@ -321,17 +321,17 @@ Applying the feedback form a final time results in:
 	\centering
 	\includegraphics[width=0.7\linewidth]{Circuits/Q5BlockDiagram5}
 \end{figure}
-The transfer function is , $\displaystyle \boxed{\frac{C(s)}{R(s)}= \frac{G_1G_2G_3+G_1G_3H_1}{1+G_2H_2+H_3G_2G_3+H_1H_2G_3+G_1G_2G_3+G_1G_3H_1}}$
+The transfer function is , $\displaystyle \boxed{\frac{C(s)}{R(s)}= \frac{G_1G_2G_3+G_1G_3H_1}{1+G_2H_2+H_3G_2G_3+H_1H_2G_3+G_1G_2G_3+G_1G_3H_1}}$ 
+ \nopagebreak
 \end{problem}
-
-\begin{problem}[{Problem }6 --- (B)-2-7 --- find C(s)/R(s) and C(s)/D(s)] \hfill \break
-	\hfill \break
+\nopagebreak
+\begin{problem}[Problem 6 --- (B)-2-7 --- find C(s)/R(s) and C(s)/D(s)] 
 To find $ C(s)/R(s)$ set $D(s)=0$ and  for $C(s)/D(s)$ set $R(s)=0$
-\begin{figure}[!h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Circuits/Q6BlockDiagram}
 	\label{fig:q6blockdiagram}
-\end{figure} \newline
+\end{figure} 
 \textbf{Solving for } $C(s)/R(s)$, set $D(s)=0$, this allows for $G_1$ and $G_2$ to be treated as a cascading system and the new system, $G_1G_2$ is in a feedback form with $H_1$. 
 \begin{figure}[H]
 	\centering
@@ -342,7 +342,7 @@ To find $ C(s)/R(s)$ set $D(s)=0$ and  for $C(s)/D(s)$ set $R(s)=0$
 Using the feedback form again:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Circuits/Q6BLockDiagram3Fin}
+	\includegraphics[width=0.5\linewidth]{Circuits/Q6BLockDiagram3Fin}
 	\label{fig:q6blockdiagram3fin}
 \end{figure}
 \vspace{-0.5cm}
@@ -360,13 +360,13 @@ Using the feedback form again:
 Cascading $G_2 + G_3$, $H_2 + G_c$ and $H_1+ 1 / G_3$ and rearranging leads to:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Circuits/Q6BlockDiagram5}
+	\includegraphics[width=0.5\linewidth]{Circuits/Q6BlockDiagram5}
 	\label{fig:q6blockdiagram5}
 \end{figure}
 Using the feedback form:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{Circuits/Q6BlockDiagram6fin}
+	\includegraphics[width=0.5\linewidth]{Circuits/Q6BlockDiagram6fin}
 	\label{fig:q6blockdiagram6fin}
 \end{figure}
 The transfer function, $\displaystyle \boxed{\frac{C(s)}{D(s)}= \cfrac{G_2G_3}{1+G_1G_2G_3G_cH_2+G_1G_2H_1}}$
@@ -386,6 +386,22 @@ The figures \ref{fig:q7step} and \ref{fig:q7rampImpulse} correspond to the plots
 	\caption{Step Response for $10 / (s^2+2s+10)$ in Matlab}
 	\label{fig:q7step}
 \end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{Images/Q7RampOgata}
+		%	\caption{Ramp Response for $10 / (s^2+2s+10)$ in Matlab}
+		\label{fig:q7ramp}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{Images/Q7Impulse}
+		\label{fig:q7impulse}
+	\end{minipage}
+	\caption{Ramp and Impulse Response for $10 / (s^2+2s+10)$ in Matlab}
+	\label{fig:q7rampImpulse}
+\end{figure}
 \begin{lstlisting}[language = Matlab]
 	t = 0:0.02:10;
 	num1 = [10];
@@ -394,22 +410,6 @@ The figures \ref{fig:q7step} and \ref{fig:q7rampImpulse} correspond to the plots
 	plot(t,t,'--',t,y1)
 	v = [0 10 0 10]; axis(v); grid
 \end{lstlisting}
-\begin{figure}[H]
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-	\includegraphics[width=1\linewidth]{Images/Q7RampOgata}
-%	\caption{Ramp Response for $10 / (s^2+2s+10)$ in Matlab}
-	\label{fig:q7ramp}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-	\includegraphics[width=1\linewidth]{Images/Q7Impulse}
-	\label{fig:q7impulse}
-	\end{minipage}
-\caption{Ramp and Impulse Response for $10 / (s^2+2s+10)$ in Matlab}
-\label{fig:q7rampImpulse}
-\end{figure}
 
 \begin{lstlisting}[language = Matlab]
 	h = impulseplot(C/R);
@@ -421,6 +421,12 @@ The figures \ref{fig:q7step} and \ref{fig:q7rampImpulse} correspond to the plots
 \end{problem}
 \begin{problem}{8 --- B-5-12 --- Matlab computations} \hfill\newline
 	By plotting and inspecting the step response of the function $\displaystyle=\frac{C(s)}{R(s)}=\frac{36}{s^2+2s+36}$, the values for rise time, peak time, max overshoot and settling time can be computed.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\linewidth]{Images/Q8Step}
+		\caption{Step response for Problem B-5-12}
+		\label{fig:q8step}
+	\end{figure}
 \begin{lstlisting}[language = Matlab]
 	num = [0 0 36];
 	den = [1 2 36];
@@ -431,12 +437,7 @@ The figures \ref{fig:q7step} and \ref{fig:q7rampImpulse} correspond to the plots
 	xlabel('t (sec)')
 	ylabel('Output y(t)')
 \end{lstlisting}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{Images/Q8Step}
-	\caption{Step response for Problem B-5-12}
-	\label{fig:q8step}
-\end{figure}
+
 
 \begin{lstlisting}[language = Matlab]
 	r1 = 1; while y(r1) < 1.0001, r1 = r1+1; end;  
@@ -476,6 +477,7 @@ $ \displaystyle b_1 =\frac{a_1a_2-a_0a_3}{a_1}= \frac{2(4+K)-(4+K)}{2}, b_2=\fra
 			$\mathbf{s^1}$&$\frac{9K-109/2}{2K-1/2}$&0.00&0.00\\\hline
 			$\mathbf{s^0}$&25.00&0.00&0.00\\\hline
 	\end{tabular}
+	\caption{Routh-stability calculations}
 \end{table}
 In order for the system to be stable, the right hand poles, must not exist, therefore $\frac{2K-1}{2} > 0$ and $\frac{9K-109/2}{2K-1/2}>0$, so $K \geq 0.5$ and $\displaystyle \boxed{ K \geq \frac{109}{18} \approx 6.056}$
 \end{problem}
@@ -507,7 +509,7 @@ In order for the system to be stable, the right hand poles, must not exist, ther
 		\textbf{Week of Sep 10} &  \textbf{Week of Sep 17} &  \textbf{Week of Sep 24} &    \textbf{Week of Oct 1} \\
 		\midrule
 		2 hours reading pages 13 to 22 of text  &  3 hours spent on deriving transfer functions of example systems &  3 hours spent on preparing for lab &  2 hours doing the prelab and reading textbook \\
-		3 hours of internet research on closed loop control system examples &  2 hours towards practising block-diagram reduction techniques &  2 hours towards practising block-diagram reduction techniques &  3 hours reviewing and creating lecture notes \\
+		3 hours of internet research on closed loop control system examples &  2 hours towards practising block-diagram reduction techniques &  2 hours towards practising block-diagram reduction techniques &  3 hours reviewing lecture notes and lab report \\
 		1 hour of practising Laplace Transform &  2 hours on solving first 4 questions of assignment 1 &  2 hours on solving first 4 questions of assignment 1 &  4 hours solving questions of assignment 1 \\
 		\bottomrule
 	\end{tabular}
