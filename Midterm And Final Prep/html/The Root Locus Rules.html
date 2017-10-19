@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0051)http://www.mit.edu/people/klund/weblatex/node8.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Root Locus Rules</title>
+<meta name="description" content="The Root Locus Rules">
+<meta name="keywords" content="weblatex">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<link rel="STYLESHEET" href="./The Root Locus Rules_files/weblatex.css">
+</head>
+<body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+
+<h1><a name="SECTION00080000000000000000">&nbsp;</a>
+<a name="app.rlrules">&nbsp;</a>
+<br>
+The Root Locus Rules
+</h1>
+
+<p>
+To assist in the construction of root locus plots, the ``<a name="2261">&nbsp;</a>Root
+Locus Rules'' for plotting the loci are summarized here.  These rules
+are not universal, and every author has his own favorite set and
+ordering of the rules.  In his landmark textbook, Walter
+Evans<a name="2250">&nbsp;</a> lists approximately ten rules, but does not
+order or number them [<a href="http://www.mit.edu/people/klund/weblatex/node10.html#evans54">1</a>, Appendix B], while
+Roberge<a name="2252">&nbsp;</a> enumerates eight rules
+[<a href="http://www.mit.edu/people/klund/weblatex/node10.html#roberge">9</a>, pages 121-126].
+
+</p><p>
+All root locus rules can be directly traced to the characteristic
+equation, 1+<i>L</i>(<i>s</i>)=0.  If we assume that the loop transfer function can
+be written as 
+<!-- MATH: $L(s)=KL_0(s)$ -->
+<i>L</i>(<i>s</i>)=<i>KL</i><sub>0</sub>(<i>s</i>), where <i>K</i> is a positive gain, then we can
+write the magnitude condition and the angle condition as
+<br></p><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+|L(s)|=|KL_0(s)|=1
+\end{displaymath} -->
+
+
+|<i>L</i>(<i>s</i>)|=|<i>KL</i><sub>0</sub>(<i>s</i>)|=1
+</div>
+<br clear="ALL">
+<p></p>
+
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\angle L(s) = \angle L_0(s) = -180^\circ.
+\end{displaymath} -->
+
+
+<img width="178" height="28" src="./The Root Locus Rules_files/img46.gif" alt="\begin{displaymath}\angle L(s) = \angle L_0(s) = -180^\circ. \end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+We assume that the loop transfer function has <i>P</i> open loop poles and <i>Z</i>
+open loop zeros, and that there are at least as many poles as zeros
+(<img width="49" height="29" align="MIDDLE" border="0" src="./The Root Locus Rules_files/img47.gif" alt="$P\geq Z$">).  
+
+<p>
+</p><dl>
+<dt><strong>Rule 1</strong>
+</dt><dd>The number of branches, which are the paths of the closed-loop poles, is
+equal to the number of open-loop poles, <i>P</i>.
+</dd><dt><strong>Rule 2</strong>
+</dt><dd>The branches start at the open-loop poles and end at the open-loop
+zeros.  In addition to the <i>Z</i> explicit open-loop zeros in the
+transfer function, there are <i>P</i>-<i>Z</i> open-loop zeros at infinity.
+</dd><dt><strong>Rule 3</strong>
+</dt><dd>Branches of the root locus lie on the real axis to the left of an odd
+number of poles and zeros.  Complex-conjugate pairs of poles and zeros
+are not counted, since they contribute no net angle to the real axis.
+</dd><dt><strong>Rule 4</strong>
+</dt><dd>If a branch on the real axis lies between a pair of poles, the root
+locus must break away from the real axis somewhere between the poles.
+Similarly, if a branch on the real axis lies between a pair of zeros,
+there must be an entry point between that pair of zeros.
+</dd><dt><strong>Rule 5</strong>
+</dt><dd>As <i>K</i> gets very large, <i>P</i>-<i>Z</i> branches go to infinity.  These branches
+approach asymptotes at angles to the real axis of
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\alpha_n = \frac{(2n+1)180^\circ}{P-Z}
+\end{displaymath} -->
+
+<img width="131" height="41" src="./The Root Locus Rules_files/img1.gif" alt="\begin{displaymath}\alpha_n = \frac{(2n+1)180^\circ}{P-Z}\end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+where 
+<!-- MATH: $n=0\ldots(P-Z-1)$ -->
+<img width="150" height="31" align="MIDDLE" border="0" src="./The Root Locus Rules_files/img2.gif" alt="$n=0\ldots(P-Z-1)$">
+and the centroid of these asymptotes is on the
+real axis at
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\sigma_a = \frac{\sum p_i - \sum z_j}{P-Z}.
+\end{displaymath} -->
+
+
+<img width="131" height="41" src="./The Root Locus Rules_files/img3.gif" alt="\begin{displaymath}\sigma_a = \frac{\sum p_i - \sum z_j}{P-Z}. \end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+</dd><dt><strong>Rule 6</strong>
+</dt><dd>The departure angles <a name="2277">&nbsp;</a> of the branches from an
+<i>m</i>th-order pole on the real axis are
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\delta_n = \frac{(2n+1)180^\circ}{m}
+\end{displaymath} -->
+
+<img width="128" height="40" src="./The Root Locus Rules_files/img4.gif" alt="\begin{displaymath}\delta_n = \frac{(2n+1)180^\circ}{m}\end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+if the <i>m</i>th-order pole is to the left of a even number of poles and
+zeros.  If the <i>m</i>th-order pole is to the left of a odd number of
+poles and zeros, then the departure angles are
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\delta_n = \frac{2n180^\circ}{m}.
+\end{displaymath} -->
+
+
+<img width="93" height="39" src="./The Root Locus Rules_files/img5.gif" alt="\begin{displaymath}\delta_n = \frac{2n180^\circ}{m}.\end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+</dd><dt><strong>Rule 7</strong>
+</dt><dd>If there are two or more excess poles than zeros (
+<!-- MATH: $P-Z \geq 2$ -->
+<img width="76" height="29" align="MIDDLE" border="0" src="./The Root Locus Rules_files/img6.gif" alt="$P-Z \geq 2$">), then
+for any gain <i>K</i>, the sum of the real parts of the closed-loop poles (or
+the average distance from the <img width="21" height="28" align="MIDDLE" border="0" src="./The Root Locus Rules_files/img7.gif" alt="$j\omega$">-axis) is constant<a name="tex2html37" href="http://www.mit.edu/people/klund/weblatex/footnode.html#foot2284"><sup>3</sup></a>.
+</dd><dt><strong>Rule 8</strong>
+</dt><dd>Ignore remote poles and zeros when considering the root locus near the
+origin of the <i>s</i>-plane, and combine the poles and zeros near the
+origin when considering the root locus for remote poles and zeros.
+</dd><dt><strong>Rule 9</strong>
+</dt><dd>The departure angle from a complex-conjugate pole can be found by
+considering the angle condition on a small circle around the pole.
+The result is found by summing all the angles from open-loop zeros
+and subtracting all the angles from all other poles
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\delta_P = 180^\circ+\sum\angle z_i-\sum\angle\ p_j
+\end{displaymath} -->
+
+<img width="212" height="33" src="./The Root Locus Rules_files/img8.gif" alt="\begin{displaymath}\delta_P = 180^\circ+\sum\angle z_i-\sum\angle\ p_j \end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+The approach angle to a complex-conjugate zero follows similarly
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\delta_Z = 180^\circ-\sum\angle z_i+\sum\angle\ p_j
+\end{displaymath} -->
+
+
+<img width="211" height="33" src="./The Root Locus Rules_files/img9.gif" alt="\begin{displaymath}\delta_Z = 180^\circ-\sum\angle z_i+\sum\angle\ p_j \end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+This sum only needs to be calculated once for each complex pair, since
+the root-locus diagram is symmetric above and below the real axis.
+</dd><dt><strong>Rule 10</strong>
+</dt><dd>The break-away (entry) points from (to) the real axis between a pair
+of poles (zeros) can be found either by geometric
+construction<a name="tex2html38" href="http://www.mit.edu/people/klund/weblatex/footnode.html#foot2293"><sup>4</sup></a> or by finding the
+local maxima (minima) of the gain function <img width="40" height="31" align="MIDDLE" border="0" src="./The Root Locus Rules_files/img10.gif" alt="$K(\sigma)$">,
+solving
+<a name="2294">&nbsp;</a>
+<br><p></p>
+<div align="CENTER">
+<!-- MATH: \begin{displaymath}
+\frac{\partial}{\partial\sigma}K(\sigma) =
+\frac{\partial}{\partial\sigma} \left|\frac1{L(\sigma)}\right| = 0.
+\end{displaymath} -->
+
+<img width="185" height="45" src="./The Root Locus Rules_files/img11.gif" alt="\begin{displaymath}\frac{\partial}{\partial\sigma}K(\sigma) =
+\frac{\partial}{\partial\sigma} \left\vert\frac1{L(\sigma)}\right\vert = 0. \end{displaymath}">
+</div>
+<br clear="ALL">
+<p></p>
+Fortunately, this level of accuracy is rarely necessary.</dd></dl>
+
+<p>
+<br></p><hr>
+<address>
+<i>Kent H Lundberg</i>
+<br><i>2002-11-14</i>
+</address>
+
+
+</body></html>

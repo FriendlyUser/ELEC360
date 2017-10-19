@@ -1,0 +1,46 @@
+﻿/*Stype sheet for web pages of examples (e.g., root locus examples).*/
+
+body {
+	color: black;
+	background-color: #fff;
+	vertical-align: middle;
+	border-collapse: collapse;
+	empty-cells: show;
+	table-layout: auto;
+	margin-right:48px;
+	font-family:Arial, Geneva, sans-serif;
+}
+h1 {
+	text-align:center;
+}
+h2 {
+	font-size: 1.8em;
+	text-align: left;
+	margin: 1em 0 0 0.5em;
+	font-weight: bold;
+}
+.exampleNavWidget {
+	position: fixed; 
+	top: 48px; 
+	right: 0px; 
+	width: 40px;
+	z-index: 999;
+	float:right;
+}
+p {
+	text-indent: 2em;
+	margin: 0em 1em 0 2em;
+	padding-top: 1em;
+	text-align: left;
+}
+
+p.noindent {
+	text-indent: 0em;
+	padding-top: 0em;
+}
+p.equation {
+	text-align: center;
+	margin-left: 0px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}

@@ -26,3 +26,9 @@
 * Chapter 7
 *
  
+#### Other Notes
+- the derivative of the ramp function = step function
+- the integration of the step function = ramp function
+
+##### Other Links
+- http://www.ece.mcmaster.ca/~ibruce/courses/EE4CL4_lecture14.pdf

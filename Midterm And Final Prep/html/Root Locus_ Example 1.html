@@ -1,0 +1,123 @@
+
+<!-- saved from url=(0060)http://lpsa.swarthmore.edu/Root_Locus/Example1/Example1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Root Locus: Example 1</title>
+<link href="./Root Locus_ Example 1_files/Examples.css" rel="stylesheet" type="text/css">
+</head>
+
+<body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+
+<div class="exampleNavWidget">
+	<a href="http://lpsa.swarthmore.edu/Root_Locus/RLocusExamples.html">
+	<img alt="" src="./Root Locus_ Example 1_files/UniBack.gif" style="float: right;"> </a></div>
+<h1>Root Locus: Example 1</h1>
+<h2>Transfer function</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img src="./Root Locus_ Example 1_files/imgAC.gif"></p>
+<h2><a name="BckGrnd"></a>Xfer Function Info</h2>
+<p>For the open loop transfer function, G(s)H(s):<br>We have n=2 poles at s = 0, 
+-3.&nbsp; We have m=0 finite zeros.&nbsp; So there exists q=2 zeros as s goes to 
+infinity (q = n-m = 2-0 = 2).<br><br>We can rewrite the open loop transfer 
+function as G(s)H(s)=N(s)/D(s) where N(s) is the numerator polynomial, and D(s) 
+is the denominator polynomial.&nbsp; <br>N(s)= 1, and D(s)= s<sup>2</sup> + 3 s.<br><br>
+Characteristic Equation is 1+KG(s)H(s)=0, or 1+KN(s)/D(s)=0, <br>or D(s)+KN(s) = 
+s<sup>2</sup> 
++ 3 s+ K( 1 ) = 0<br></p>
+<h2>Completed Root Locus</h2>
+<p></p>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLTot" src="./Root Locus_ Example 1_files/RLTotal.png"></p>
+<h2><a name="RuleSym"></a>Root Locus Symmetry</h2>
+<p>As you can see, the locus is symmetric about the real axis<br></p>
+<h2><a name="RuleNum"></a>Number of Branches</h2>
+<p>The open loop transfer function, G(s)H(s), has 2 poles, therefore the locus 
+has 2 branches. Each branch is displayed in a different color.<br></p>
+<h2><a name="RuleStart"></a>Start/End Points</h2>
+<p>Root locus starts (K=0) at poles of open loop transfer function, G(s)H(s).&nbsp; 
+These are shown by an "x" on the diagram above<br><br>As K→∞ the location of 
+closed loop poles move to the zeros of the open loop transfer function, 
+G(s)H(s).&nbsp; Don't forget we have we also have q=n-m=2 zeros at infinity.&nbsp; 
+(We have n=2 finite poles, and m=0 finite zeros).<br></p>
+<h2><a name="RuleReal"></a>Locus on Real Axis</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLAx" src="./Root Locus_ Example 1_files/RLRealAxis.png"></p>
+<p>The root locus exists on real axis to left of an odd number of poles and 
+zeros of open loop transfer function, G(s)H(s), that are on the real axis.&nbsp;&nbsp; 
+These real pole and zero locations are highlighted on diagram, along with the 
+portion of the locus that exists on the real axis.</p>
+<p>Root locus exists on real axis between:<br>0 and -3<br><br>... because on the 
+real axis, we have 2 poles at s = -3, 0, and we have no zeros.<br></p>
+<h2><a name="RuleInf"></a>Asymptotes as |s| goes to infinity</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLAsym" src="./Root Locus_ Example 1_files/RLAsymptotes.png"></p>
+<p>In the open loop transfer function, G(s)H(s), we have n=2 finite poles, and 
+m=0 finite zeros, therefore we have q=n-m=2 zeros at infinity.<br><br>Angle of 
+asymptotes at odd multiples of ±180°/q, (i.e., ±90°)<br><br>There exists 2 poles 
+at s = 0, -3, ...so sum of poles=-3.<br>There exists 0 zeros, ...so sum of 
+zeros=0.<br>(Any imaginary components of poles and zeros cancel when summed 
+because they appear as complex conjugate pairs.)<br><br>Intersect of asymptotes 
+is at ((sum of poles)-(sum of zeros))/q = -1.5.<br>Intersect is at ((-3)-(0))/2 
+= -3/2 = -1.5 (highlighted by five pointed star).<br></p>
+<h2><a name="RuleBrk"></a>Break-Out and In Points on Real Axis</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLBOI" src="./Root Locus_ Example 1_files/RLBreakOutIn.png"></p>
+<p>Break Out (or Break In) points occur where N(s)D'(s)-N'(s)D(s)=0, or 2 s + 3 
+= 0. (details below*) <br><br>This polynomial has 1 root at s = -1.5.<br><br>
+From these 1 root, there exists 1 real root at s = -1.5.&nbsp; These are 
+highlighted on the diagram above (with squares or diamonds.)<br><br>These roots 
+are all on the locus (i.e., K&gt;0), and are highlighted with squares.<br><br>* 
+N(s) and D(s) are numerator and denominator polynomials of G(s)H(s), and the 
+tick mark, ', denotes differentiation.<br>N(s) = 1<br>N'(s) = 0<br>D(s)= s<sup>2</sup> 
++ 3 s<br>D'(s)= 2 s + 3<br>N(s)D'(s)= 2 s + 3<br>N'(s)D(s)= 0<br>
+N(s)D'(s)-N'(s)D(s)= 2 s + 3<br>
+<br>Here we used N(s)D'(s)-N'(s)D(s)=0, but we could multiply by -1 and use 
+N'(s)D(s)-N(s)D'(s)=0.<br>
+</p>
+<h2><a name="RuleDep"></a>Angle of Departure</h2>
+<p>No complex poles in loop gain, so no angles of departure.<br></p>
+<h2><a name="RuleArv"></a>Angle of Arrival</h2>
+<p>No complex zeros in loop gain, so no angles of arrival.<br></p>
+<h2><a name="RuleImag"></a>Cross Imag. Axis</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLImag" src="./Root Locus_ Example 1_files/RLCrossImag.png"></p>
+<p>Locus crosses imaginary axis at 1 value of K.&nbsp; These values are normally 
+determined by using Routh's method.&nbsp; This program does it numerically, and 
+so is only an estimate.<br><br>Locus crosses where K = 0, corresponding to 
+crossing imaginary axis at s=0.<br><br>These crossings are shown on plot.<br></p>
+<h2><a name="RuleFindPole"></a>Changing K Changes Closed Loop Poles</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLFR" src="./Root Locus_ Example 1_files/RLLocPos.png"></p>
+<p>Characteristic Equation is 1+KG(s)H(s)=0, or 1+KN(s)/D(s)=0,<br>or D(s)+KN(s) 
+= s<sup>2</sup> + 3 s+ K( 1 ) = 0<br><br>So, by choosing K we determine the 
+characteristic equation whose roots are the closed loop poles.<br><br>For 
+example with K=2.25225, then the characteristic equation is<br>D(s)+KN(s) = s<sup>2</sup> 
++ 3 s + 2.2522( 1 ) = 0, or<br>s<sup>2</sup> + 3 s + 2.2522= 0<br><br>This 
+equation has 2 roots at s = -1.5 ±0.047j.&nbsp; These are shown by the large 
+dots on the root locus plot<br>
+</p>
+<h2><a name="RuleFindK"></a>Choose Pole Location and Find K</h2>
+<p style="text-align: center; border-style: none; text-decoration: none; color: red; margin: 0;">
+<img alt="RLFG" src="./Root Locus_ Example 1_files/RLFindGain.png"></p>
+<p>Characteristic Equation is 1+KG(s)H(s)=0, or 1+KN(s)/D(s)=0, or<br>K = 
+-D(s)/N(s) = -( s<sup>2</sup> + 3 s ) / ( 1 )<br>We can pick a value of s on the 
+locus, and find K=-D(s)/N(s).<br><br>For example if we choose s= -1.6 + 1.6j 
+(marked by asterisk),<br>
+then D(s)=-4.87 + -0.243j, N(s)= 1 + 0j,<br>and K=-D(s)/N(s)= 4.87 + 0.243j.<br>
+This s value is not exactly on the locus, so K is complex, (see note below), 
+pick real part of K ( 4.87)<br><br>For this K there exist 2 closed loop poles at 
+s = -1.5 ± 1.6j.&nbsp; These poles are highlighted on the diagram with dots, the 
+value of "s" that was originally specified is shown by an asterisk.<br><br>Note: 
+it is often difficult to choose a value of s that is precisely on the locus, but 
+we can pick a point that is close.&nbsp; If the value is not exactly on the 
+locus, then the calculated value of K will be complex instead of real. Just 
+ignore the the imaginary part of K (which will be small).&nbsp; </p>
+<p>Note also that only one pole location was chosen and this determines the 
+value of K. If the system has more than one closed loop pole, the location of 
+the other poles are determine solely by K, and may be in undesirable locations.</p>
+<p><br></p>
+
+
+
+</body></html>

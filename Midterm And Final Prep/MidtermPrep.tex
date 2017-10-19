@@ -1,0 +1,380 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    
+\section*{Midterm PREP Script}
+
+\begin{par}
+Chapter 6 --- Stabability Question 1, Nise Textbook
+\end{par} \vspace{1em}
+
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item Question 12
+   \item Quesition 20
+   \item Question 21
+   \item Question 22
+   \item Example 7.2 from Nise
+   \item Example 7.3 from Nise
+   \item Example 7.4 from Nise
+   \item Chapter 7 or 8 root Locus Plots
+\end{itemize}
+\begin{par}
+s\^{}5 +3s\^{}4+5s\^{}3 + 4s\^{}2+s+3
+\end{par} \vspace{1em}
+\begin{verbatim}
+polyVector = [1 3 5 4 1 3]
+RouthHurwitz(polyVector)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+polyVector =
+
+     1     3     5     4     1     3
+
+
+ Routh-Hurwitz Table:
+
+rhTable =
+
+    1.0000    5.0000    1.0000
+    3.0000    4.0000    3.0000
+    3.6667         0         0
+    4.0000    3.0000         0
+   -2.7500         0         0
+    3.0000         0         0
+
+~~~~~> it is an unstable system! <~~~~~
+
+ Number of right hand side poles = 2
+
+ Given polynomial coefficients roots :
+
+sysRoots =
+
+  -1.6313 + 0.0000i
+  -0.9407 + 1.5042i
+  -0.9407 - 1.5042i
+   0.2563 + 0.7201i
+   0.2563 - 0.7201i
+
+
+ans =
+
+    1.0000    5.0000    1.0000
+    3.0000    4.0000    3.0000
+    3.6667         0         0
+    4.0000    3.0000         0
+   -2.7500         0         0
+    3.0000         0         0
+
+\end{verbatim} \color{black}
+    \begin{par}
+Q2
+\end{par} \vspace{1em}
+\begin{verbatim}
+v2 = [1 0 6 5 8 20]
+RouthHurwitz(v2)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+v2 =
+
+     1     0     6     5     8    20
+
+
+ Routh-Hurwitz Table:
+
+rhTable =
+
+     1     6     8
+     0     5    20
+  -Inf  -Inf     0
+   NaN   NaN     0
+   NaN   NaN     0
+   NaN   NaN     0
+
+~~~~~> it is a stable system! <~~~~~
+
+ Number of right hand side poles = 0
+
+ Given polynomial coefficients roots :
+
+sysRoots =
+
+   0.6641 + 1.8230i
+   0.6641 - 1.8230i
+  -0.0000 + 2.0000i
+  -0.0000 - 2.0000i
+  -1.3283 + 0.0000i
+
+
+ans =
+
+     1     6     8
+     0     5    20
+  -Inf  -Inf     0
+   NaN   NaN     0
+   NaN   NaN     0
+   NaN   NaN     0
+
+\end{verbatim} \color{black}
+    \begin{verbatim}
+syms s
+(s+1)*(s+2)*(s+3)*(s+4)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim} 
+ans =
+ 
+(s + 1)*(s + 2)*(s + 3)*(s + 4)
+ 
+\end{verbatim} \color{black}
+    \begin{par}
+syms a b c EPS;
+\end{par} \vspace{1em}
+\begin{verbatim}
+syms a b c EPS;
+ra=routh([1 a b c],EPS)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim} 
+ra =
+ 
+[            1, b]
+[            a, c]
+[ -(c - a*b)/a, 0]
+[            c, 0]
+ 
+\end{verbatim} \color{black}
+    
+
+\subsection*{Question 12}
+
+\begin{par}
+K(s+2)/s(s-1)(s+3)
+\end{par} \vspace{1em}
+\begin{verbatim}
+syms s K EPS;
+ra2 = routh([1 2 K-3 2],EPS)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim} 
+ra2 =
+ 
+[                 1, K - 3]
+[                 2,     2]
+[             K - 4,     0]
+[ (2*K - 8)/(K - 4),     0]
+ 
+\end{verbatim} \color{black}
+    
+
+\subsection*{Quesition 20}
+
+\begin{verbatim}
+ra3 = routh([K+1 3 2+K],EPS)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim} 
+ra3 =
+ 
+[ K + 1, K + 2]
+[     3,     0]
+[ K + 2,     0]
+ 
+\end{verbatim} \color{black}
+    
+
+\subsection*{Question 21}
+
+\begin{verbatim}
+ra4 = routh([1 5 4+K 6*K],EPS)
+% solve(4 - K/5==0)
+% solve((6*K*(K - 20))/(5*(K/5 - 4))==0)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim} 
+ra4 =
+ 
+[                            1, K + 4]
+[                            5,   6*K]
+[                      4 - K/5,     0]
+[ (6*K*(K - 20))/(5*(K/5 - 4)),     0]
+ 
+\end{verbatim} \color{black}
+    
+
+\subsection*{Question 22}
+
+\begin{verbatim}
+syms a b c EPS;
+ra5 = routh([1 K-b -a],EPS)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim} 
+ra5 =
+ 
+[     1, -a]
+[ K - b,  0]
+[    -a,  0]
+ 
+\end{verbatim} \color{black}
+    
+
+\subsection*{Example 7.2 from Nise}
+
+\begin{verbatim}
+syms s
+G(s) = 120*(s+2)/((s+3)*(s+4))
+CSlashR = simplify(G(s)/(1+G(s)))
+polyVector = [1 127 252]
+routh([1 127 252],EPS)
+limit(G(s),s,0)
+limit(s*G(s),s,0)
+
+limit(s^2*G(s),s,0)
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}Error using InputOutputModel/subsasgn (line 57)
+Cannot assign a model of class "sym" into a model of class "tf".
+
+Error in MidtermPrep (line 40)
+G(s) = 120*(s+2)/((s+3)*(s+4))
+\end{verbatim} \color{black}
+    
+
+\subsection*{Example 7.3 from Nise}
+
+\begin{verbatim}
+syms s
+G(s) =100*(s+2)*(s+6)/(s*(s+3)*(s+4))
+CSlashR = simplify(G(s)/(1+G(s)))
+polyVector = [1 107 812 1200]
+routh(polyVector, EPS)
+%R(s) = 5*1/s
+limit(5/(1+G(s)),s,0)
+\end{verbatim}
+
+
+\subsection*{Example 7.4 from Nise}
+
+\begin{verbatim}
+G(s) = 10*(s+20)*(s+30)/((s*(s+25)*(s+35)))
+CSlashR = simplify(G(s)/(1+G(s)))
+polyVector = [1 70 1375 600]
+routh(polyVector, EPS)
+\end{verbatim}
+\begin{verbatim}
+G(s) = 10*(s+20)*(s+30)/((s^2*(s+25)*(s+35)*(s+50)))
+CSlashR = simplify(G(s)/(1+G(s)))
+polyVector = [1 110 3875 43760 500 6000]
+routh(polyVector, EPS)
+\end{verbatim}
+\begin{verbatim}
+G1(s) = 500*(s+2)*(s+5)/((s+8)*(s+10)*(s+12))
+G2(s) = 500*(s+5)*(s+5)*(s+6)/(s*(s+8)*(s+10)*(s+12))
+G3(s) = 500*(s+2)*(s+4)*(s+5)*(s+6)*(s+7)/(s^2*(s+8)*(s+10)*(s+12))
+Func1 = (simplify(G1(s)/(1+G1(s))))
+Func2 = (simplify(G2(s)/(1+G2(s))))
+Func3 = (simplify(G3(s)/(1+G3(s))))
+\end{verbatim}
+\begin{verbatim}
+[n1,d1] = numden(Func1)
+routh(sym2poly(d1), EPS)
+[n2,d2] = numden(Func2)
+routh(sym2poly(d2), EPS)
+[n3,d3] = numden(Func3)
+routh(sym2poly(d3), EPS)
+
+Kp = limit(G1(s),s,0)
+Kv = limit(s*G2(s),s,0)
+Ka = limit(s^2*G3(s),s,0)
+\end{verbatim}
+\begin{par}
+Try
+\end{par} \vspace{1em}
+\begin{verbatim}
+numg=1000*[1 8];
+deng=poly([-7 -9]);
+G=tf(numg,deng);
+Kp=dcgain(G)
+estep=1/(1+Kp)
+T=feedback(G,1);
+poles=pole(T)
+\end{verbatim}
+
+
+\subsection*{Chapter 7 or 8 root Locus Plots}
+
+\begin{par}
+Root Locus Plot
+\end{par} \vspace{1em}
+\begin{verbatim}
+h = tf([2 5 1],[1 2 3]);
+rlocus(h)
+snapnow;
+\end{verbatim}
+\begin{par}
+Example from textbook
+\end{par} \vspace{1em}
+\begin{verbatim}
+syms s
+x = s*(s+1)*(s+2)*(s+4)
+den = sym2poly(x)
+num = (s+3)
+num = sym2poly(num)
+h = tf([num],[den])
+rlocus(h)
+\end{verbatim}
+\begin{par}
+$$ $$
+\end{par} \vspace{1em}
+\begin{verbatim}
+x = (s+2)*(s+4)*(s+6)
+den = sym2poly(x)
+h = tf([1],[den])
+rlocus(h)
+\end{verbatim}
+\begin{verbatim}
+syms s K EPS
+x =s^4+ 7*s^3+14*s^2+(8+K)*s+3*K
+polyVec = [1 7 14 8+K 3*K]
+xD = routh(polyVec, EPS)
+xD = simplify(xD)
+\end{verbatim}
+\begin{verbatim}
+polyVec = [1 6 8]
+routh(polyVec,EPS)
+% stable function
+rlocus(tf([1 4 20],[1 6 8]))
+\end{verbatim}
+\begin{par}
+Question 8--4
+\end{par} \vspace{1em}
+\begin{verbatim}
+num= tf([1 2/3])
+den = tf([1 6 0 0])
+
+sys = tf([1 2/3], [1 6 0 0])
+rlocus(sys)
+\end{verbatim}
+
+
+
+\end{document}
+    
