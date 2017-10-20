@@ -34,4 +34,4 @@
 - http://www.ece.mcmaster.ca/~ibruce/courses/EE4CL4_lecture14.pdf
 
 ##### CheatSheet
-![Cheatsheet from the internet][MidtermCheatSheet]
+![Cheatsheet from the internet](MidtermCheatSheet.jpg)
