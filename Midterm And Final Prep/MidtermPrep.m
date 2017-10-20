@@ -220,3 +220,33 @@ roots(vectorPoly)
 (s+1)^3
 a = s^3 + 3*s^2 + 3*s + 1
 polyVec = [1 3 3 1]
+
+%%
+
+sys = tf([1 1], [1 5 6 0])
+rlocus(sys)
+
+%%
+% 
+syms K s EPS
+polyVec = [1 14 43 30+K]
+routh(polyVec,EPS)
+%% K < 572, K > -30
+
+%%
+% Using ZieglerNicholasPID Matlab GUI
+s*(s+3)*(s+6)   
+% https://www.wolframalpha.com/input/?i=286%2F7+-+K%2F14+%3E+0
+polyVec = [1 9 18 K]
+routh(polyVec,EPS)
+%%
+% Checking the results in matlab
+Gs = tf([1],[1 9 18 0])
+Gc = tf([89.608685 1],[1.2292 0])
+G = Gs*Gc
+COverR = feedback(G,1)
+step(COverR)
+stepinfo(COverR/s)
+
+%%
+% Another example
