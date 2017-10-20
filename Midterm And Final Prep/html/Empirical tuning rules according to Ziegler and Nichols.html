@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0060)http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node64.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Empirical tuning rules according to Ziegler and
+Nichols</title>
+<meta name="description" content="Empirical tuning rules according to Ziegler and
+Nichols">
+<meta name="keywords" content="main">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2002">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="stylesheet" href="./Empirical tuning rules according to Ziegler and Nichols_files/style30.css">
+
+<link rel="previous" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node63.html">
+<link rel="up" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node60.html">
+<link rel="next" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node65.html">
+<style>@import url(../course.css);</style>
+</head>
+
+<body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+<!--Navigation Panel-->
+<a name="tex2html3072" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node65.html">
+<img width="37" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/next.gif"></a> 
+<a name="tex2html3068" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node60.html">
+<img width="26" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/up.gif"></a> 
+<a name="tex2html3064" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node63.html">
+<img width="63" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/prev.gif"></a> 
+<a name="tex2html3070" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node1.html">
+<img width="65" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/contents.gif"></a>  
+<br>
+<b> Next:</b> <a name="tex2html3073" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node65.html">Design of controllers using</a>
+<b> Up:</b> <a name="tex2html3069" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node60.html">PID control and associated</a>
+<b> Previous:</b> <a name="tex2html3065" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node63.html">Advantages and disadvantages of</a>
+ &nbsp; <b>  <a name="tex2html3071" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node1.html">Contents</a></b> 
+<br>
+<br>
+<!--End of Navigation Panel-->
+
+<h1><a name="SECTION00940000000000000000"></a>
+ <a name="16224"></a>
+ <a name="16225"></a>
+ <a name="16226"></a><a name="16227"></a>
+<a name="sec:empir-einst-nach8.2.3.1"></a>
+
+Empirical tuning rules according to Ziegler and
+Nichols
+</h1>
+
+<p>
+Many industrial processes show step responses with pure aperiodic
+<a name="16229"></a>behaviour according to
+Figure&nbsp;<a href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node64.html#fig:8.2.7">8.6</a>. This S-shape curve is characteristic of
+many high-order systems and such plant transfer functions may be approximated
+by the
+ <a name="16231"></a>mathematical model
+</p><p></p>
+<div align="CENTER"><a name="eq:8.2.32"></a><!-- MATH
+ \begin{equation}
+G_{{\rm P}} (s) = \frac{K_{{\rm P}}}{1 + T s} {\rm e}^{- T_{{\rm t}} s}\ ,
+\end{equation}
+ -->
+<table cellpadding="0" width="100%" align="CENTER">
+<tbody><tr valign="MIDDLE">
+<td nowrap="" align="CENTER"><img width="143" height="45" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1239.gif"></td>
+<td nowrap="" width="10" align="RIGHT">
+(8.15)</td></tr>
+</tbody></table></div>
+<br clear="ALL"><p></p>
+which contains a 1st-order delay element and a <a name="16239"></a>dead time.
+ Figure&nbsp;<a href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node64.html#fig:8.2.7">8.6</a> shows the
+ <a name="16438"></a>approximation
+ by a
+<a name="16439"></a><!-- MATH
+ ${\rm PT}_{1}{\rm T}_{{\rm t}}$
+ -->
+<img width="44" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1241.gif">
+element.
+
+<p>
+
+</p><div align="CENTER"><a name="fig:8.2.7"></a><a name="16440"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 8.6:</strong>
+Describing the step response of a process
+   by the three characteristic values <!-- MATH
+ $K_{{\rm P}}$
+ -->
+<img width="23" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img62.gif">
+ (gain of the plant), <!-- MATH
+ $T_{{\rm r}}$
+ -->
+<img width="17" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img63.gif">
+ (rise time) and <!-- MATH
+ $T_{{\rm u}}$
+ -->
+<img width="18" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img64.gif"> (delay time)</caption>
+<tbody><tr><td><img width="454" height="282" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1242.gif"></td></tr>
+</tbody></table>
+</div>
+
+<p>
+Here the step response is characterised by constructing the
+ <a name="16260"></a><a name="16261"></a>tangent at the turning point <img width="14" height="13" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1243.gif"> with the
+   following three values: <!-- MATH
+ $K_{{\rm P}}$
+ -->
+<img width="23" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img62.gif">
+(<a name="16263"></a>
+ <a name="16264"></a>gain of the plant), <!-- MATH
+ $T_{{\rm r}}$
+ -->
+<img width="17" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img63.gif">
+ <a name="16266"></a>
+ <a name="16267"></a>(rise time) and <!-- MATH
+ $T_{{\rm u}}$
+ -->
+<img width="18" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img64.gif">
+ <a name="16269"></a>
+ <a name="16270"></a>(delay time). Then a rough approximation
+ according to Eq.&nbsp;(<a href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node64.html#eq:8.2.32">8.15</a>) is to set <!-- MATH
+ $T_{{\rm t}} = T_{{\rm u}}$
+ -->
+<img width="50" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1244.gif"> and <!-- MATH
+ $T
+= T_{{\rm r}}$
+ -->
+<img width="45" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1245.gif">.
+
+</p><p>
+For a plant of the type described above a lot of tuning rules for
+standard controllers have been developed. These have been mostly
+developed empirically from simulation studies. The most famous
+empirical tuning rules are those of <em>Ziegler</em> and <em>Nichols</em>. These tuning rules have been derived to provide step
+responses for the closed loop, where the response shows a decrease
+of the amplitude of approx.&nbsp;25% per period. For the application
+of these rules according to Ziegler and Nichols two different
+approaches can be used:
+
+</p><p>
+</p><dl compact="">
+<dt>a)</dt>
+<dd><em> <a name="16278"></a>Method
+ of the stability margin(I):</em> Here, the following steps are
+ used:
+
+<ol>
+<li>The controller is switched to pure P action.
+</li>
+<li>The gain
+<!-- MATH
+ $K_{{\rm C}}$
+ -->
+<img width="24" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1108.gif"> of the P controller is continuously increased until the
+closed loop shows permanent oscillations. The value of the gain
+<!-- MATH
+ $K_{{\rm C}}$
+ -->
+<img width="24" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1108.gif"> at this state is denoted as the <a name="16282"></a><a name="16283"></a>critical
+controller gain <!-- MATH
+ $K_{{\rm C}\operatorname{crit}}$
+ -->
+<img width="43" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1246.gif">.
+</li>
+<li>The length of period <!-- MATH
+ $T_{\operatorname{crit}}$
+ -->
+<img width="29" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1247.gif">
+ <a name="16286"></a>
+ <a name="16287"></a>(critical period) of the
+ oscillations is measured.
+</li>
+<li>From <!-- MATH
+ $K_{{\rm C}\operatorname{crit}}$
+ -->
+<img width="43" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1246.gif"> and <!-- MATH
+ $T_{\operatorname{crit}}$
+ -->
+<img width="29" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1247.gif"> one determines the
+controller tuning values <!-- MATH
+ $K_{{\rm C}}$
+ -->
+<img width="24" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1108.gif">, <!-- MATH
+ $T_{{\rm I}}$
+ -->
+<img width="16" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img589.gif"> and <!-- MATH
+ $T_{{\rm D}}$
+ -->
+<img width="21" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1193.gif">
+ using the formulas given in Table&nbsp;<a href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node64.html#tab:8.2.8">8.1</a>.
+</li>
+</ol>
+
+<p>
+</p></dd>
+<dt>b)</dt>
+<dd><em> <a name="16295"></a>Method
+of the step response (II):</em> In the case of an industrial plant it
+is often not possible, suitable or allowed to drive the plant into
+<a name="16296"></a>permanent oscillations for
+determining <!-- MATH
+ $K_{{\rm C}\operatorname{crit}}$
+ -->
+<img width="43" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1246.gif"> and <!-- MATH
+ $T_{\operatorname{crit}}$
+ -->
+<img width="29" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1247.gif">. Measuring the
+ <a name="16299"></a>step response of
+the plant does not generally cause difficulties. Therefore, in
+many cases the second form of the Ziegler-Nichols approach is more
+expedient. The rules are based directly on the slope
+<!-- MATH
+ $K_{{\rm P}}/T_{{\rm r}}$
+ -->
+<img width="44" height="28" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1248.gif"> of the tangent at the turning point and on the
+delay <!-- MATH
+ $T_{{\rm u}}$
+ -->
+<img width="18" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img64.gif"> of the step response. One has to observe that the
+measurement of the step response needs only to be taken at the turning
+point T, as the slope of the tangent already describes the ratio
+<!-- MATH
+ $K_{{\rm P}}/T_{{\rm r}}$
+ -->
+<img width="44" height="28" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1248.gif">. Using the measured data <!-- MATH
+ $T_{{\rm u}}$
+ -->
+<img width="18" height="26" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img64.gif"> and
+<!-- MATH
+ $K_{{\rm P}}/T_{{\rm r}}$
+ -->
+<img width="44" height="28" align="MIDDLE" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1248.gif"> as well as the formula given in
+Table&nbsp;<a href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node64.html#tab:8.2.8">8.1</a> the controller tuning parameters can be
+determined by simple calculations.
+</dd>
+</dl>
+
+<p>
+<br></p><p></p>
+<div align="CENTER"><a name="16311"></a>
+<table>
+<caption><strong>Table 8.1:</strong>
+Controller tuning parameters according to Ziegler and Nichols</caption>
+<tbody><tr><td>  <div align="CENTER">  
+  <a name="tab:8.2.8"></a>  <img width="447" height="255" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/img1249.gif"></div></td></tr>
+</tbody></table>
+</div><p></p>
+<br>
+
+<p>
+</p><p>
+</p><div><b>Demonstration Example  8.1</b> &nbsp; 
+<a name="16364"></a>
+<a name="zieglernicholsexample"></a> <a name="tex2html935" href="http://virtual.cvut.cz/virtualexperiments/optocon.html">A
+virtual experiment using PID control for tracking</a></div><p></p>
+
+<p>
+</p><div><b>Demonstration Example  8.2</b> &nbsp; 
+<a name="16370"></a>
+<a name="zieglernicholsexample2"></a> <a name="tex2html937" href="http://virtual.cvut.cz/virtualexperiments/hydraulic.html">A
+virtual experiment using PID control for high-precision
+positioning</a></div><p></p>
+
+<p>
+</p><p>
+</p><div><b>DYNAST study example  8.1</b> &nbsp; 
+<a name="16376"></a>
+<a name="PIPT1tt"></a> <a name="tex2html939" href="http://virtual.cvut.cz/dyn/examples/examples/control/ac3pid1/index.html">PI control of
+a PT<sub>1</sub>T<sub>t</sub>  plant</a></div><p></p>
+
+<p>
+</p><div><b>DYNAST study example  8.2</b> &nbsp; 
+<a name="16382"></a>
+<a name="PIDPT1tt"></a> <a name="tex2html941" href="http://virtual.cvut.cz/dyn/examples/examples/control/ac3pid2/index.html">PID control
+of a PT<sub>1</sub>T<sub>t</sub>  plant</a></div><p></p>
+
+<p>
+</p><div><b>DYNAST study example  8.3</b> &nbsp; 
+<a name="16388"></a>
+<a name="DisturbancePIPT1tt"></a><a name="tex2html943" href="http://virtual.cvut.cz/dyn/examples/examples/control/ac8distpi/index.html">Disturbance response for PI
+control of a PT<sub>1</sub>T<sub>t</sub> plant</a></div><p></p>
+<hr size="1">
+<!--Navigation Panel-->
+<a name="tex2html3072" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node65.html">
+<img width="37" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/next.gif"></a> 
+<a name="tex2html3068" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node60.html">
+<img width="26" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/up.gif"></a> 
+<a name="tex2html3064" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node63.html">
+<img width="63" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/prev.gif"></a> 
+<a name="tex2html3070" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node1.html">
+<img width="65" height="24" align="BOTTOM" border="0" src="./Empirical tuning rules according to Ziegler and Nichols_files/contents.gif"></a>  
+<br>
+<b> Next:</b> <a name="tex2html3073" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node65.html">Design of controllers using</a>
+<b> Up:</b> <a name="tex2html3069" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node60.html">PID control and associated</a>
+<b> Previous:</b> <a name="tex2html3065" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node63.html">Advantages and disadvantages of</a>
+ &nbsp; <b>  <a name="tex2html3071" href="http://www.atp.ruhr-uni-bochum.de/rt1/syscontrol/node1.html">Contents</a></b> 
+<!--End of Navigation Panel-->
+<address>
+Christian&nbsp;Schmid&nbsp;2005-05-09
+</address>
+
+
+</body></html>
