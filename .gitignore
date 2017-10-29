@@ -35,3 +35,6 @@
 /Notes/Ref/
 /Assignments/A1/Circuits/.svn
 /Assignments/A1/Circuits/repo
+
+# Ignore gif files because latex can't read them
+*.gif

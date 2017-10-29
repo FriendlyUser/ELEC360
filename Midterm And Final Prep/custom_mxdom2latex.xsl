@@ -39,15 +39,40 @@ Copyright 1984-2007 The MathWorks, Inc.
 \usepackage{bookmark}
 \usepackage[hmargin=2cm,vmargin=2.5cm]{geometry}
 \usepackage{fancyhdr}
-
+\usepackage{booktabs}
 \sloppy
 \definecolor{lightgray}{gray}{0.5}
 \setlength{\parindent}{0pt}
 
 \makeindex
 
-\begin{document}
+\usepackage{lstlistings}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	%numbers=left,%
+	%numberstyle={\tiny \color{black}},% size of the numbers
+	%numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
 
+\begin{document}
+<!-- Personal Names and Course Name and so on -->
+\noindent \textbf{ELEC 360 --- Assignment 1} \hfill \textbf{David Li} \\
+\textbf{Due Date:} October 2, 2017 \hfill Student Number: \textbf{V00818631} \\
+\vspace{-0.9cm}
+\hrule
+\vspace{1cm}
     <!-- Determine if the there should be an introduction section. -->
     <xsl:variable name="hasIntro" select="count(cell[@style = 'overview'])"/>
     <xsl:if test = "$hasIntro">
@@ -176,9 +201,9 @@ Copyright 1984-2007 The MathWorks, Inc.
 
 <!-- Code input and output -->
 
-<xsl:template match="mcode">\begin{verbatim}
+<xsl:template match="mcode">\begin{lstlisting}[language = Matlab]
 <xsl:value-of select="."/>
-\end{verbatim}
+\end{lstlisting}
 </xsl:template>
 
 
