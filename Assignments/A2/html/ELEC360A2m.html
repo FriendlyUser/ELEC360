@@ -1,0 +1,682 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ELEC360A2m</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-11-04"><meta name="DC.source" content="ELEC360A2m.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">ELEC 360 --- Assignment 2</a></li><li><a href="#2">Question 1: B-6-7</a></li><li><a href="#10">Question 2: B-6-14</a></li><li><a href="#23">Question 3 B-6-16</a></li><li><a href="#32">Question 4, B-6-17</a></li><li><a href="#46">Question 5, B-6-20</a></li><li><a href="#61">Question 6, B-7-4</a></li></ul></div><h2 id="1">ELEC 360 --- Assignment 2</h2><p>Due Nov 17 (approximate), from Ogata --- Control Systems</p><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+format <span class="string">compact</span>
+format <span class="string">rat</span>
+</pre><h2 id="2">Question 1: B-6-7</h2><p>Plot the root loci for the system shown in Figure 6&#8211;100. Determine the range of gain K for stability</p><p><img vspace="5" hspace="5" src="Q1Diagram67.png" alt=""> </p><p>Create the equation block diagram in matlab</p><pre class="codeinput">G1 = tf([1,1],[1,5])
+G2 = tf([2],[1 2 0 0])
+Geq = G1 *G2
+</pre><pre class="codeoutput">
+G1 =
+ 
+  s + 1
+  -----
+  s + 5
+ 
+Continuous-time transfer function.
+
+
+G2 =
+ 
+       2
+  -----------
+  s^3 + 2 s^2
+ 
+Continuous-time transfer function.
+
+
+Geq =
+ 
+        2 s + 2
+  --------------------
+  s^4 + 7 s^3 + 10 s^2
+ 
+Continuous-time transfer function.
+
+</pre><p>Compute the feedback loop using negative unity feedback, by default assumes feedback(sys1,sys2) assumes negative feedback and is equivalent to feedback(sys1,sys2,-1).</p><pre class="codeinput">rlocus(Geq)
+print(<span class="string">'rlocusQ67NoAnno.png'</span>,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>)
+</pre><img vspace="5" hspace="5" src="ELEC360A2m_01.png" alt=""> <p>Compute stability</p><pre class="codeinput">syms <span class="string">s</span> <span class="string">K</span> <span class="string">EPS</span>
+Gfeed = feedback(Geq,1)
+polyVector = sym2poly(s^4 + 7*s^3 + 10*s^2 + 2*s + 2)
+polyVector2 = [1 7 10 2*K 2*K]
+table = simplify(routh(polyVector2,EPS))
+</pre><pre class="codeoutput">
+Gfeed =
+ 
+             2 s + 2
+  ------------------------------
+  s^4 + 7 s^3 + 10 s^2 + 2 s + 2
+ 
+Continuous-time transfer function.
+
+polyVector =
+       1              7             10              2              2       
+polyVector2 =
+[ 1, 7, 10, 2*K, 2*K]
+table =
+[                       1,  10, 2*K]
+[                       7, 2*K,   0]
+[            10 - (2*K)/7, 2*K,   0]
+[ (K*(2*K - 21))/(K - 35),   0,   0]
+[                     2*K,   0,   0]
+</pre><p>\begin{array}{ccc} 1 &amp; 10 &amp; 2\,K\\ 7 &amp; 2\,K &amp; 0\\ 10-\frac{2\,K}{7} &amp; 2\,K &amp; 0\\ \frac{K\,\left(2\,K-21\right)}{K-35} &amp; 0 &amp; 0\\ 2\,K &amp; 0 &amp; 0 \end{array}</p><p>The system will be stable when 0 &lt; K &lt; 21 /2 checking with RouthHurwitz</p><pre class="codeinput">RouthHurwitz([1 7 10 0 0])
+RouthHurwitz([1 7 10 21 21])
+</pre><pre class="codeoutput">
+ Routh-Hurwitz Table:
+rhTable =
+       1             10              0       
+       7              0              0       
+      10              0              0       
+       1/100          0              0       
+       1/100          0              0       
+~~~~~&gt; it is a stable system! &lt;~~~~~
+
+ Number of right hand side poles = 0
+
+ Given polynomial coefficients roots :
+sysRoots =
+       0       
+       0       
+      -5       
+      -2       
+ans =
+       1             10              0       
+       7              0              0       
+      10              0              0       
+       1/100          0              0       
+       1/100          0              0       
+
+ Routh-Hurwitz Table:
+rhTable =
+       1             10             21       
+       7             21              0       
+       7             21              0       
+       1/100          0              0       
+      21              0              0       
+~~~~~&gt; it is a stable system! &lt;~~~~~
+
+ Number of right hand side poles = 0
+
+ Given polynomial coefficients roots :
+sysRoots =
+   -3191/551    +    0i      
+      -1/4238682002231055 + 1351/780i  
+      -1/4238682002231055 - 1351/780i  
+    -666/551    +    0i      
+ans =
+       1             10             21       
+       7             21              0       
+       7             21              0       
+       1/100          0              0       
+      21              0              0       
+</pre><p>The system is stable when the 0 &lt; K &lt; 10.5</p><h2 id="10">Question 2: B-6-14</h2><p>Consider the system shown in Figure 6&#8211;104. Plot the root loci for the system. Determine the value of K such that the damping ratio <span class="MathJax_Preview"><img src="ELEC360A2m_eq17615028512695387165.png" alt="$\eta$"></span><script type="math/tex">\eta</script> of the dominant closed-loop poles is 0.5. Then determine all closed-loop poles. Plot the unitstep response curve with MATLAB.</p><p><img vspace="5" hspace="5" src="Q2Diagram614.png" alt=""> </p><p>Since <span class="MathJax_Preview"><img src="ELEC360A2m_eq07321044518161219643.png" alt="$\eta = 0.5$"></span><script type="math/tex">\eta = 0.5</script>, <span class="MathJax_Preview"><img src="ELEC360A2m_eq09675929427744555749.png" alt="$\theta=\cos^{-1}(\eta)=60^o$"></span><script type="math/tex">\theta=\cos^{-1}(\eta)=60^o</script>, then since <span class="MathJax_Preview"><img src="ELEC360A2m_eq09526294760291561353.png" alt="$\sin(\theta)= \sqrt(3/2)$"></span><script type="math/tex">\sin(\theta)= \sqrt(3/2)</script> and <span class="MathJax_Preview"><img src="ELEC360A2m_eq13135084235994152833.png" alt="$\cos(\theta)= 1/2$"></span><script type="math/tex">\cos(\theta)= 1/2</script>. <span class="MathJax_Preview"><img src="ELEC360A2m_eq17127978997311727012.png" alt="$s= -\sigma/2 + j \omega_d$"></span><script type="math/tex">s= -\sigma/2 + j \omega_d</script>, normalizing gives <span class="MathJax_Preview"><img src="ELEC360A2m_eq11591623437442951098.png" alt="$s = -x + j\sqrt(3)x$"></span><script type="math/tex">s = -x + j\sqrt(3)x</script></p><p>See <a href="https://www.wolframalpha.com/input/?i=(-x+%2B+i%5Csqrt(3)x)%5E3%2B4(-x+%2B+i%5Csqrt(3)x)%5E2%2B5(-x+%2B+i%5Csqrt(3)x)%2BK%3D0">https://www.wolframalpha.com/input/?i=(-x+%2B+i%5Csqrt(3)x)%5E3%2B4(-x+%2B+i%5Csqrt(3)x)%5E2%2B5(-x+%2B+i%5Csqrt(3)x)%2BK%3D0</a></p><p>\begin{align} &amp; 1 + \frac{K}{s^3+4s^2+5s} = s^3+4s^2+5s+K =0 \\ &amp; = (-x + j\sqrt(3)x)^3+4(-x + j\sqrt(3)x)^2+5(-x + j\sqrt(3)x) + K = 0 \\ &amp; = K +8x^3+(-8-8j\sqrt(3))x^2+j5\sqrt(3)x-5x=0 \\ \end{align}</p><p>Equating real and imaginary parts</p><p>\begin{align} &amp; 8x^3-8x^2-5x+ K = 0 \\ &amp; -j8\sqrt(3)x^2+j5\sqrt(3)x=0 \end{align}</p><p>Solving for x, gives <span class="MathJax_Preview"><img src="ELEC360A2m_eq13376488124990789083.png" alt="$x=5/8$"></span><script type="math/tex">x=5/8</script></p><p>$ 8(5/8)^3-8(5/8)^2-5(5/8)+ K=0$</p><p>leads to <span class="MathJax_Preview"><img src="ELEC360A2m_eq07918890726442734584.png" alt="$K=\frac{275}{64}$"></span><script type="math/tex">K=\frac{275}{64}</script></p><p>Plot root locus</p><pre class="codeinput">G = tf([1],[1 4 5 0])
+rlocus(G)
+sgrid
+print(<span class="string">'rlocusQ614NoAnno.png'</span>,<span class="string">'-dpng'</span>,<span class="string">'-r300'</span>)
+</pre><pre class="codeoutput">
+G =
+ 
+          1
+  -----------------
+  s^3 + 4 s^2 + 5 s
+ 
+Continuous-time transfer function.
+
+</pre><img vspace="5" hspace="5" src="ELEC360A2m_02.png" alt=""> <p>from the root locus, the gain is about K = 4.27</p><p>Plot step response, take C(s) / R(s)</p><pre class="codeinput">Geq = feedback(G,1)
+GeqS = Geq*4.2969
+<span class="comment">% take coefficients from feedback function</span>
+num = [0 0 0 4.2969]
+den = [1 4 5 4.2969]
+step(num,den)
+</pre><pre class="codeoutput">
+Geq =
+ 
+            1
+  ---------------------
+  s^3 + 4 s^2 + 5 s + 1
+ 
+Continuous-time transfer function.
+
+
+GeqS =
+ 
+          4.297
+  ---------------------
+  s^3 + 4 s^2 + 5 s + 1
+ 
+Continuous-time transfer function.
+
+num =
+       0              0              0           2634/613   
+den =
+       1              4              5           2634/613   
+</pre><img vspace="5" hspace="5" src="ELEC360A2m_03.png" alt=""> <h2 id="23">Question 3 B-6-16</h2><p>Consider the control system shown in Figure 6&#8211;106. Determine the gain K and time constant T of the controller <span class="MathJax_Preview"><img src="ELEC360A2m_eq00057853701495554181.png" alt="$G_c(s)$"></span><script type="math/tex">G_c(s)</script> such that the closed-loop poles are located at <span class="MathJax_Preview"><img src="ELEC360A2m_eq07050250962396672331.png" alt="$s = -2-j2$"></span><script type="math/tex">s = -2-j2</script>.</p><p><img vspace="5" hspace="5" src="Q3Diagram616.png" alt=""> </p><pre class="codeinput">G1 = tf([1],[1 2 0])
+</pre><pre class="codeoutput">
+G1 =
+ 
+      1
+  ---------
+  s^2 + 2 s
+ 
+Continuous-time transfer function.
+
+</pre><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq06006686839573256057.png" alt="$$ \frac{C(s)}{R(s)}=\frac{K(Ts+1)}{s(s+2)+K(Ts+1)}$$"></span><script type="math/tex; mode=display"> \frac{C(s)}{R(s)}=\frac{K(Ts+1)}{s(s+2)+K(Ts+1)}</script></p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq04631925523406213958.png" alt="$$ s(s+2)+KT(s+1)=(s+2+j2)(s+2-j2)$$"></span><script type="math/tex; mode=display"> s(s+2)+KT(s+1)=(s+2+j2)(s+2-j2)</script></p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq00499614095622322225.png" alt="$$s^2+(2+KT)s+K=s^2+4s+4$$"></span><script type="math/tex; mode=display">s^2+(2+KT)s+K=s^2+4s+4</script></p><p>Then the answer becomes <span class="MathJax_Preview"><img src="ELEC360A2m_eq07702616611581403842.png" alt="$K=8$"></span><script type="math/tex">K=8</script></p><p>and <span class="MathJax_Preview"><img src="ELEC360A2m_eq15240189273690798901.png" alt="$2+KT=4$"></span><script type="math/tex">2+KT=4</script>, so <span class="MathJax_Preview"><img src="ELEC360A2m_eq07130617410746255662.png" alt="$T=0.25$"></span><script type="math/tex">T=0.25</script></p><h2 id="32">Question 4, B-6-17</h2><p>Consider the system shown in Figure 6&#8211;107. Design a lead compensator such that the dominant closed-loop poles are located at <span class="MathJax_Preview"><img src="ELEC360A2m_eq00682077219682856928.png" alt="$s=-2 \pm j2 \sqrt(3)$"></span><script type="math/tex">s=-2 \pm j2 \sqrt(3)</script> Plot the unit-step response curve of the designed system with MATLAB.</p><p><img vspace="5" hspace="5" src="Q4Diagram617.png" alt=""> </p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq01914655529888724809.png" alt="$$G_c(s) = K\frac{s+2}{s+4}$$"></span><script type="math/tex; mode=display">G_c(s) = K\frac{s+2}{s+4}</script></p><p>The angle deficiency is <span class="MathJax_Preview"><img src="ELEC360A2m_eq05704146292759701833.png" alt="$180^o-120^o-90^o=-30^o$"></span><script type="math/tex">180^o-120^o-90^o=-30^o</script></p><p><img vspace="5" hspace="5" src="polesZeroes.png" alt=""> </p><p>The compensator must have a pole at -4, since <span class="MathJax_Preview"><img src="ELEC360A2m_eq17590936029303370894.png" alt="$\sin^{-1}(2/4)=30^o$"></span><script type="math/tex">\sin^{-1}(2/4)=30^o</script></p><p>The gain of the compensator can be found using</p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq11541941164789130367.png" alt="$$\left| K \frac{s+2}{s+4} \frac{5}{0.5s(s+2)} \right|_{s=-2+j2\sqrt(3)}=1$$"></span><script type="math/tex; mode=display">\left| K \frac{s+2}{s+4} \frac{5}{0.5s(s+2)} \right|_{s=-2+j2\sqrt(3)}=1</script></p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq11602809945859563631.png" alt="$$\left| K \frac{10}{s(s+4)} \right|_{s=-2+j2\sqrt(3)}=1$$"></span><script type="math/tex; mode=display">\left| K \frac{10}{s(s+4)} \right|_{s=-2+j2\sqrt(3)}=1</script></p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq11674538039940319009.png" alt="$K = 8/5 = 1.6$"></span><script type="math/tex">K = 8/5 = 1.6</script></p><pre class="codeinput">x = -2 + j*2*sqrt(3)
+Gain = abs(x*(x+4)/10)
+</pre><pre class="codeoutput">x =
+      -2        + 1351/390i  
+Gain =
+       8/5     
+</pre><p>K</p><pre class="codeinput">Gc = Gain*tf([1 2], [1 4])
+G1 = tf([5], [0.5 1 0])
+GfeedNoComp = feedback(G1,1)
+Geq = Gc*G1
+Gfeed = feedback(Geq,1)
+</pre><pre class="codeoutput">
+Gc =
+ 
+  1.6 s + 3.2
+  -----------
+     s + 4
+ 
+Continuous-time transfer function.
+
+
+G1 =
+ 
+       5
+  -----------
+  0.5 s^2 + s
+ 
+Continuous-time transfer function.
+
+
+GfeedNoComp =
+ 
+         5
+  ---------------
+  0.5 s^2 + s + 5
+ 
+Continuous-time transfer function.
+
+
+Geq =
+ 
+        8 s + 16
+  ---------------------
+  0.5 s^3 + 3 s^2 + 4 s
+ 
+Continuous-time transfer function.
+
+
+Gfeed =
+ 
+           8 s + 16
+  ---------------------------
+  0.5 s^3 + 3 s^2 + 12 s + 16
+ 
+Continuous-time transfer function.
+
+</pre><p>plotting uncompensated step function</p><pre class="codeinput">numC = [5]
+denC = [0.5 1 5]
+step(numC,denC)
+hold <span class="string">on</span>
+<span class="comment">% Plotting unit step function</span>
+num = [8 16]
+den = [0.5 3 12 16]
+step(num,den)
+
+legend(<span class="string">'Original Step Response'</span>, <span class="string">'Compensated Step Response'</span>)
+</pre><pre class="codeoutput">numC =
+       5       
+denC =
+       1/2            1              5       
+num =
+       8             16       
+den =
+       1/2            3             12             16       
+</pre><img vspace="5" hspace="5" src="ELEC360A2m_04.png" alt=""> <h2 id="46">Question 5, B-6-20</h2><p><img vspace="5" hspace="5" src="Q5Diagram620.png" alt=""> </p><p>\begin{align} &amp; \text{Ch. Eqn Original} = s(s+10)(s+20)+820 = s^3 + 30s^2+200s+820 \\ &amp; s=-3.6 \pm j4.8, s=-22.8 \\ &amp; G_c(s) = \hat{K}_c\beta\frac{Ts + 1}{\beta Ts+1} \end{align}</p><p>If the poles of the compensator function as placed near the origin, the angle contribution will be very small and impact the system response will be small.</p><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq09766649516777486737.png" alt="$$ -5^o < \angle \frac{s+ 1 / T}{s+ 1 /(\beta T)} < 0^o$$"></span><script type="math/tex; mode=display"> -5^o < \angle \frac{s+ 1 / T}{s+ 1 /(\beta T)} < 0^o</script></p><p>\begin{align} &amp; K \approx 1, \beta = 10, T = 8 \\ &amp; G_c(s) = 10\frac{8s+1}{80s+1}= \frac{s+0.125}{s+0.0125} \end{align}</p><p>Checking the angle contribution (solutions) do not copy into assignment</p><pre class="codeinput">sroot = -3.6+ j*4.8
+sang = angle((sroot+0.25)/(sroot+0.025))
+sang = rad2deg(sang)
+</pre><pre class="codeoutput">sroot =
+     -18/5      +   24/5i    
+sang =
+    -275/8919  
+sang =
+    -931/527   
+</pre><pre class="codeinput">sroot = -3.6+ j*4.8
+sang = angle((sroot+0.125)/(sroot+0.0125));
+sang = rad2deg(sang)
+sang = vpa(sang,10)
+</pre><pre class="codeoutput">sroot =
+     -18/5      +   24/5i    
+sang =
+    -325/373   
+sang =
+-0.8713131789
+</pre><p>Since the angle contribution is about <span class="MathJax_Preview"><img src="ELEC360A2m_eq04034888907639606000.png" alt="$-0.8713^o$"></span><script type="math/tex">-0.8713^o</script>, which is acceptable given the design specifications/</p><p>Doing the transfer function calculations</p><pre class="codeinput">Gc = tf([1 0.125],[1 0.0125])
+Gplant = tf([820],[1 30 200 0])
+Geq = Gc*Gplant
+</pre><pre class="codeoutput">
+Gc =
+ 
+  s + 0.125
+  ----------
+  s + 0.0125
+ 
+Continuous-time transfer function.
+
+
+Gplant =
+ 
+          820
+  --------------------
+  s^3 + 30 s^2 + 200 s
+ 
+Continuous-time transfer function.
+
+
+Geq =
+ 
+             820 s + 102.5
+  -----------------------------------
+  s^4 + 30.01 s^3 + 200.4 s^2 + 2.5 s
+ 
+Continuous-time transfer function.
+
+</pre><p>computing limit</p><pre class="codeinput">syms <span class="string">s</span>
+[numLim,denLim] = tfdata(Geq)
+eqn_sym = poly2sym(cell2mat(numLim),s)/poly2sym(cell2mat(denLim),s)
+<span class="comment">% eqn =  (820*s + 102.5)/(s^4 + 30.01*s^3 + 200.4*s^2 + 2.5*s) manual</span>
+<span class="comment">% approach</span>
+Kv = limit(s*eqn_sym,0)
+</pre><pre class="codeoutput">numLim =
+  cell
+    [1&times;5 double]
+denLim =
+  cell
+    [1&times;5 double]
+eqn_sym =
+(820*s + 205/2)/(s^4 + (2401*s^3)/80 + (1603*s^2)/8 + (5*s)/2)
+Kv =
+41
+</pre><p>The characteristic equation for the new system is:</p><pre class="codeinput">Gfeedback = feedback(Geq,1)
+[numer, denom] = tfdata(Gfeedback)
+<span class="comment">% compute characteristic equation</span>
+CHEQN = poly2sym(cell2mat(denom),s)
+poly = [1 2401/80 1603/8 1645/2 205/2]
+<span class="comment">% output the new roots with the compensator</span>
+vpa(roots(poly),5)
+</pre><pre class="codeoutput">
+Gfeedback =
+ 
+                  820 s + 102.5
+  ---------------------------------------------
+  s^4 + 30.01 s^3 + 200.4 s^2 + 822.5 s + 102.5
+ 
+Continuous-time transfer function.
+
+numer =
+  cell
+    [1&times;5 double]
+denom =
+  cell
+    [1&times;5 double]
+CHEQN =
+s^4 + (2401*s^3)/80 + (1603*s^2)/8 + (1645*s)/2 + 205/2
+poly =
+       1           2401/80        1603/8         1645/2          205/2     
+ans =
+            -22.797
+ - 3.5435 + 4.7344i
+ - 3.5435 - 4.7344i
+           -0.12857
+</pre><p>Find undamped natural frequency at dominant closed loop poles</p><pre class="codeinput">wn = abs(-3.5435 + 4.7344*j)
+vpa(wn,10)
+(6-5.913622884)/6*100 <span class="comment">% 1.43 percent</span>
+</pre><pre class="codeoutput">wn =
+    1780/301   
+ans =
+5.913622884
+ans =
+    1359/944   
+</pre><p>Since <span class="MathJax_Preview"><img src="ELEC360A2m_eq06122939268487474922.png" alt="$\omega_n=5.913622884$"></span><script type="math/tex">\omega_n=5.913622884</script>, the compensator system has an adjustment of about 1.44 %</p><h2 id="61">Question 6, B-7-4</h2><p><span class="MathJax_Preview"><img src="ELEC360A2m_eq05089317164134953771.png" alt="$$ G(s) =\frac{10(s^2+0.4s+1)}{(s(s^2+0.8s+9))} $$"></span><script type="math/tex; mode=display"> G(s) =\frac{10(s^2+0.4s+1)}{(s(s^2+0.8s+9))} </script></p><p>Matlab plot</p><pre class="codeinput">figure
+num = [10 4 10]
+den =[1 0.8 9 0]
+Gc = tf(num,den)
+bode(Gc)
+tfsym = poly2sym((num),s)/poly2sym((den),s)
+tftitle = latex(tfsym);
+title(sprintf(<span class="string">'Bode plot of: $$ %s $$'</span>, tftitle), <span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)
+</pre><pre class="codeoutput">num =
+      10              4             10       
+den =
+       1              4/5            9              0       
+
+Gc =
+ 
+   10 s^2 + 4 s + 10
+  -------------------
+  s^3 + 0.8 s^2 + 9 s
+ 
+Continuous-time transfer function.
+
+tfsym =
+(10*s^2 + 4*s + 10)/(s^3 + (4*s^2)/5 + 9*s)
+Warning: Error updating Text.
+
+ Character vector must have valid interpreter syntax:
+Bode plot of: $$ \frac{10\,s^2+4\,s+10}{s^3+\frac{4\,s^2}{5}+9\,s} $$
+ 
+</pre><img vspace="5" hspace="5" src="ELEC360A2m_05.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ELEC 360 REPLACE_WITH_DASH_DASH- Assignment 2 
+% Due Nov 17 (approximate), from Ogata REPLACE_WITH_DASH_DASH- Control Systems
+
+clear all 
+close all
+format compact
+format rat
+
+%% Question 1: B-6-7
+% Plot the root loci for the system shown in Figure
+% 6–100. Determine the range of gain K for stability
+%%
+% <<Q1Diagram67.png>>
+%%
+% Create the equation block diagram in matlab
+G1 = tf([1,1],[1,5])
+G2 = tf([2],[1 2 0 0])
+Geq = G1 *G2
+
+%% 
+% Compute the feedback loop using negative unity feedback, by default
+% assumes feedback(sys1,sys2) assumes negative feedback and is 
+% equivalent to feedback(sys1,sys2,-1).
+rlocus(Geq)
+print('rlocusQ67NoAnno.png','-dpng','-r300')
+
+%%
+% Compute stability
+syms s K EPS
+Gfeed = feedback(Geq,1)
+polyVector = sym2poly(s^4 + 7*s^3 + 10*s^2 + 2*s + 2)
+polyVector2 = [1 7 10 2*K 2*K]
+table = simplify(routh(polyVector2,EPS))
+%%
+% \begin{array}{ccc} 1 & 10 & 2\,K\\ 7 & 2\,K & 0\\ 10-\frac{2\,K}{7} & 2\,K & 0\\ \frac{K\,\left(2\,K-21\right)}{K-35} & 0 & 0\\ 2\,K & 0 & 0 \end{array}
+%%
+% The system will be stable when 0 < K < 21 /2
+% checking with RouthHurwitz
+RouthHurwitz([1 7 10 0 0])
+RouthHurwitz([1 7 10 21 21])
+%%
+% The system is stable when the 0 < K < 10.5
+
+%% Question 2: B-6-14
+% Consider the system shown in Figure 6–104. Plot
+% the root loci for the system. Determine the value of K such
+% that the damping ratio $\eta$ of the dominant closed-loop poles
+% is 0.5. Then determine all closed-loop poles. Plot the unitstep response curve with MATLAB.
+%%
+% <<Q2Diagram614.png>>
+%%
+% Since $\eta = 0.5$, $\theta=\cos^{-1}(\eta)=60^o$, then since
+% $\sin(\theta)= \sqrt(3/2)$ and $\cos(\theta)= 1/2$. 
+% $s= -\sigma/2 + j \omega_d$, normalizing gives $s = -x + j\sqrt(3)x$
+%%
+% See <https://www.wolframalpha.com/input/?i=(-x+%2B+i%5Csqrt(3)x)%5E3%2B4(-x+%2B+i%5Csqrt(3)x)%5E2%2B5(-x+%2B+i%5Csqrt(3)x)%2BK%3D0>
+%%
+% \begin{align}
+% & 1 + \frac{K}{s^3+4s^2+5s} = s^3+4s^2+5s+K =0 \\
+% & = (-x + j\sqrt(3)x)^3+4(-x + j\sqrt(3)x)^2+5(-x + j\sqrt(3)x) + K = 0 \\
+% & = K +8x^3+(-8-8j\sqrt(3))x^2+j5\sqrt(3)x-5x=0 \\
+% \end{align}
+%%
+% Equating real and imaginary parts
+%%
+% \begin{align}
+% & 8x^3-8x^2-5x+ K = 0 \\
+% & -j8\sqrt(3)x^2+j5\sqrt(3)x=0
+% \end{align}
+%%
+% Solving for x, gives $x=5/8$
+%%
+% $ 8(5/8)^3-8(5/8)^2-5(5/8)+ K=0$ 
+%%
+% leads to $K=\frac{275}{64}$
+%%
+% Plot root locus
+G = tf([1],[1 4 5 0])
+rlocus(G)
+sgrid
+print('rlocusQ614NoAnno.png','-dpng','-r300')
+%%
+% from the root locus, the gain is about K = 4.27
+%%
+% Plot step response, take C(s) / R(s)
+Geq = feedback(G,1)
+GeqS = Geq*4.2969
+% take coefficients from feedback function
+num = [0 0 0 4.2969]
+den = [1 4 5 4.2969]
+step(num,den)
+
+%% Question 3 B-6-16
+% Consider the control system shown in Figure 6–106.
+% Determine the gain K and time constant T of the controller
+% $G_c(s)$ such that the closed-loop poles are located at
+% $s = -2-j2$.
+%%
+% <<Q3Diagram616.png>>
+%%
+G1 = tf([1],[1 2 0])
+%%
+% $$ \frac{C(s)}{R(s)}=\frac{K(Ts+1)}{s(s+2)+K(Ts+1)}$$
+%%
+% $$ s(s+2)+KT(s+1)=(s+2+j2)(s+2-j2)$$
+%%
+% $$s^2+(2+KT)s+K=s^2+4s+4$$
+%%
+% Then the answer becomes $K=8$
+%%
+% and $2+KT=4$, so $T=0.25$
+
+%%
+%
+%% Question 4, B-6-17
+% Consider the system shown in Figure 6–107. Design a lead compensator such that the dominant closed-loop
+% poles are located at $s=-2 \pm j2 \sqrt(3)$ 
+% Plot the unit-step response curve of the designed system with MATLAB.
+%%
+% <<Q4Diagram617.png>>
+%%
+% $$G_c(s) = K\frac{s+2}{s+4}$$
+%%
+% The angle deficiency is $180^o-120^o-90^o=-30^o$
+%%
+% <<polesZeroes.png>>
+%%
+% The compensator must have a pole at -4, since $\sin^{-1}(2/4)=30^o$
+%%
+% The gain of the compensator can be found using 
+%%
+% $$\left| K \frac{s+2}{s+4} \frac{5}{0.5s(s+2)} \right|_{s=-2+j2\sqrt(3)}=1$$
+%%
+% $$\left| K \frac{10}{s(s+4)} \right|_{s=-2+j2\sqrt(3)}=1$$
+%%
+% 
+%%
+% $K = 8/5 = 1.6$
+x = -2 + j*2*sqrt(3)
+Gain = abs(x*(x+4)/10)
+%%
+% K 
+%%
+%
+Gc = Gain*tf([1 2], [1 4])
+G1 = tf([5], [0.5 1 0])
+GfeedNoComp = feedback(G1,1)
+Geq = Gc*G1
+Gfeed = feedback(Geq,1)
+%%
+% plotting uncompensated step function
+numC = [5]
+denC = [0.5 1 5]
+step(numC,denC)
+hold on
+% Plotting unit step function
+num = [8 16]
+den = [0.5 3 12 16]
+step(num,den)
+
+legend('Original Step Response', 'Compensated Step Response')
+%% Question 5, B-6-20
+%
+%%
+% <<Q5Diagram620.png>>
+%%
+% \begin{align}
+% & \text{Ch. Eqn Original} = s(s+10)(s+20)+820 = s^3 + 30s^2+200s+820 \\
+% & s=-3.6 \pm j4.8, s=-22.8 \\
+% & G_c(s) = \hat{K}_c\beta\frac{Ts + 1}{\beta Ts+1} 
+% \end{align}
+%%
+% If the poles of the compensator function as placed near the origin, the
+% angle contribution will be very small and impact the system response will
+% be small.
+%%
+% $$ -5^o < \angle \frac{s+ 1 / T}{s+ 1 /(\beta T)} < 0^o$$ 
+%%
+% \begin{align} 
+% & K \approx 1, \beta = 10, T = 8 \\
+% & G_c(s) = 10\frac{8s+1}{80s+1}= \frac{s+0.125}{s+0.0125}
+% \end{align}
+%%
+% Checking the angle contribution (solutions) do not copy into assignment
+sroot = -3.6+ j*4.8
+sang = angle((sroot+0.25)/(sroot+0.025))
+sang = rad2deg(sang)
+%%
+%
+sroot = -3.6+ j*4.8
+sang = angle((sroot+0.125)/(sroot+0.0125));
+sang = rad2deg(sang)
+sang = vpa(sang,10)
+%%
+% Since the angle contribution is about $-0.8713^o$, which is acceptable
+% given the design specifications/
+%%
+% Doing the transfer function calculations
+Gc = tf([1 0.125],[1 0.0125])
+Gplant = tf([820],[1 30 200 0])
+Geq = Gc*Gplant
+%%
+% computing limit
+syms s
+[numLim,denLim] = tfdata(Geq)
+eqn_sym = poly2sym(cell2mat(numLim),s)/poly2sym(cell2mat(denLim),s)
+% eqn =  (820*s + 102.5)/(s^4 + 30.01*s^3 + 200.4*s^2 + 2.5*s) manual
+% approach
+Kv = limit(s*eqn_sym,0)
+%%
+% The characteristic equation for the new system is:
+Gfeedback = feedback(Geq,1)
+[numer, denom] = tfdata(Gfeedback)
+% compute characteristic equation
+CHEQN = poly2sym(cell2mat(denom),s)
+poly = [1 2401/80 1603/8 1645/2 205/2]
+% output the new roots with the compensator
+vpa(roots(poly),5)
+%%
+% Find undamped natural frequency at dominant closed loop poles
+wn = abs(-3.5435 + 4.7344*j)
+vpa(wn,10)
+(6-5.913622884)/6*100 % 1.43 percent
+%%
+% Since $\omega_n=5.913622884$, the compensator system has an adjustment of
+% about 1.44 %
+%%
+% 
+%% Question 6, B-7-4
+%%
+% $$ G(s) =\frac{10(s^2+0.4s+1)}{(s(s^2+0.8s+9))} $$
+%%
+% Matlab plot
+figure
+num = [10 4 10]
+den =[1 0.8 9 0]
+Gc = tf(num,den)
+bode(Gc)
+tfsym = poly2sym((num),s)/poly2sym((den),s)
+tftitle = latex(tfsym);
+title(sprintf('Bode plot of: $$ %s $$', tftitle), 'Interpreter','latex')
+
+##### SOURCE END #####
+--></body></html>

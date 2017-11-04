@@ -1,0 +1,4 @@
+# Ignore some of the annoying math equations
+ELEC360A2m_eq*
+# Ignore gif files because latex can't read them
+*.gif

@@ -1,0 +1,8 @@
+opsystem = "Windows"
+latexname = "pdflatex"
+sourcename = "MidtermPrep"
+homehtmlfilename = "index"
+htmlfilename = "node-"
+latexmk = "true"
+language = "english"
+xdyfile = "lwarp.xdy"
