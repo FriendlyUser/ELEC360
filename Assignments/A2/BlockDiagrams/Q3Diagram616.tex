@@ -10,17 +10,17 @@
 \bXComp{B}{A}
 %\bXLink[$R(s)$]{A}{B}
 \bXLink{A}{B}
-\bXBloc[2]{C}{$K\cfrac{s+1}{s+5}$}{B}
+\bXBloc[2]{C}{$K(Ts+1)$}{B}
 %\bXLink[$V_1$]{B}{C}
 \bXLink{B}{C}
-\bXBloc[2]{D}{$\cfrac{2}{s^2(s+2)}$}{C}
+\bXBloc[2]{D}{$\cfrac{1}{s(s+2)}$}{C}
 \bXLink{C}{D}
 \bXOutput[4]{E}{D}
 %\bXLink[$C(s)$]{D}{E}
 \bXLink{D}{E}
 \bXReturn{D-E}{B}{}
-\node (Gc) at (3.25,-0.95) {$G_c(s)$};
-\node (Gs) at (5.375,-0.95) {$G(s)$};
+\node (Gc) at (3.5,-0.95) {$G_c(s)$};
+\node (Gs) at (5.75,-0.95) {$G(s)$};
 \end{tikzpicture}
 
 \end{document}

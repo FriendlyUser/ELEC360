@@ -21,9 +21,16 @@ Geq = G1 *G2
 % Compute the feedback loop using negative unity feedback, by default
 % assumes feedback(sys1,sys2) assumes negative feedback and is 
 % equivalent to feedback(sys1,sys2,-1).
-rlocus(Geq)
-print('rlocusQ67NoAnno.png','-dpng','-r300')
-
+k=-250:0.1:250;
+rlocus(Geq,k)
+hold on
+% break in/ break away points are labelled manually, go change plot
+% asymptotes
+plotAsymptotes(Geq) 
+legend('show', 'Location','northwest')
+% grid([-10 10],[-10 10])
+% print('rlocusQ67NoAnno.png','-dpng','-r300')
+% RLocusGui(Geq)
 %%
 % Compute stability
 syms s K EPS
@@ -31,6 +38,9 @@ Gfeed = feedback(Geq,1)
 polyVector = sym2poly(s^4 + 7*s^3 + 10*s^2 + 2*s + 2)
 polyVector2 = [1 7 10 2*K 2*K]
 table = simplify(routh(polyVector2,EPS))
+
+% Using Gfeed
+diff((2*s+2)/(s^4+7*s^3+10*s^2+2*s+2),s)
 %%
 % \begin{array}{ccc} 1 & 10 & 2\,K\\ 7 & 2\,K & 0\\ 10-\frac{2\,K}{7} & 2\,K & 0\\ \frac{K\,\left(2\,K-21\right)}{K-35} & 0 & 0\\ 2\,K & 0 & 0 \end{array}
 %%
@@ -235,6 +245,8 @@ figure
 num = [10 4 10]
 den =[1 0.8 9 0]
 Gc = tf(num,den)
+asymp(Gc)
+%%
 bode(Gc)
 tfsym = poly2sym((num),s)/poly2sym((den),s)
 tftitle = latex(tfsym);

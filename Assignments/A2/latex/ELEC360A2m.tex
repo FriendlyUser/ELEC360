@@ -48,6 +48,7 @@
 	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
 }
 
+\usepackage{float}
 \begin{document}
 
 \noindent \textbf{ELEC 360 --- Assignment 2} \hfill \textbf{David Li} \hrule
@@ -90,15 +91,25 @@ Plot the root loci for the system shown in Figure 6-100. Determine the range of 
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:Q1Diagram67.pdf}
 \end{figure}
-\begin{align*}
-& G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}\\
-\end{align*}
+\begin{align}
+& G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}
+\end{align}
 
 The characteristic equation is $ s^4 + 7 s^3 + 10 s^2 + 2Ks + 2K$, using Routh-Hurwitz Stability Criterion, 
 \[\arraycolsep=1.4pt\def\arraystretch{2.2}
 \begin{array}{ccc} 1 & 10 & 2\,K\\ 7 & 2\,K & 0\\ 10-\frac{2\,K}{7} & 2\,K & 0\\ \frac{K\,\left(2\,K-21\right)}{K-35} & 0 & 0\\ 2\,K & 0 & 0 \end{array} \]
-The value $0 < K < 10.5$, so the critical value of K, $K_{cr} =10.5$ \hfill \break
-Plotting the root locus in matlab results in:
+The value $0 < K < 10.5$, so the critical value of K, $K_{cr} =10.5$. So, locus crosses when K = 0, 10.5. This corresponds to the root locus crossing the imaginary axis when $s=0, \pm 1.73j$. 
+\medskip
+Furthermore, break away points found by differentiating $dK/ds = 0$ which results in $\displaystyle \frac{(2s(3s^3 + 18s^2 + 31s + 20))}{(s^4 + 7s^3 + 10s^2 + 2s + 2)^2} = 0$
+ $6 s^4 + 36 s^3 + 62 s^2 + 40 s=0$. This polynomial has 4 roots at s = $0, -3.7, -1.2 \pm 0.69j$.
+ From these 4 roots, there exists 2 real roots at s = 0, -3.7.\hfill \break
+ \medskip
+ 
+ The Angles of asymptotes can be computed as $\displaystyle \theta_a=\frac{\pm 180^\circ (2k+1)}{num \ of \ asymptotes} = 0, 60^\circ, 300 ^\circ$. \newline
+ \medskip
+  The asymptote intersect can be computed as $\displaystyle \sigma_a=\frac{sum \ of \ poles - sum \ of \ zeros}{num \ of \ asymptotes} = ((-7)-(-1))/3 = -6/3 = -2$ \newline
+  \medskip
+Plotting the root locus in Matlab results in:
 \begin{lstlisting}[language = Matlab]
 G1 = tf([1,1],[1,5])
 G2 = tf([2],[1 2 0 0])
@@ -108,13 +119,20 @@ rlocus(Geq)
 
 \begin{figure}
 	\centering
-	\includegraphics [width=0.7\linewidth]{rlocusQ67Anno.png}
+	\includegraphics [width=0.7\linewidth]{rlocusQ67NoAnno.png}
 	% \caption{$ELEC360A2m_01.pdf$}
 	\caption{Root Locus for $G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}$}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:ELEC360A2m_01.pdf}
 \end{figure}
-
+\begin{figure}
+	\centering
+	\includegraphics [width=0.85\linewidth]{rlocusQ67Final.png}
+	% \caption{$ELEC360A2m_01.pdf$}
+	\caption{Root Locus with marked asymptotes and break away points, crossing imaginary axis (K=0, 10.5)}
+	% Alternative is to typeset the caption myself, which makes more sense to me.
+	\label{fig:ELEC360A2m_Edge.pdf}
+\end{figure}
 \newpage
 
 \subsection*{Question 2: B-6-14}
@@ -163,9 +181,9 @@ sgrid
 \color{black}    
 \begin{figure}[h]
 	\centering
-	\includegraphics [width=0.6\linewidth]{rlocusQ614Anno.png}
+	\includegraphics [width=0.75\linewidth]{rlocusQ614Anno.png}
 	% \caption{$ELEC360A2m_02.pdf$}
-	\caption{}
+	\caption{Root Locus for B-6-14}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:ELEC360A2m_02.pdf}
 \end{figure}
@@ -184,9 +202,9 @@ den = [1 4 5 4.2969]
 step(num,den)
 \end{lstlisting}
     
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics [width=0.7\linewidth]{ELEC360A2m_03.png}
+	\includegraphics [width=0.75\linewidth]{ELEC360A2m_03.png}
 	% \caption{$ELEC360A2m_03.pdf$}
 	\caption{Unit Response for B-6-14}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
@@ -196,23 +214,25 @@ step(num,den)
 
 \subsection*{Question 3 B-6-16}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics [width=0.7\linewidth]{Q3Diagram616.pdf}
 	% \caption{$Q3Diagram616.pdf$}
-	\caption{}
+	\caption{Block Diagram for B-6-16}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:Q3Diagram616.pdf}
 \end{figure}
 
-\begin{lstlisting}[language = Matlab]
-G1 = tf([1],[1 2 0])
-\end{lstlisting}
-
+%\begin{lstlisting}[language = Matlab]
+%G1 = tf([1],[1 2 0])
+%\end{lstlisting}
+The poles must be at the closed-loop poles are located at
+$s = -2 \pm j2$, the transfer function in terms of K, and T.
 \begin{align*}
 & \frac{C(s)}{R(s)}=\frac{K(Ts+1)}{s(s+2)+K(Ts+1)} \\
 & s(s+2)+KT(s+1)=(s+2+j2)(s+2-j2) \\
-& s^2+(2+KT)s+K=s^2+4s+4 \\
+& s^2+(2+KT)s+KT=s^2+4s+4 \\
+& (2+KT)s = 4s, \quad KT = 4
 \end{align*}
 $K=8$ and $2+KT=4$, so $T=0.25$
 
@@ -223,7 +243,7 @@ The compensator must have a pole at -4, since $\sin^{-1}(2/4)=30^o$.
 & G_c(s) = K\frac{s+2}{s+4} \\
 & \text{The angle deficiency is } 180^o-120^o-90^o=-30^o
 \end{align*}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics [width=0.7\linewidth]{Q4Diagram617.pdf}
 	% \caption{$Q4Diagram617.pdf$}
@@ -231,36 +251,35 @@ The compensator must have a pole at -4, since $\sin^{-1}(2/4)=30^o$.
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:Q4Diagram617.pdf}
 \end{figure}
-The gain of the compensator can be found using
-\begin{figure}[h]
-	\centering
-	\includegraphics [width=0.7\linewidth]{polesZeroes.pdf}
-	% \caption{$polesZeroes.pdf$}
-	\caption{Finding the location of the pole}
-	% Alternative is to typeset the caption myself, which makes more sense to me.
-	\label{fig:polesZeroes.pdf}
-\end{figure}
+The gain of the compensator can be found using: Figure \ref*{fig:polesZeroes.pdf}
 \begin{align*}
 & \left| K \frac{s+2}{s+4} \times \frac{5}{0.5s(s+2)} \right|_{s=-2+j2\sqrt(3)}=1 \\
-& K = 8/5 = 1.6 \\
+& K = 8/5 = 1.6 
 \end{align*}
-
-plotting uncompensated step function
+%plotting uncompensated step function
 \begin{lstlisting}[language = Matlab]
 numC = [5]
 denC = [0.5 1 5]
 step(numC,denC)
 hold on
-% Plotting unit step function
 num = [8 16]
 den = [0.5 3 12 16]
 step(num,den)
 legend('Original Step Response', 'Compensated Step Response')
 \end{lstlisting}
-
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics [width=0.7\linewidth]{ELEC360A2m_04.png}
+	\includegraphics [width=0.75\linewidth]{polesZeroes.pdf}
+	% \caption{$polesZeroes.pdf$}
+	\caption{Finding the location of the pole}
+	% Alternative is to typeset the caption myself, which makes more sense to me.
+	\label{fig:polesZeroes.pdf}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics [width=0.75\linewidth]{ELEC360A2m_04.png}
 	% \caption{$ELEC360A2m_04.pdf$}
 	\caption{Compensated Step Response vs Original Step Response}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
@@ -300,7 +319,7 @@ Since $\omega_n=5.913622884$, the compensator system has an adjustment of about 
 \begin{align} 
 & G(s) =\frac{10(s^2+0.4s+1)}{(s(s^2+0.8s+9))} \\
 & G(s) =10\frac{s+(0.2+j2\sqrt{6})s+(0.2-j2\sqrt{6}}{s(s+(0.4+j2.97321))(s+(0.4-j2.97321))} \\
-& G(s) =10 \frac{1}{9}\cfrac{s^2+0.4s+1}{s(\frac{s^2}{9}+\frac{0.8s}{9}+1)}
+& G(s) = 10 \frac{1}{9}\cfrac{s^2+0.4s+1}{s(\frac{s^2}{9}+\frac{0.8s}{9}+1)} = G(j\omega) = \frac{10}{9}\cfrac{(j\omega)^2+0.4(j\omega)+1}{j\omega(\frac{(j\omega)^2}{9}+\frac{0.8(j\omega)}{9}+1)}
 \end{align}
 constant of $10/9$, zeroes at = $-0.2-j2\sqrt{6},-0.2+j2\sqrt{6}$, poles at = $-(0.4-j2.97321), -(0.4+j2.97321)$
 % figure out how to manually plot this graph later
