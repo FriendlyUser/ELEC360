@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<p><strong>ELEC 360 — Assignment 2</strong> <strong>David Li</strong></p>
+<hr />
+<p><strong>Due Date:</strong> November 17, 2017 Student Number: <strong>V00818631</strong></p>
+<h2 id="question-1-b-6-7" class="unnumbered">Question 1: B-6-7</h2>
+<p>Plot the root loci for the system shown in Figure 6-100. Determine the range of gain K for stability</p>
+<div class="figure">
+<embed src="Q1Diagram67.pdf" />
+<p class="caption">BLock Diagram for B-6-7<span data-label="fig:Q1Diagram67.pdf"></span></p>
+</div>
+<p><br /><span class="math display">$$\begin{aligned}
+&amp; G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}\end{aligned}$$</span><br /></p>
+<p>The characteristic equation is <span class="math inline"><em>s</em><sup>4</sup> + 7<em>s</em><sup>3</sup> + 10<em>s</em><sup>2</sup> + 2<em>K</em><em>s</em> + 2<em>K</em></span>, using Routh-Hurwitz Stability Criterion, <br /><span class="math display">$$\arraycolsep=1.4pt\def\arraystretch{2.2}
+\begin{array}{ccc} 1 &amp; 10 &amp; 2\,K\\ 7 &amp; 2\,K &amp; 0\\ 10-\frac{2\,K}{7} &amp; 2\,K &amp; 0\\ \frac{K\,\left(2\,K-21\right)}{K-35} &amp; 0 &amp; 0\\ 2\,K &amp; 0 &amp; 0 \end{array}$$</span><br /> The value <span class="math inline">0 &lt; <em>K</em> &lt; 10.5</span>, so the critical value of K, <span class="math inline"><em>K</em><sub><em>c</em><em>r</em></sub> = 10.5</span>. So, locus crosses when K = 0, 10.5. This corresponds to the root locus crossing the imaginary axis when <span class="math inline"><em>s</em> = 0, ±1.73<em>j</em></span>. Furthermore, break away points found by differentiating <span class="math inline"><em>d</em><em>K</em>/<em>d</em><em>s</em> = 0</span> which results in <span class="math inline">$\displaystyle \frac{(2s(3s^3 + 18s^2 + 31s + 20))}{(s^4 + 7s^3 + 10s^2 + 2s + 2)^2} = 0$</span> <span class="math inline">6<em>s</em><sup>4</sup> + 36<em>s</em><sup>3</sup> + 62<em>s</em><sup>2</sup> + 40<em>s</em> = 0</span>. This polynomial has 4 roots at s = <span class="math inline">0, −3.7, −1.2 ± 0.69<em>j</em></span>. From these 4 roots, there exists 2 real roots at s = 0, -3.7.</p>
+<p>The Angles of asymptotes can be computed as <span class="math inline">$\displaystyle \theta_a=\frac{\pm 180^\circ (2k+1)}{num \ of \ asymptotes} = 0, 60^\circ, 300 ^\circ$</span>. The asymptote intersect can be computed as <span class="math inline">$\displaystyle \sigma_a=\frac{sum \ of \ poles - sum \ of \ zeros}{num \ of \ asymptotes} = ((-7)-(-1))/3 = -6/3 = -2$</span> Plotting the root locus in Matlab results in:</p>
+<pre><code>G1 = tf([1,1],[1,5])
+G2 = tf([2],[1 2 0 0])
+Geq = G1 *G2
+rlocus(Geq)</code></pre>
+<div class="figure">
+<img src="rlocusQ67NoAnno.png" alt="Root Locus for G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}" />
+<p class="caption">Root Locus for <span class="math inline">$G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}$</span><span data-label="fig:ELEC360A2m_01.pdf"></span></p>
+</div>
+<div class="figure">
+<img src="rlocusQ67Final.png" alt="Root Locus with marked asymptotes and break away points, crossing imaginary axis (K=0, 10.5)" />
+<p class="caption">Root Locus with marked asymptotes and break away points, crossing imaginary axis (K=0, 10.5)<span data-label="fig:ELEC360A2m_Edge.pdf"></span></p>
+</div>
+<h2 id="question-2-b-6-14" class="unnumbered">Question 2: B-6-14</h2>
+<p>Since <span class="math inline"><em>ξ</em> = 0.5</span>, <span class="math inline"><em>θ</em> = cos<sup>−1</sup>(<em>ξ</em>)=60<sup><em>o</em></sup></span>, then since <span class="math inline">$\sin(\theta)= \sqrt(3/2)$</span> and <span class="math inline">cos(<em>θ</em>)=1/2</span>. <span class="math inline"><em>s</em> = −<em>σ</em>/2 + <em>j</em><em>ω</em><sub><em>d</em></sub></span>, normalizing gives <span class="math inline">$s = -x + j\sqrt(3)x$</span></p>
+<div class="figure">
+<embed src="Q2Diagram614.pdf" />
+<p class="caption">Block Diagram for 6-14<span data-label="fig:Q2Diagram614.pdf"></span></p>
+</div>
+<p><br /><span class="math display">$$\begin{aligned}
+ &amp; 1 + \frac{K}{s^3+4s^2+5s} = s^3+4s^2+5s+K =0 \\ &amp; = (-x + j\sqrt(3)x)^3+4(-x + j\sqrt(3)x)^2+5(-x + j\sqrt(3)x) + K = 0 \\ &amp; = K +8x^3+(-8-8j\sqrt(3))x^2+j5\sqrt(3)x-5x=0 \\ \end{aligned}$$</span><br /></p>
+<p>Equating real and imaginary parts</p>
+<p><br /><span class="math display">$$\begin{aligned}
+ &amp; 8x^3-8x^2-5x+ K = 0 \\ &amp; -j8\sqrt(3)x^2+j5\sqrt(3)x=0 \end{aligned}$$</span><br /></p>
+<p>Solving for x, gives <span class="math inline"><em>x</em> = 5/8</span></p>
+<p><span class="math inline">8(5/8)<sup>3</sup> − 8(5/8)<sup>2</sup> − 5(5/8)+<em>K</em> = 0</span></p>
+<p>leads to <span class="math inline">$K=\frac{275}{64}=4.296875$</span></p>
+<p>Plot root locus</p>
+<pre><code>G = tf([1],[1 4 5 0])
+rlocus(G)
+sgrid</code></pre>
+<div class="figure">
+<img src="rlocusQ614Anno.png" alt="Root Locus for B-6-14" />
+<p class="caption">Root Locus for B-6-14<span data-label="fig:ELEC360A2m_02.pdf"></span></p>
+</div>
+<p>from the root locus, the gain is about K = 4.27</p>
+<p>Plot step response, take C(s) / R(s)</p>
+<pre><code>Geq = feedback(G,1)
+GeqS = Geq*4.2969
+% take coefficients from feedback function
+num = [0 0 0 4.2969]
+den = [1 4 5 4.2969]
+step(num,den)</code></pre>
+<div class="figure">
+<img src="stepQ2614.png" alt="Unit Response for B-6-14" />
+<p class="caption">Unit Response for B-6-14<span data-label="fig:ELEC360A2m_03.pdf"></span></p>
+</div>
+<h2 id="question-3-b-6-16" class="unnumbered">Question 3 B-6-16</h2>
+<div class="figure">
+<embed src="Q3Diagram616.pdf" />
+<p class="caption">Block Diagram for B-6-16<span data-label="fig:Q3Diagram616.pdf"></span></p>
+</div>
+<p>The poles must be at the closed-loop poles are located at <span class="math inline"><em>s</em> = −2 ± <em>j</em>2</span>, the transfer function in terms of K, and T. <br /><span class="math display">$$\begin{aligned}
+&amp; \frac{C(s)}{R(s)}=\frac{K(Ts+1)}{s(s+2)+K(Ts+1)} \\
+&amp; s(s+2)+KT(s+1)=(s+2+j2)(s+2-j2) \\
+&amp; s^2+(2+KT)s+KT=s^2+4s+4 \\
+&amp; (2+KT)s = 4s, \quad KT = 4\end{aligned}$$</span><br /> <span class="math inline"><em>K</em> = 8</span> and <span class="math inline">2 + <em>K</em><em>T</em> = 4</span>, so <span class="math inline"><em>T</em> = 0.25</span></p>
+<h2 id="question-4-b-6-17" class="unnumbered">Question 4, B-6-17</h2>
+<p>The compensator must have a pole at -4, since <span class="math inline">sin<sup>−1</sup>(2/4)=30<sup><em>o</em></sup></span>. <br /><span class="math display">$$\begin{aligned}
+&amp; G_c(s) = K\frac{s+2}{s+4} \\
+&amp; \text{The angle deficiency is } 180^o-120^o-90^o=-30^o\end{aligned}$$</span><br /></p>
+<div class="figure">
+<embed src="Q4Diagram617.pdf" />
+<p class="caption">Block Diagram 6-17<span data-label="fig:Q4Diagram617.pdf"></span></p>
+</div>
+<p>The gain of the compensator can be found using: Figure [fig:polesZeroes.pdf] <br /><span class="math display">$$\begin{aligned}
+&amp; \left| K \frac{s+2}{s+4} \times \frac{5}{0.5s(s+2)} \right|_{s=-2+j2\sqrt(3)}=1 \\
+&amp; K = 8/5 = 1.6 \end{aligned}$$</span><br /></p>
+<pre><code>numC = [5]
+denC = [0.5 1 5]
+step(numC,denC)
+hold on
+num = [8 16]
+den = [0.5 3 12 16]
+step(num,den)
+legend(&#39;Original Step Response&#39;, &#39;Compensated Step Response&#39;)</code></pre>
+<div class="figure">
+<embed src="polesZeroes.pdf" />
+<p class="caption">Finding the location of the pole<span data-label="fig:polesZeroes.pdf"></span></p>
+</div>
+<div class="figure">
+<img src="stepQ42.png" alt="Compensated Step Response vs Original Step Response" />
+<p class="caption">Compensated Step Response vs Original Step Response<span data-label="fig:ELEC360A2m_04.pdf"></span></p>
+</div>
+<h2 id="question-5-b-6-20" class="unnumbered">Question 5, B-6-20</h2>
+<p><br /><span class="math display">$$\begin{aligned}
+ &amp; \text{Ch. Eqn Original} = s(s+10)(s+20)+820 = s^3 + 30s^2+200s+820 \\ &amp; s=-3.6 \pm j4.8, s=-22.8 \\ &amp; G\_c(s) = \hat{K}\_c\beta\frac{Ts + 1}{\beta Ts+1} \end{aligned}$$</span><br /></p>
+<div class="figure">
+<embed src="Q5Diagram620.pdf" />
+<p class="caption">Block Diagram from B-6-20<span data-label="fig:Q5Diagram620.pdf"></span></p>
+</div>
+<p>If the poles of the compensator function as placed near the origin, the angle contribution will be very small and impact the system response will be small. <br /><span class="math display">$$\begin{aligned}
+&amp; -5^o &lt; \angle\left( \frac{s+ 1 / T}{s+ 1 /(\beta T)} \right) &lt; 0^o \\
+&amp; K \approx 1, \beta = 10, T = 8 \\ &amp; G\_c(s) = 10\frac{8s+1}{80s+1}= \frac{s+0.125}{s+0.0125} \end{aligned}$$</span><br /></p>
+<p>Since the angle contribution is about <span class="math inline">−0.8713<sup><em>o</em></sup></span>, which is acceptable given the design specifications. Computing velocity error <span class="math inline">$K_v =\lim\limits_{s \rightarrow 0}sG(s)=41$</span></p>
+<p>The characteristic equation for the new system is: <span class="math inline"><em>s</em><sup>4</sup> + (2401 * <em>s</em><sup>3</sup>)/80 + (1603 * <em>s</em><sup>2</sup>)/8 + (1645 * <em>s</em>)/2 + 205/2</span></p>
+<p>The roots of the polynomial are: <span class="math inline"><em>s</em> = −22.797, −3.5435 + 4.7344<em>j</em>, −3.5435 − <em>j</em>4.7344, −0.12857</span> <span class="math inline"><em>ω</em><sub><em>n</em></sub> = | − 3.5435 + <em>j</em>4.7344|=5.913622</span>.</p>
+<p>Since <span class="math inline"><em>ω</em><sub><em>n</em></sub> = 5.913622884</span>, the compensator system has an adjustment of about 1.44 %</p>
+<h2 id="question-6-b-7-4" class="unnumbered">Question 6, B-7-4</h2>
+<p><br /><span class="math display">$$\begin{aligned}
+&amp; G(s) =\frac{10(s^2+0.4s+1)}{(s(s^2+0.8s+9))} \\
+&amp; G(s) =10\frac{s+(0.2+j2\sqrt{6})s+(0.2-j2\sqrt{6}}{s(s+(0.4+j2.97321))(s+(0.4-j2.97321))} \\
+&amp; G(s) = 10 \frac{1}{9}\cfrac{s^2+0.4s+1}{s(\frac{s^2}{9}+\frac{0.8s}{9}+1)} = G(j\omega) = \frac{10}{9}\cfrac{(j\omega)^2+0.4(j\omega)+1}{j\omega(\frac{(j\omega)^2}{9}+\frac{0.8(j\omega)}{9}+1)} \\
+&amp; |G(j\omega)| = 20 log_{10} \sqrt{(1-\omega)^2+(0.4\omega)^2}- 20log_{10}\sqrt{(-\omega^3+9)^2+(-0.8\omega)^2} \\
+&amp; \phase{G(j\omega)} = \tan^{-1}\left(\frac{0.4 \omega}{1-\omega^2}\right)-\tan^{-1}\left(\frac{\omega^3+9}{0.8\omega^2}\right) \end{aligned}$$</span><br /></p>
+<p>constant of <span class="math inline">10/9</span>, zeroes at = <span class="math inline">$-0.2-j2\sqrt{6},-0.2+j2\sqrt{6}$</span>, poles at = <span class="math inline">−(0.4 − <em>j</em>2.97321), − (0.4 + <em>j</em>2.97321)</span></p>
+<pre><code>num = [10 4 10]
+den =[1 0.8 9 0]
+Gc = tf(num,den)
+bode(Gc)</code></pre>
+<div class="figure">
+<img src="stepQ6Bode.png" alt="Bode Plot for 7-4" />
+<p class="caption">Bode Plot for 7-4<span data-label="fig:ELEC360A2m_05.pdf"></span></p>
+</div>
+<p><span>LLLLL</span> Week of Oct 8 &amp; Week of Oct 15 &amp; Week of Oct 22 &amp; Week of Nov 5 &amp; Week of Nov 12<br />
+5 hours Prepared for ELEC 360 Lab and completed it &amp; 2 hours working on lab report &amp; 3 hours spent on preparing for lab &amp; 3 hours doing the prelab and and lab experiment &amp; 2 hours working on lab report<br />
+3 hours of studying for quizzes &amp; 3 hours studying for midterm &amp; 2 hours studying midterm solutions &amp; 2 hours reviewing for quizzes &amp; 5 hours solving question for assignment 2<br />
+1 hour creating notes &amp; 2 hours preparing for midterm &amp; 2 hours preparing for quizzes &amp; 3 hours solving questions of assignment 2 &amp; 1 hour studying for quizzes<br />
+</p>
+</body>
+</html>

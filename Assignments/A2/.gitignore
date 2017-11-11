@@ -2,3 +2,6 @@
 ELEC360A2m_eq*
 # Ignore gif files because latex can't read them
 *.gif
+
+## Including this file will not be helpful
+echeever-BodePlotGui-90b7453/

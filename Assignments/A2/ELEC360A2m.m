@@ -99,7 +99,7 @@ GeqS = Geq*4.2969
 num = [0 0 0 4.2969]
 den = [1 4 5 4.2969]
 step(num,den)
-
+print('stepQ2614.png','-dpng','-r300')
 %% Question 3 B-6-16
 % Consider the control system shown in Figure 6–106.
 % Determine the gain K and time constant T of the controller
@@ -162,12 +162,13 @@ Gfeed = feedback(Geq,1)
 numC = [5]
 denC = [0.5 1 5]
 step(numC,denC)
+print('stepQ41.png','-dpng','-r300')
 hold on
 % Plotting unit step function
 num = [8 16]
 den = [0.5 3 12 16]
 step(num,den)
-
+print('stepQ42.png','-dpng','-r300')
 legend('Original Step Response', 'Compensated Step Response')
 %% Question 5, B-6-20
 %
@@ -251,3 +252,4 @@ bode(Gc)
 tfsym = poly2sym((num),s)/poly2sym((den),s)
 tftitle = latex(tfsym);
 title(sprintf('Bode plot of: $$ %s $$', tftitle), 'Interpreter','latex')
+print('stepQ6Bode.png','-dpng','-r300')

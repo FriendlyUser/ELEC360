@@ -14,12 +14,13 @@
 \usepackage{epstopdf}
 \usepackage{color}
 \usepackage{xcolor}
+\usepackage{amssymb}  % For more math
 \usepackage{amsmath}
 \usepackage[ocgcolorlinks]{hyperref}
 \usepackage{bookmark}
 \usepackage[hmargin=0.25cm,vmargin=0.25cm]{geometry}
 \usepackage{fancyhdr}
-\usepackage{booktabs}
+\usepackage{tabularx,booktabs}
 \sloppy
 \definecolor{lightgray}{gray}{0.5}
 % \definecolor{myText}{HTML}{2B2B2B}
@@ -49,6 +50,11 @@
 }
 
 \usepackage{float}
+\usepackage[figurename=Figure]{caption}
+
+% used for angle in Q 6
+\usepackage{steinmetz}
+
 \begin{document}
 
 \noindent \textbf{ELEC 360 --- Assignment 2} \hfill \textbf{David Li} \hrule
@@ -91,9 +97,9 @@ Plot the root loci for the system shown in Figure 6-100. Determine the range of 
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:Q1Diagram67.pdf}
 \end{figure}
-\begin{align}
+\begin{align*}
 & G_{eq}=G_1G_2= K\frac{s+1}{s+5}\frac{2}{s^3+2s^2}
-\end{align}
+\end{align*}
 
 The characteristic equation is $ s^4 + 7 s^3 + 10 s^2 + 2Ks + 2K$, using Routh-Hurwitz Stability Criterion, 
 \[\arraycolsep=1.4pt\def\arraystretch{2.2}
@@ -159,7 +165,7 @@ rlocus(Geq)
 Equating real and imaginary parts
 \end{par} \vspace{1em}
 \begin{par}
-\begin{align} & 8x^3-8x^2-5x+ K = 0 \\ & -j8\sqrt(3)x^2+j5\sqrt(3)x=0 \end{align}
+\begin{align*} & 8x^3-8x^2-5x+ K = 0 \\ & -j8\sqrt(3)x^2+j5\sqrt(3)x=0 \end{align*}
 \end{par} \vspace{1em}
 \begin{par}
 Solving for x, gives $x=5/8$
@@ -204,7 +210,7 @@ step(num,den)
     
 \begin{figure}[H]
 	\centering
-	\includegraphics [width=0.75\linewidth]{ELEC360A2m_03.png}
+	\includegraphics [width=0.75\linewidth]{stepQ2614.png}
 	% \caption{$ELEC360A2m_03.pdf$}
 	\caption{Unit Response for B-6-14}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
@@ -279,7 +285,7 @@ legend('Original Step Response', 'Compensated Step Response')
 
 \begin{figure}[H]
 	\centering
-	\includegraphics [width=0.75\linewidth]{ELEC360A2m_04.png}
+	\includegraphics [width=0.75\linewidth]{stepQ42.png}
 	% \caption{$ELEC360A2m_04.pdf$}
 	\caption{Compensated Step Response vs Original Step Response}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
@@ -289,21 +295,21 @@ legend('Original Step Response', 'Compensated Step Response')
 \newpage
 \subsection*{Question 5, B-6-20}
 
-\begin{align} & \text{Ch. Eqn Original} = s(s+10)(s+20)+820 = s^3 + 30s^2+200s+820 \\ & s=-3.6 \pm j4.8, s=-22.8 \\ & G\_c(s) = \hat{K}\_c\beta\frac{Ts + 1}{\beta Ts+1} \end{align}
+\begin{align*} & \text{Ch. Eqn Original} = s(s+10)(s+20)+820 = s^3 + 30s^2+200s+820 \\ & s=-3.6 \pm j4.8, s=-22.8 \\ & G\_c(s) = \hat{K}\_c\beta\frac{Ts + 1}{\beta Ts+1} \end{align*}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics [width=0.7\linewidth]{Q5Diagram620.pdf}
 	% \caption{$Q5Diagram620.pdf$}
-	\caption{}
+	\caption{Block Diagram from B-6-20}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:Q5Diagram620.pdf}
 \end{figure}
 
 If the poles of the compensator function as placed near the origin, the angle contribution will be very small and impact the system response will be small.
-\begin{align} 
+\begin{align*} 
 & -5^o < \angle\left( \frac{s+ 1 / T}{s+ 1 /(\beta T)} \right) < 0^o \\
-& K \approx 1, \beta = 10, T = 8 \\ & G\_c(s) = 10\frac{8s+1}{80s+1}= \frac{s+0.125}{s+0.0125} \end{align}
+& K \approx 1, \beta = 10, T = 8 \\ & G\_c(s) = 10\frac{8s+1}{80s+1}= \frac{s+0.125}{s+0.0125} \end{align*}
 
 Since the angle contribution is about $-0.8713^o$, which is acceptable given the design specifications.
 Computing velocity error $K_v =\lim\limits_{s \rightarrow 0}sG(s)=41$ \hfill \break
@@ -316,11 +322,13 @@ The roots of the polynomial are: $s= -22.797, -3.5435 + 4.7344j,-3.5435-j4.7344,
 Since $\omega_n=5.913622884$, the compensator system has an adjustment of about 1.44 \%
 
 \subsection*{Question 6, B-7-4}
-\begin{align} 
+\begin{align*} 
 & G(s) =\frac{10(s^2+0.4s+1)}{(s(s^2+0.8s+9))} \\
 & G(s) =10\frac{s+(0.2+j2\sqrt{6})s+(0.2-j2\sqrt{6}}{s(s+(0.4+j2.97321))(s+(0.4-j2.97321))} \\
-& G(s) = 10 \frac{1}{9}\cfrac{s^2+0.4s+1}{s(\frac{s^2}{9}+\frac{0.8s}{9}+1)} = G(j\omega) = \frac{10}{9}\cfrac{(j\omega)^2+0.4(j\omega)+1}{j\omega(\frac{(j\omega)^2}{9}+\frac{0.8(j\omega)}{9}+1)}
-\end{align}
+& G(s) = 10 \frac{1}{9}\cfrac{s^2+0.4s+1}{s(\frac{s^2}{9}+\frac{0.8s}{9}+1)} = G(j\omega) = \frac{10}{9}\cfrac{(j\omega)^2+0.4(j\omega)+1}{j\omega(\frac{(j\omega)^2}{9}+\frac{0.8(j\omega)}{9}+1)} \\
+& |G(j\omega)| = 20 log_{10} \sqrt{(1-\omega)^2+(0.4\omega)^2}- 20log_{10}\sqrt{(-\omega^3+9)^2+(-0.8\omega)^2} \\
+& \phase{G(j\omega)} = \tan^{-1}\left(\frac{0.4 \omega}{1-\omega^2}\right)-\tan^{-1}\left(\frac{\omega^3+9}{0.8\omega^2}\right) 
+\end{align*}
 constant of $10/9$, zeroes at = $-0.2-j2\sqrt{6},-0.2+j2\sqrt{6}$, poles at = $-(0.4-j2.97321), -(0.4+j2.97321)$
 % figure out how to manually plot this graph later
 \begin{lstlisting}[language = Matlab]
@@ -332,13 +340,58 @@ bode(Gc)
     
 \begin{figure}[h]
 	\centering
-	\includegraphics [width=0.7\linewidth]{ELEC360A2m_05.png}
+	\includegraphics [width=0.7\linewidth]{stepQ6Bode.png}
 	% \caption{$ELEC360A2m_05.pdf$}
 	\caption{Bode Plot for 7-4}
 	% Alternative is to typeset the caption myself, which makes more sense to me.
 	\label{fig:ELEC360A2m_05.pdf}
 \end{figure}
 
+%\begin{tabular}{c c c c c c }
+%	\toprule
+%	\textbf\{Week of Oct 8\} &                                          \textbf\{Week of Oct 15\} &                                        \textbf\{Week of Oct 22\} &                         \textbf\{Week of Nov 5\} &                        \textbf\{Week of Nov 12\} \\
+%	\midrule
+%	2 hours reading pages 13 to 22 of text  &  3 hours spent on deriving transfer functions of example systems &  3 hours spent on preparing for lab &  2 hours doing the prelab and reading textbook &  2 hours doing the prelab and reading textbook \\
+%	3 hours of internet research on closed loop control system examples &  2 hours towards practicing block-diagram reduction techniques &  2 hours towards practicing block-diagram reduction techniques &  2 hours reviewing and creating lecture notes &  2 hours reviewing and creating lecture notes \\
+%	1 hour of practicing Laplace Transform &  2 hours on solving first 4 questions of assignment 1 &  2 hours on solving first 4 questions of assignment 1 &  6 hours solving questions of assignment 1 &  6 hours solving questions of assignment 1 \\
+%	\bottomrule
+%\end{tabular}
+%
+%\begin{table}
+%	\begin{tabular}{cccc}                                                      Week of Oct 8 &  2 hours reading pages 13 to 22 of text        & 3 hours of internet research on closed loop control system examples & 1 hour of practicing Laplace Transform               \\
+%		Week of Oct 15                                                                        & 3 hours spent on deriving transfer functions of example systems & 2 hours towards practicing block-diagram reduction techniques       & 2 hours on solving first 4 questions of assignment 1 \\
+%		Week of Oct 22                                                                        & 3 hours spent on preparing for lab                              & 2 hours towards practicing block-diagram reduction techniques       & 2 hours on solving first 4 questions of assignment 1 \\
+%		Week of Nov 5                                                                         & 2 hours doing the prelab and reading textbook                   & 2 hours reviewing and creating lecture notes                        & 6 hours solving questions of assignment 1            \\
+%		Week of Nov 12                                                                        & 2 hours doing the prelab and reading textbook                   & 2 hours reviewing and creating lecture notes                        & 6 hours solving questions of assignment 1            \\
+%	\end{tabular}
+%\end{table}
+%\newcolumntype{L}{>{\centering\arraybackslash}m{3.5cm}}
+%\begin{table}
+%	\renewcommand*{\arraystretch}{2}
+%	\centering
+%	\caption*{\Large Time log for ELEC 360 --- Assignment 2}
+%	\begin{tabular}{LLLLL}
+%		\toprule                                                       Week of Oct 8 & Week of Oct 15                                                  & Week of Oct 22                                                & Week of Nov 5                                 & Week of Nov 12                                \\
+%		\midrule 2 hours reading pages 13 to 22 of text                              & 3 hours spent on deriving transfer functions of example systems & 3 hours spent on preparing for lab                            & 2 hours doing the prelab and reading textbook & 2 hours doing the prelab and reading textbook \\
+%		3 hours of internet research on closed loop control system examples                   & 2 hours towards practicing block-diagram reduction techniques   & 2 hours towards practicing block-diagram reduction techniques & 2 hours reviewing and creating lecture notes  & 2 hours reviewing and creating lecture notes  \\
+%		1 hour of practicing Laplace Transform                                                & 2 hours on solving first 4 questions of assignment 1            & 2 hours on solving first 4 questions of assignment 1          & 6 hours solving questions of assignment 1     & 6 hours solving questions of assignment 1     \\
+%	\end{tabular}
+%\end{table}
+\newcolumntype{L}{>{\centering \arraybackslash}m{3.5cm}} 
+\begin{table}
+	\renewcommand*{\arraystretch}{2}
+	\centering
+	\caption*{\Large Time log for ELEC 360 --- Assignment 2}
+\begin{tabular}{LLLLL}
+	\toprule
+	Week of Oct 8 &                 Week of Oct 15 &                      Week of Oct 22 &                                    Week of Nov 5 &                             Week of Nov 12 \\
+	\midrule
+	5 hours Prepared for ELEC 360 Lab and completed it &  2 hours working on lab report &  3 hours spent on preparing for lab &  3 hours doing the prelab and and lab experiment &  2 hours working on lab report \\
+	3 hours of studying for quizzes &  3 hours studying for midterm &  2 hours studying midterm solutions &  2 hours reviewing for quizzes &  5 hours solving question for assignment 2 \\
+	1 hour creating notes &  2 hours preparing for midterm &  2 hours preparing for quizzes &  3 hours solving questions of assignment 2 &  1 hour studying for quizzes \\
+	\bottomrule
+\end{tabular}
+\end{table}
 
 \end{document}
     

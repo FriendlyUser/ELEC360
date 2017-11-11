@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+</head>
+<body>
+<p><strong>ELEC 360 — Assignment 1</strong> <strong>David Li</strong><br />
+<strong>Due Date:</strong> October 2, 2017 Student Number: <strong>V00818631</strong><br />
+</p>
+<hr />
+<p><span>1 (A) — Laplace Transforms</span></p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(t^2\)</span> By using the definition of Laplace Transform and integration by parts, <span class="math inline">\(\mathscr{L}[t^2]\)</span> can be found. <span class="math display">\[\begin{aligned}
+        &amp; \mathscr{L}[t^2] = \int_{0}^{\infty} t^2 e^{-st} {\mathop{}\!d}t \\
+        &amp; \int_{0}^{\infty} t^2 e^{-st} {\mathop{}\!d}t =
+        \left[
+        \begin{alignedat}{2}          u       &amp;= t^2             \quad &amp; {\mathop{}\!d}v &amp;= e^{-st} {\mathop{}\!d}t \\
+        {\mathop{}\!d}u &amp;= 2t {\mathop{}\!d}t \quad &amp; v &amp;= \frac{-1}{s}e^{-st}
+        \end{alignedat}\,
+        \right]
+        = \cancelto{0}{\left[
+        \frac{-1}{s}t^2e^{-st}
+        \right]^{\infty}_{0}}
+        - \int_{0}^{\infty}2t\frac{-e^{-st}}{s} {\mathop{}\!d}t \\
+         &amp;\frac{2}{s}\int_{0}^{\infty}t e^{-st} {\mathop{}\!d}t 
+          =
+            \left[
+         \begin{alignedat}{2}
+         u_2       &amp;= t             \quad &amp; {\mathop{}\!d}v_2 &amp;= e^{-st} {\mathop{}\!d}t \\
+         {\mathop{}\!d}u_2 &amp;= {\mathop{}\!d}t \quad &amp; v_2 &amp;= \frac{-1}{s}e^{-st} 
+         \end{alignedat}\,
+         \right] = \frac{2}{s}\left(
+         \cancelto{0}{\left[
+            \frac{-t}{s}e^{-st}
+            \right]^{\infty}_{0}}          +
+         \frac{1}{s}\int_{0}^{\infty}e^{-st} {\mathop{}\!d}t \right) \\
+         &amp; \frac{2}{s} \int_{0}^{\infty}e^{-st} {\mathop{}\!d}t = \frac{2}{s^3} \\
+         &amp; \boxed{\mathscr{L}[t^2]  = \frac{2}{s^3}, \quad s &gt; 0}
+        \end{aligned}\]</span></p></li>
+<li><p><span class="math inline">\(\sin(\omega t) = \frac{1}{2j}\left( e^{j\omega t}+ e^{-j\omega t}\right)\)</span> <span class="math display">\[\begin{aligned}
+        &amp; \mathscr{L} \left[\frac{1}{2j}\left( e^{j\omega t}+ e^{-j\omega t}\right)\right] = \int_{0}^{\infty} \frac{1}{2j}\left( e^{j\omega t}- e^{-j\omega t}\right) e^{-st} {\mathop{}\!d}t \\
+        &amp; = \frac{1}{2j} \left(\int_{0}^{\infty}e^{j\omega t -st} {\mathop{}\!d}t - \int_{0}^{\infty}e^{-j\omega t-st} {\mathop{}\!d}t \right) =  \frac{1}{2j} \left.  \left(\frac{1}{j\omega -s}e^{j\omega t -st} \right|_{0}^{\infty} -\left. \frac{-1}{j\omega +s}   e^{-j\omega t -st} \right|_{0}^{\infty} \right) \\
+        &amp;= \frac{1}{2j} \left[\frac{1}{s-j\omega}+\frac{1}{s+j\omega}\right] \\
+        &amp;=\frac{1}{2j}\left(\frac{s+j\omega -s +j\omega}{s+\omega^2}\right)= \frac{1}{2j}\left(\frac{2j\omega}{s+\omega^2}\right) \\
+        &amp; \boxed {\mathscr{L} \left[\frac{1}{2j}\left( e^{j\omega t}+ e^{-j\omega t}\right)\right] = \frac{\omega}{s+\omega^2}, s &gt; 0}
+        \end{aligned}\]</span></p></li>
+</ol>
+<p><span>2 — B-3-7 — obtain transfer function </span> The voltage drop across an inductor can be expressed as <span class="math inline">\(v_L = L \frac{{\mathop{}\!d}i}{{\mathop{}\!d}t}\)</span>, the voltage drop across an capacitor is <span class="math inline">\(v_C =\frac{1}{C} \int i {\mathop{}\!d}t\)</span> for a relaxed state. Using Mesh Analysis: <span class="math display">\[\begin{aligned}
+&amp; R_1i_1+ L  \frac{{\mathop{}\!d}i_1}{{\mathop{}\!d}t} = e_i \\
+&amp; R_2i_2+\frac{1}{C}\int i {\mathop{}\!d}t + L \frac{{\mathop{}\!d}}{{\mathop{}\!d}t}(i_2-i_1) = 0 \\
+&amp; -\frac{1}{C} \int i_2 {\mathop{}\!d}t = e_o \end{aligned}\]</span> <strong>Laplace Transform of Integrals</strong> — If <span class="math inline">\( G(s)=L{g(t)}, \)</span> then <span class="math inline">\(\mathscr{L}\left[ \int_0^t g(t) {\mathop{}\!d}t \right] = \displaystyle \frac{G}{s} \)</span> <strong>Laplace Transform of Derivatives</strong> — <span class="math inline">\(\displaystyle L[g&#39;(t)]=L\left[\frac{{\mathop{}\!d}g}{{\mathop{}\!d}t} 
+    ​   \right ] =sG-g(0)\)</span></p>
+<div class="figure">
+<img src="Circuits/Q2Circuit" alt="Electric Circuit for Problem 2" />
+<p class="caption">Electric Circuit for Problem 2<span data-label="fig:q2circuit"></span></p>
+</div>
+<p><span class="math display">\[\begin{aligned}
+&amp; R_1I_1(s) + Ls(I_1(s)-I_2(s))=E_i(s) \label{eq:4} \\
+&amp; R_2I_2(s)+\frac{I_1(s)}{sC}+Ls(I_2(s)-I_1(s))=0 \label{eq:5} \\
+&amp; -\frac{I_2(s)}{Cs}=E_o    \label{eq:6}\end{aligned}\]</span></p>
+<p>Using Equation [eq:5] to solve <span class="math inline">\(I_2\)</span> in terms of <span class="math inline">\(I_1\)</span> results in: <span class="math display">\[\begin{aligned}
+&amp;I_2(s) \left[R_2+\frac{1}{sC}+Ls\right]=Ls I_1(s) \label{eq:7} \\
+&amp;I_2(s) =\frac{Ls}{\left[R_2+\frac{1}{sC}+Ls\right]} I_1(s) \nonumber \end{aligned}\]</span> Subbing Equation [eq:7] into Equations [eq:4] and [eq:6] results in: <span class="math display">\[\begin{aligned}
+&amp; E_o = \frac{I_1(s) \frac{Ls}{\left[R_2+\frac{1}{sC}+Ls\right]}}{Cs} = I_1(s)\frac{Ls}{LCs^2+R_2Cs+1} \\
+&amp; E_i = I_1(s)\left(R_1+Ls-\frac{L^2(s^2)}{\left[R_2+\frac{1}{sC}+Ls\right]}\right) = I_1(s)\frac{LC(R_1+R_2)s^2+(R_1R_2C+L)s+R_1}{LCs^2+R_2Cs+1}\end{aligned}\]</span> The transfer function <span class="math inline">\(\displaystyle \frac{E_o}{E_i}\)</span> is: <span class="math display">\[\begin{aligned}
+&amp;\boxed{\frac{E_o}{E_i}=\frac{Ls}{LC(R_1+R_2)s^2+(R_1R_2C+L)s+R_1}}\end{aligned}\]</span></p>
+<p><span>3 — (B)-3-11 — obtain transfer function</span> Finding the voltage at point A and B, <span class="math inline">\(e_a\)</span> expressed as a fraction of the input voltage, <span class="math inline">\(e_i\)</span></p>
+<div class="figure">
+<img src="Circuits/Q3Circuit" alt="Operational-amplifier circuit for Problem 3" />
+<p class="caption">Operational-amplifier circuit for Problem 3<span data-label="fig:q3circuit"></span></p>
+</div>
+<p><span class="math display">\[\begin{aligned}
+&amp; e_a = \frac{iR_1}{1/C \int i d t + iR_1}e_i \\
+&amp; \frac{E_a(s)}{E_i(s)} =\frac{R_1}{1 / (Cs) + R_1} \\
+&amp; \frac{E_a(s)}{E_i(s)} =\frac{R_1Cs}{R_1Cs+1}\end{aligned}\]</span></p>
+<p>For the voltage at point B, <span class="math inline">\(e_b\)</span> <span class="math display">\[\begin{aligned}
+&amp; e_b =\frac{R_3}{R_2+R_3}e_o \\
+&amp; \frac{E_b}{E_o} = \frac{R_3}{R_2+R_3}\end{aligned}\]</span> Since <span class="math inline">\(E_b= E_a\)</span>, and <span class="math inline">\(\displaystyle E_a(s) =\frac{R_1Cs}{R_1Cs+1}E_i(s) \quad  E_b =\frac{R_3}{R_2+R_3}E_o\)</span> the transfer function is: <span class="math display">\[\begin{aligned}
+&amp; \frac{E_o}{E_i}=\frac{R_1Cs}{R_1Cs+1}\times \frac{R_2+R_3}{R_3}= \frac{R_1R_2Cs+R_1R_3Cs}{R_1R_3Cs + R_3} = \frac{\left(1+\cfrac{R_2}{R_3}\right)s}{s+\cfrac{1}{R_1C}} \\
+&amp; \boxed{\frac{E_o}{E_1} = \frac{\left(1+\cfrac{R_2}{R_3}\right)s}{s+\cfrac{1}{R_1C}}}\end{aligned}\]</span></p>
+<p><span>4 — (B)-3–13 — obtain transfer function</span> Finding the Transfer function <span class="math inline">\(\displaystyle \frac{\Theta(s)}{E_i(s)}\)</span></p>
+<div class="figure">
+<img src="Images/Q4" alt="Armature-controlled dc servomotor system" />
+<p class="caption">Armature-controlled dc servomotor system<span data-label="fig:q4"></span></p>
+</div>
+<p>Let <span class="math inline">\(i_a=\)</span> current in armature circuit, <span class="math inline">\(e_b=K_3\frac{d \theta}{d_t}\)</span> back emf, <span class="math inline">\(K_3=\)</span> back emf constant of the motor and <span class="math inline">\(T= K_2i_a\)</span>, where <span class="math inline">\(K_2\)</span> is the motor torque constant. The equation for torque equilibrium is: The armature circuit equation is: <span class="math display">\[\begin{aligned}
+&amp; L \frac{di_a }{dt}+i_aR+e_b=e_i   \nonumber \\ &amp; L \frac{di_a }{dt}+i_aR + K_3\frac{d \theta_m}{d_t}=e_i \nonumber \\ &amp; sLI_a(s) + RI_a(s) + sK_3 \Theta_m (s) = E_i(s)   \label{eq:Q4:1}\]</span> The equation for torque equilibrium is: <span class="math display">\[\begin{aligned}
+&amp; J_0\frac{d^2\theta}{dt^2} + T = T_{motor} = K_2i_a \nonumber \\ &amp; T = \frac{\theta}{\theta_m} T_L = n T_L \nonumber \\
+&amp; J_L\frac{d^2\theta}{dt^2} = T_L \nonumber \\
+&amp; (J_m + n^2J_L)\frac{d^2\theta}{dt^2} = nK_2i_a \nonumber \\ &amp; (J_m+n^2J_L)s^2\Theta(s)=nK_2I_a(s) \label{eq:Q4:2} \]</span> Eliminating <span class="math inline">\(I_a\)</span> by using equations [eq:Q4:1] and [eq:Q4:2]: <span class="math display">\[\begin{aligned}
+&amp; I_a(s)(sL+R)=E_i(s)-sK_3\Theta(s) \\
+&amp; I_a(s)= \frac{E_i(s)-sK_3\Theta(s)}{(sL+R)} \\\end{aligned}\]</span> <span class="math display">\[\begin{aligned}
+&amp; (J_m+n^2J_L)s^2\Theta(s)= nK_2 \left(\frac{E_i(s)-sK_3\Theta(s)}{(sL+R)} \right) \\
+&amp; \Theta(s)\left((sL+R)\frac{J_m+n^2J_L}{nK_2}\right)s^2 + sK_3 \frac{\Theta(s)}{n}=E_i(s) \\
+&amp; \left[\left((sL+R) J_m+n^2J_L \right)s^2 + sK_2K_3 \right]\Theta(s) = nK_2E_i(s) \\
+&amp; \boxed{\frac{\Theta(s)}{E_i(s)}= \frac{nK_2}{\left((sL+R) J_m+n^2J_L \right)s^2 + sK_2K_3 } }\end{aligned}\]</span></p>
+<p><span>5 — (B)-2-3 — obtain transfer function</span></p>
+<div class="figure">
+<img src="Circuits/Q5BlockDiagram" alt="Block Diagram for (B)-2–3" />
+<p class="caption">Block Diagram for (B)-2–3<span data-label="fig:q5blockdiagram"></span></p>
+</div>
+<p>Moving <span class="math inline">\(G_2\)</span> to the left, past a pickoff point results in:</p>
+<div class="figure">
+<img src="Circuits/Q5BlockDiagram2" alt="Merging  H_1 \text{and} 1 / G_2" />
+<p class="caption">Merging <span class="math inline">\( H_1 \text{and} 1 / G_2\)</span><span data-label="fig:prob1_6_1"></span></p>
+</div>
+<div class="figure">
+<img src="Circuits/Q5BlockDiagram2-2" alt="Merging  H_1 \text{and} 1 / G_2" />
+<p class="caption">Merging <span class="math inline">\( H_1 \text{and} 1 / G_2\)</span><span data-label="fig:prob1_6_1"></span></p>
+</div>
+<p>Combining <span class="math inline">\(\frac{H_1}{G_2}\)</span> and unity, switching the order of the adders before <span class="math inline">\(G_2\)</span> and then using the feedback form results in:</p>
+<div class="figure">
+<img src="Circuits/Q5BlockDiagram3" alt="Partially simplifed Block Diagram" />
+<p class="caption">Partially simplifed Block Diagram<span data-label="fig:q5blockdiagram3"></span></p>
+</div>
+<p>Collapsing the cascading block diagrams results in and then cascading <span class="math inline">\(G_1\)</span>: <span class="math display">\[\begin{aligned}
+&amp; G_1\left(\frac{G_2}{1+G_2H_2}\right)\left(1+\frac{H_1}{G_2}\right)G_3=G_1\frac{G_3(G_2+H_1)}{1+G_2H_2} \\
+&amp; \text{Then applying the feedback form:} \\ 
+&amp; G_1\cfrac{\cfrac{G_3(G_2+H_1)}{1+G_2H_2}}{1+\cfrac{G_3(G_2+H_1)}{1+G_2H_2}H_3}= G_1\cfrac{\cfrac{G_3(G_2+H_1)}{1+G_2H_2}}{\cfrac{1+G_2H_2+H_3G_3(G_2+H_1)}{1+G_2H_2}}= \cfrac{G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)}\end{aligned}\]</span></p>
+<div class="figure">
+<img src="Circuits/Q5BlockDiagram4" alt="Feedback Form of (B)-2-3" />
+<p class="caption">Feedback Form of (B)-2-3<span data-label="fig:q5blockdiagram4"></span></p>
+</div>
+<p>Applying the feedback form a final time results in: <span class="math display">\[\begin{aligned}
+&amp; \cfrac{\cfrac{G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)}}{1+1\times\cfrac{G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)}}= \cfrac{\cfrac{G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)}}{\cfrac{1+G_2H_2+H_3G_3(G_2+H_1)+G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)}} \\
+&amp;= \cfrac{G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)+G_1G_3(G_2+H_1)}\end{aligned}\]</span></p>
+<p><img src="Circuits/Q5BlockDiagram5" alt="image" /></p>
+<p>The transfer function is , <span class="math inline">\(\displaystyle \boxed{\frac{C(s)}{R(s)}= \frac{G_1G_2G_3+G_1G_3H_1}{1+G_2H_2+H_3G_2G_3+H_1H_2G_3+G_1G_2G_3+G_1G_3H_1}}\)</span></p>
+<p>To find <span class="math inline">\( C(s)/R(s)\)</span> set <span class="math inline">\(D(s)=0\)</span> and for <span class="math inline">\(C(s)/D(s)\)</span> set <span class="math inline">\(R(s)=0\)</span></p>
+<p><img src="Circuits/Q6BlockDiagram" alt="image" /> [fig:q6blockdiagram]</p>
+<p><strong>Solving for</strong> <span class="math inline">\(C(s)/R(s)\)</span>, set <span class="math inline">\(D(s)=0\)</span>, this allows for <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> to be treated as a cascading system and the new system, <span class="math inline">\(G_1G_2\)</span> is in a feedback form with <span class="math inline">\(H_1\)</span>.</p>
+<div class="figure">
+<img src="Circuits/Q6BLockDiagram2" alt="Simplified System when D(s)=0" />
+<p class="caption">Simplified System when <span class="math inline">\(D(s)=0\)</span><span data-label="fig:q6blockdiagram2"></span></p>
+</div>
+<p>Using the feedback form again:</p>
+<p><img src="Circuits/Q6BLockDiagram3Fin" alt="image" /> [fig:q6blockdiagram3fin]</p>
+<p><span class="math display">\[\begin{aligned}
+&amp; \cfrac{\cfrac{G_cG_3G_1G_2}{1+G_1G_2H_1}}{1+\cfrac{G_cG_3G_1G_2}{1+G_1G_2H_1}} = 
+\cfrac{G_cG_3G_1G_2}{1+G_1G_2H_1+G_cG_3G_1G_2}\\
+&amp; \boxed{\frac{R(s)}{C(s)} = \frac{G_cG_3G_1G_2}{1+G_1G_2H_1+G_cG_3G_1G_2}}\end{aligned}\]</span> <strong>Solving for</strong> <span class="math inline">\(C(s)/D(s)\)</span>, set <span class="math inline">\(R(s)=0\)</span>, this allows for <span class="math inline">\(G_c\)</span> and <span class="math inline">\(H_2\)</span> to be treated as a cascading system and moving <span class="math inline">\(G_3\)</span> to the left of a pick off point results in:</p>
+<p><img src="Circuits/Q6BLockDiagram4" alt="image" /> [fig:Q6BLockDiagram4]</p>
+<p>Cascading <span class="math inline">\(G_2 + G_3\)</span>, <span class="math inline">\(H_2 + G_c\)</span> and <span class="math inline">\(H_1+ 1 / G_3\)</span> and rearranging leads to:</p>
+<p><img src="Circuits/Q6BlockDiagram5" alt="image" /> [fig:q6blockdiagram5]</p>
+<p>Using the feedback form:</p>
+<p><img src="Circuits/Q6BlockDiagram6fin" alt="image" /> [fig:q6blockdiagram6fin]</p>
+<p>The transfer function, <span class="math inline">\(\displaystyle \boxed{\frac{C(s)}{D(s)}= \cfrac{G_2G_3}{1+G_1G_2G_3G_cH_2+G_1G_2H_1}}\)</span></p>
+<p><span>7 — B-5-10 — Matlab plotting</span> The figures [fig:q7step] and [fig:q7rampImpulse] correspond to the plots of the unit-step, unit-ramp and impulse responses plotted in Matlab. The ramp response is the integral of the step response. Thus, multiplying the step response by 1/s and gets the ramp.</p>
+<pre><code>    s = tf(&#39;s&#39;);
+    C = 10;
+    R = s^2+2*s+10;
+    step(C/R)   % Step response</code></pre>
+<div class="figure">
+<img src="Images/Q7Step" alt="Step Response for 10 / (s^2+2s+10) in Matlab" />
+<p class="caption">Step Response for <span class="math inline">\(10 / (s^2+2s+10)\)</span> in Matlab<span data-label="fig:q7step"></span></p>
+</div>
+<p><img src="Images/Q7RampOgata" title="fig:" alt="Ramp and Impulse Response for 10 / (s^2+2s+10) in Matlab" /> [fig:q7ramp]</p>
+<p><img src="Images/Q7Impulse" title="fig:" alt="Ramp and Impulse Response for 10 / (s^2+2s+10) in Matlab" /> [fig:q7impulse]</p>
+<pre><code>    t = 0:0.02:10;
+    num1 = [10];
+    den1 = [1 2 10 0];
+    y1 = step(num1,den1,t);
+    plot(t,t,&#39;--&#39;,t,y1)
+    v = [0 10 0 10]; axis(v); grid</code></pre>
+<pre><code>    h = impulseplot(C/R);
+    p = getoptions(h);
+    p.Title.String =(&#39;Impulse Response&#39;);
+    setoptions(h,p);</code></pre>
+<p><span>8 — B-5-12 — Matlab computations</span> By plotting and inspecting the step response of the function <span class="math inline">\(\displaystyle=\frac{C(s)}{R(s)}=\frac{36}{s^2+2s+36}\)</span>, the values for rise time, peak time, max overshoot and settling time can be computed.</p>
+<div class="figure">
+<img src="Images/Q8Step" alt="Step response for Problem B-5-12" />
+<p class="caption">Step response for Problem B-5-12<span data-label="fig:q8step"></span></p>
+</div>
+<pre><code>    num = [0 0 36];
+    den = [1 2 36];
+    t = 0:0.001:5;
+    [y,x,t] = step(num,den,t);
+    plot(t,y); grid;
+    title(&#39;Unit-Step Response&#39;)
+    xlabel(&#39;t (sec)&#39;)
+    ylabel(&#39;Output y(t)&#39;)</code></pre>
+<pre><code>    r1 = 1; while y(r1) &lt; 1.0001, r1 = r1+1; end;  
+    rise_time = (r1-1)*0.001
+    [ymax,tp] = max(y);
+    peak_time = (tp-1)*0.001
+    max_overshoot = ymax-1  
+    s = 5001; while y(s) &gt; 0.98 &amp; y(s) &lt; 1.02; s = s-1; end;
+    settling_time = (s-1)*0.001</code></pre>
+<pre><code>    rise_time =
+        0.294000000000000
+    peak_time =
+        0.531000000000000
+    max_overshoot =
+        0.588001316697907
+    settling_time =
+        3.821000000000000</code></pre>
+<p><span>9 — B-5-21 — Routh stability criterion</span> <span class="math inline">\(s^4 + 2s^3 + (4 + K)s^2 + 9s + 25 = 0, a_0=1, a_1=2,a_2=(4+K),a_3=9,a_4=25\)</span> <span class="math inline">\( \displaystyle b_1 =\frac{a_1a_2-a_0a_3}{a_1}= \frac{2(4+K)-(4+K)}{2}, b_2=\frac{a_1a_4-a_0a_5}{a_1}=25\)</span> <span class="math inline">\(\displaystyle c_1 =\frac{a_3b_1-a_1b_2}{b_1}=\frac{9(2K-1)/2-2(25)}{(2K-1)/2}=\frac{9K-109/2}{2K-1/2}\)</span></p>
+<table>
+<caption>Routh-stability calculations</caption>
+<thead>
+<tr class="header">
+<th align="left"><span class="math inline">\(\mathbf{s^4}\)</span></th>
+<th align="center">1</th>
+<th align="center">(4+K)</th>
+<th align="center">25</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\mathbf{s^3}\)</span></td>
+<td align="center">2</td>
+<td align="center">9</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\mathbf{s^2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{2K-1}{2}\)</span></td>
+<td align="center">25</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\mathbf{s^1}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{9K-109/2}{2K-1/2}\)</span></td>
+<td align="center">0.00</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\mathbf{s^0}\)</span></td>
+<td align="center">25.00</td>
+<td align="center">0.00</td>
+<td align="center">0.00</td>
+</tr>
+</tbody>
+</table>
+<p>In order for the system to be stable, the right hand poles, must not exist, therefore <span class="math inline">\(\frac{2K-1}{2} &gt; 0\)</span> and <span class="math inline">\(\frac{9K-109/2}{2K-1/2}&gt;0\)</span>, so <span class="math inline">\(K \geq 0.5\)</span> and <span class="math inline">\(\displaystyle \boxed{ K \geq \frac{109}{18} \approx 6.056}\)</span></p>
+<p><span>10 — B-5-26 — open loop transfer function-</span> <span class="math inline">\(\displaystyle \frac{C(s)}{R(s)}=\frac{G(s)}{1+G(s)}=\frac{Ks+b}{s^2+as+b}\)</span></p>
+<div class="figure">
+<img src="Circuits/Q10BlockDiagram" alt="Closed loop control system transfer function." />
+<p class="caption">Closed loop control system transfer function.<span data-label="fig:q10blockdiagram"></span></p>
+</div>
+<p><span class="math display">\[\begin{aligned}
+        &amp; G(s)(s^2+as+b)=(1+G(s))(Ks+b) \\
+        &amp; G(s)(s^2+as+b-Ks-b)=(Ks+b) \\
+        &amp; G(s)=\frac{Ks+b}{s^2+(a-K)s}
+    \end{aligned}\]</span></p>
+<p>The steady-state in the unit-ramp response is: <span class="math display">\[\begin{aligned}
+        &amp; e_{ss}=\frac{1}{K_v}  = \lim\limits_{s \rightarrow 0}\frac{1}{sG(s)}= \lim\limits_{s \rightarrow 0}\frac{s(s+a-K)}{s(Ks+b)}=\frac{a-k}{b}
+    \end{aligned}\]</span></p>
+<p><span>LLLL</span> <strong>Week of Sep 10</strong> &amp; <strong>Week of Sep 17</strong> &amp; <strong>Week of Sep 24</strong> &amp; <strong>Week of Oct 1</strong><br />
+2 hours reading pages 13 to 22 of text &amp; 3 hours spent on deriving transfer functions of example systems &amp; 3 hours spent on preparing for lab &amp; 2 hours doing the prelab and reading textbook<br />
+3 hours of internet research on closed loop control system examples &amp; 2 hours towards practising block-diagram reduction techniques &amp; 2 hours towards practising block-diagram reduction techniques &amp; 3 hours reviewing lecture notes and lab report<br />
+1 hour of practising Laplace Transform &amp; 2 hours on solving first 4 questions of assignment 1 &amp; 2 hours on solving first 4 questions of assignment 1 &amp; 4 hours solving questions of assignment 1<br />
+</p>
+</body>
+</html>
