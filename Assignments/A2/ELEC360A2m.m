@@ -168,8 +168,9 @@ hold on
 num = [8 16]
 den = [0.5 3 12 16]
 step(num,den)
-print('stepQ42.png','-dpng','-r300')
 legend('Original Step Response', 'Compensated Step Response')
+print('stepQ42.png','-dpng','-r300')
+
 %% Question 5, B-6-20
 %
 %%
