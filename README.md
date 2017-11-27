@@ -54,7 +54,10 @@ A list of files that are ignore is included below
 /Assignments/A1/Circuits/.svn
 /Assignments/A1/Circuits/repo
 ```
-
+### Useful Links
+Think about how I want to structure my documents
+* http://www.cds.caltech.edu/~murray/amwiki/index.php/Second_Edition
+* For example, I could have course outline, most useful links and then documents, and create branches for each assignment and push things so that they don't interfere with each other.
 ## Course Outline
 
 **Course Objectives**

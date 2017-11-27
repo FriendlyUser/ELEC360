@@ -26,7 +26,7 @@ Department of Electrical and Computer Engineering
 
 ## Table of Contents
 
-[[TOC]]
+\tableofcontents
 
 ## List of Figures
 

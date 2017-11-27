@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+</head>
+<body>
+
+<p><strong>UNIVERSITY OF VICTORIA</strong></p>
+<p>Department of Electrical and Computer Engineering</p>
+<p><strong>ELEC 360 – Control Systems I</strong></p>
+<p><strong>Laboratory 3</strong></p>
+<p><strong>Experiment no.:</strong> 2</p>
+<p><strong>Title:</strong> Modeling and Identification of a DC Motor</p>
+<p><strong>Date of Experiment:</strong> November 7, 2017</p>
+<p><strong>Report Submitted on:</strong> November, 14, 2017</p>
+<p><strong>To:</strong> Akash Panchal</p>
+<p><strong>Laboratory Group No.:</strong> Group 35</p>
+<p><strong>Names: </strong></p>
+<ol style="list-style-type: decimal">
+<li><p>David Li V00818631</p></li>
+<li><p>Mike Viala V00850502</p></li>
+</ol>
+<h2 id="table-of-contents">Table of Contents</h2>
+<div id="TOC">
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#list-of-figures">List of Figures</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#experimental-results-note-observations-are-included-in-discussion">Experimental Results (note: observations are included in &quot;Discussion&quot;)</a><ul>
+<li><a href="#proportional-control">5.1.1 Proportional Control</a></li>
+<li><a href="#integral-control">5.1.2. Integral Control</a></li>
+<li><a href="#proportional-and-integral-control">5.1.3. Proportional and Integral Control</a></li>
+<li><a href="#closed-loop-systems-response-to-disturbances">5.2. Closed-loop System’s Response to Disturbances</a></li>
+<li><a href="#manual-tuning-of-pi-controller-ziegler-nichols">5.3. Manual Tuning of PI Controller: Ziegler-Nichols</a></li>
+</ul></li>
+<li><a href="#discussion">Discussion</a><ul>
+<li><a href="#proportional-control-5.1.1">Proportional Control (5.1.1)</a></li>
+<li><a href="#integral-control-5.1.2">Integral Control (5.1.2)</a></li>
+<li><a href="#proportional-and-integral-control-5.1.3">Proportional and Integral Control (5.1.3)</a></li>
+<li><a href="#closed-loop-systems-response-to-disturbances-5.2">Closed-loop System’s Response to Disturbances (5.2)</a></li>
+<li><a href="#manual-tuning-of-pi-controller-ziegler-nichols-5.3">Manual Tuning of PI Controller: Ziegler-Nichols (5.3)</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="list-of-figures">List of Figures</h2>
+<p>Figure: 1 Starting values for proportional control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .3</p>
+<p>Figure: 2 <em>k<strong>p <em>= 0 </em>.<em>1V s/rad </em>, k</strong>i </em>= 0 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . . . . 4</p>
+<p>Figure: 3 <em>k<strong>p <em>= 0</em>.<em>2V s/rad</em>, k</strong>i </em>= 0 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4</p>
+<p>Figure: 4 <em>k<strong>p <em>= 0</em>.<em>3V s/rad </em>to, k</strong>i </em>= 0 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .5</p>
+<p>Figure: 5 <em>k<strong>p <em>= 0</em>.<em>4V s/rad </em>, k</strong>i </em>= 0 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5</p>
+<p>Figure: 6 *k**i *= 0.1 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6</p>
+<p>Figure: 7 *k**i *= 0.4 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7</p>
+<p>Figure: 8 *k**i *= 0.9 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7</p>
+<p>Figure: 9 *k**i *= 1.4 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8</p>
+<p>Figure: 10 *k**i *= 1.9 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8</p>
+<p>Figure: 11 *k**i *= 0.16 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .9</p>
+<p>Figure: 12 <em>k<strong>p <em>= 0.1 V s /rad</em>, k</strong>i </em>= 0.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .10</p>
+<p>Figure: 13 <em>k<strong>p <em>= 0.1 V s /rad</em>, k</strong>i </em>= 1.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11</p>
+<p>Figure: 14 <em>k<strong>p <em>= 0.1 V s /rad</em>, k</strong>i </em>= 2.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11</p>
+<p>Figure: 15 <em>k<strong>p <em>= 0.1 V s /rad</em>, k</strong>i </em>= 3.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12</p>
+<p>Figure: 16 <em>k<strong>p <em>= 0.1 V s /rad</em>, k</strong>i </em>= 5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . . 12</p>
+<p>Figure: 17 <em>k<strong>p <em>= 0.05 V s /rad</em>, k</strong>i </em>= 0.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . .13</p>
+<p>Figure: 18 <em>k<strong>p <em>= 0.15 V s /rad</em>, k</strong>i </em>= 0.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . .13</p>
+<p>Figure: 19 <em>k<strong>p <em>= 0.25 V s /rad</em>, k</strong>i </em>= 0.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . .14</p>
+<p>Figure: 20 <em>k<strong>p <em>= 0.30 V s /rad</em>, k</strong>i </em>= 0.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . .14</p>
+<p>Figure: 21 <em>k<strong>p <em>= 0.1 V s /rad</em>, k</strong>i </em>= 0.5 V /rad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. . . 15</p>
+<p>Figure: 22 Setting the Amplitude to 0 rad /s . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .16</p>
+<p>Figure: 23 Applying load with finger when <em>k<strong>p <em>= 0.2 V s /rad</em>, k</strong>i </em>= 0 V /rad . . . . . . . . . . . . . . . . 17</p>
+<p>Figure: 24 Applying load with finger when <em>k<strong>p <em>= 0.5 V s /rad</em>, k</strong>i </em>= 0 V /rad . . . . . . . . . . . . . . . . .17</p>
+<p>Figure: 25 Applying load with finger when <em>k<strong>p <em>= 0 V s /rad</em>, k</strong>i </em>= 1 V /rad . . . . . . . . . . . . . . . . . . 18</p>
+<p>Figure: 26 Applying load with finger when <em>k<strong>p <em>= 0.2 V s /rad</em>, k</strong>i </em>= 1 V /rad . . . . . . . . . . . . . . . . .19</p>
+<p>Figure: 27 Finding the value for critical gain, *k**pc*, manually. . . . . . . . . . . . . . . . . . . . . . . . . .. . .19</p>
+<p>Figure: 28 Estimating the corresponding period, *T**pc *. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .20</p>
+<p>Figure: 29 Using the set values of <em>k<strong>p <em>= 0</em>.<em>2</em>V s/rad <em>and </em>k</strong>i </em>= 0<em>.</em>278<em>V/rad </em>. . . . . . . . . . . . . . . . . . 21</p>
+<p>Figure: 30 Manually adjusted values until slightly underdamped response is reached. . . . . . . .22</p>
+<h2 id="summary">Summary</h2>
+<p>Designing Proportional Integral (PI) controller requires understanding of qualitative properties of proportional and integral controllers, determining values of external parameters such as (kp and ki) given PI specifications, and measuring the response of the system to load disturbances [1].</p>
+<h2 id="introduction">Introduction</h2>
+<p>This laboratory demonstrates experimentally the effects of altering various parameters of a proportional and proportional integral controlled direct current motor.</p>
+<h2 id="experimental-results-note-observations-are-included-in-discussion">Experimental Results (note: observations are included in &quot;Discussion&quot;)</h2>
+<h3 id="proportional-control">5.1.1 Proportional Control</h3>
+<p><strong><em>Step 1: </em></strong>kp = 0.4 V s/rad, ki = 0</p>
+<div class="figure">
+<img src="image_0.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 1 – Starting values for proportional control</p>
+<p><strong><em>Step 2:</em></strong> kp from 0.1 V s/rad to 0.4 V s/rad, ki = 0</p>
+<div class="figure">
+<img src="image_1.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 2 – <em>kp </em>= 0 <em>.</em>1V s/rad <em>, ki </em>= 0</p>
+<div class="figure">
+<img src="image_2.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 3 – <em>kp </em>= 0<em>.</em>2V s/rad<em>, ki </em>= 0</p>
+<div class="figure">
+<img src="image_3.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 4 – <em>kp </em>= 0<em>.</em>3V s/rad <em>to, ki </em>= 0</p>
+<p><img src="image_4.png" alt="image alt text" /> Figure: 5 – <em>kp </em>= 0<em>.</em>4V s/rad <em>, ki </em>= 0</p>
+<h3 id="integral-control">5.1.2. Integral Control</h3>
+<p><strong><em>Step 1:</em></strong> Kp = 0, Ki = 0.4 V/rad</p>
+<div class="figure">
+<img src="image_5.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 6 – <em>ki </em>= 0.1 V /rad</p>
+<p><strong><em>Step 2:</em></strong> Ki from 0 V/rad to 1.9 V/rad</p>
+<div class="figure">
+<img src="image_6.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 7 – <em>ki </em>= 0.4 V /rad</p>
+<div class="figure">
+<img src="image_7.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 8 – <em>ki </em>= 0.9 V /rad</p>
+<div class="figure">
+<img src="image_8.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 9 – <em>ki </em>= 1.4 V /rad</p>
+<div class="figure">
+<img src="image_9.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 10 – <em>ki </em>= 1.9 V /rad</p>
+<p><strong><em>Step 3:</em></strong> The value of integral gain which gives the quickest response without overshooting is shown in Figure 11 Below. The settling time for this closed loop system can be seen to be 0.75sec.</p>
+<div class="figure">
+<img src="image_10.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 11 – <em>ki </em>= 0.16 V /rad</p>
+<p><strong><em>Step 4:</em></strong> Please see &quot;Discussion&quot;</p>
+<h3 id="proportional-and-integral-control">5.1.3. Proportional and Integral Control</h3>
+<p><strong><em>Step 1:</em></strong> Kp = 0, Ki = 0.5</p>
+<div class="figure">
+<img src="image_11.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 12 – <em>kp </em>= 0.1 V s /rad<em>, ki </em>= 0.5 V /rad</p>
+<p><strong><em>Step 2:</em></strong> <em>b<strong>sp <em>= 1, </em>k</strong>p </em>= 0.1 V s/rad, *k**i *from 0.5 to 5 V/rad.</p>
+<div class="figure">
+<img src="image_12.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 13 – * kp <em>= 0.1 V s /rad</em>, ki *= 1.5 V /rad</p>
+<div class="figure">
+<img src="image_13.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 14 – <em>kp </em>= 0.1 V s /rad<em>, ki </em>= 2.5 V /rad</p>
+<div class="figure">
+<img src="image_14.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 15 – <em>kp </em>= 0.1 V s /rad<em>, ki </em>= 3.5 V /rad</p>
+<div class="figure">
+<img src="image_15.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 16 – <em>kp </em>= 0.1 V s /rad<em>, ki </em>= 5 V /rad</p>
+<p><strong><em>Step 3:</em></strong> <em>k<strong>i <em>= 0.5 V/rad, </em>b</strong>sp </em>= 1, *k**p *from 0.05 to 0.3 V s/rad.</p>
+<div class="figure">
+<img src="image_16.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 17 – <em>kp </em>= 0.05 V s /rad<em>, ki </em>= 0.5 V /rad</p>
+<div class="figure">
+<img src="image_17.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 18 – <em>kp </em>= 0.15 V s /rad<em>, ki </em>= 0.5 V /rad</p>
+<div class="figure">
+<img src="image_18.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 19 – <em>kp </em>= 0.25 V s /rad<em>, ki </em>= 0.5 V /rad</p>
+<div class="figure">
+<img src="image_19.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 20 – <em>kp </em>= 0.30 V s /rad<em>, ki </em>= 0.5 V /rad</p>
+<p><strong><em>Step 4:</em></strong> Set *b**sp*, the proportional and integral gains to the values obtained in section 4.3.3.</p>
+<p><img src="image_20.png" alt="image alt text" /> Figure: 21 – <em>kp </em>= 0.1 V s /rad<em>, ki </em>= 0.5 V /rad</p>
+<p><strong><em>Step 5:</em></strong> Please see &quot;Discussion&quot;.</p>
+<h3 id="closed-loop-systems-response-to-disturbances">5.2. Closed-loop System’s Response to Disturbances</h3>
+<p><strong><em>Step 1:</em></strong> The response to disturbance *T**d *is a constant reference speed of 150 rad/s. The signal generator module parameters are 0 [rad/s] Amplitude and 150 [rad/s] Offset.</p>
+<p><img src="image_21.png" alt="image alt text" /> Figure: 22 – Applying load with finger when <em>kp </em>= 0.2 V s /rad<em>, ki </em>= 0 V /rad</p>
+<p><strong><em>Step 2:</em></strong> A pure proportional controller (<em>k<strong>i <em>= 0, </em>b</strong>sp </em>= 1) with gain *k**p *= 0.20 Vs/rad. A torque is applied manually by gently touching the inertial load with a finger.</p>
+<div class="figure">
+<img src="image_22.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 23 – Applying load with finger when <em>kp </em>= 0.2 V s /rad<em>, ki </em>= 0 V /rad</p>
+<div class="figure">
+<img src="image_23.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 24 – Applying load with finger when <em>kp </em>= 0.5 V s /rad<em>, ki </em>= 0 V /rad</p>
+<p><strong><em>Step 3:</em></strong> A controller with pure integral action (*k**p *= 0), such that ki = 1.0 V/rad. A disturbance torque is applied manually.</p>
+<div class="figure">
+<img src="image_24.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 25 – Applying load with finger when kp = 0 V s /rad, ki = 1 V /rad</p>
+<div class="figure">
+<img src="image_25.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 26 – Applying load with finger when kp = 0.2 V s /rad, ki = 1 V /rad</p>
+<h3 id="manual-tuning-of-pi-controller-ziegler-nichols">5.3. Manual Tuning of PI Controller: Ziegler-Nichols</h3>
+<p><strong><em>Step 1:</em></strong> The critical gain, <em>k<strong>pc<em>, (</em>k</strong>i </em>= 0, <em>b<strong>sp <em>= 1), is determined where the system becomes critically stable and a stable oscillation is achieved. The critical period </em>T</strong>pc </em>of the corresponding oscillations is also determined.</p>
+<div class="figure">
+<img src="image_26.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 27 – Finding the value for critical gain, kpc, manually.</p>
+<div class="figure">
+<img src="image_27.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 28 – Estimating the corresponding period, Tpc</p>
+<p>The values in Table 1 were calculated using the following equations:</p>
+<p><em>k<strong>p <em>= 0.4 </em>k</strong>pc </em></p>
+<p><em>T<strong>i <em>= 0.8 </em>T</strong>pc </em></p>
+<p><em>k<strong>i <em>= </em>k</strong>p </em>/ <em>T<strong>i <em>or </em>k</strong>i </em>= 0.5 * <em>k<strong>pc <em>/ </em>T</strong>pc</em></p>
+<table>
+<tr>
+<pre><code>&lt;td&gt;Table 1 - Ziegler - Nichols Design&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Description&lt;/td&gt;
+&lt;td&gt;Symbol&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;In-Lab Result&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Units&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Properties of PI Control&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Critical proportional gain&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;kpc&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;Vs/rad&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Critical period for kpc&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Tpc&lt;/td&gt;
+&lt;td&gt;0.9&lt;/td&gt;
+&lt;td&gt;s&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Ziegler-Nichols design&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Proportional gain&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;kp&lt;/td&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;Vs/rad&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Integral gain&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;ki&lt;/td&gt;
+&lt;td&gt;0.278&lt;/td&gt;
+&lt;td&gt;V/rad&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+</table>
+
+<table>
+<tbody>
+<tr>
+<td width="157">
+<p>Description</p>
+</td>
+<td width="59">
+<p>Symbol</p>
+</td>
+<td width="96">
+<p>In-Lab Result</p>
+</td>
+<td width="48">
+<p>Units</p>
+</td>
+</tr>
+<tr>
+<td width="157">
+<p>Properties of PI Control</p>
+</td>
+<td width="59">
+<p>&nbsp;</p>
+</td>
+<td width="96">
+<p>&nbsp;</p>
+</td>
+<td width="48">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="157">
+<p>Critical proportional gain</p>
+</td>
+<td width="59">
+<p><em><sup>k</sup></em><em>pc</em></p>
+</td>
+<td width="96">
+<p>0.5</p>
+</td>
+<td width="48">
+<p>Vs/rad</p>
+</td>
+</tr>
+<tr>
+<td width="157">
+<p>Critical period for kpc</p>
+</td>
+<td width="59">
+<p><em><sup>T</sup></em><em>pc</em></p>
+</td>
+<td width="96">
+<p>0.9</p>
+</td>
+<td width="48">
+<p>s</p>
+</td>
+</tr>
+<tr>
+<td width="157">
+<p>Ziegler-Nichols design</p>
+</td>
+<td width="59">
+<p>&nbsp;</p>
+</td>
+<td width="96">
+<p>&nbsp;</p>
+</td>
+<td width="48">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="157">
+<p>Proportional gain</p>
+</td>
+<td width="59">
+<p><em>k</em><em><sub>p</sub></em></p>
+</td>
+<td width="96">
+<p>0.2</p>
+</td>
+<td width="48">
+<p>Vs/rad</p>
+</td>
+</tr>
+<tr>
+<td width="157">
+<p>Integral gain</p>
+</td>
+<td width="59">
+<p><em>k</em><em><sub>i</sub></em></p>
+</td>
+<td width="96">
+<p>0.278</p>
+</td>
+<td width="48">
+<p>V/rad</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong><em>Step 2:</em></strong> The parameters of the signal generator module window were set as listed in Table 2.7. Table 2.7 is copied from the lab manual for reference.</p>
+<table width="386">
+<tbody>
+<tr>
+<td width="94">
+<p><strong><em>Signal Type</em></strong></p>
+</td>
+<td width="97">
+<p><strong><em>Amplitude </em></strong><strong>[rad/s]</strong></p>
+</td>
+<td width="100">
+<p><strong><em>Frequency </em></strong><strong>[Hz]</strong></p>
+</td>
+<td width="94">
+<p><strong><em>Offset </em></strong><strong>[rad/s]</strong></p>
+</td>
+</tr>
+<tr>
+<td width="94">
+<p>Square Wave</p>
+</td>
+<td width="97">
+<p>50</p>
+</td>
+<td width="100">
+<p>0.5</p>
+</td>
+<td width="94">
+<p>150</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>bsp was set to 1, both proportional and integral gains to their Ziegler-Nichols values as calculated. Figure 29 below shows the response.</p>
+<div class="figure">
+<img src="image_28.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 29 – Using the set values of kp = 0.2V s/rad and ki = 0.278V /rad</p>
+<p><strong><em>Step 3:</em></strong> The proportional and integral gain was adjusted manually to give a very slightly under-damped response with no saturation of the control signal.</p>
+<div class="figure">
+<img src="image_29.png" alt="image alt text" />
+<p class="caption">image alt text</p>
+</div>
+<p>Figure: 30 – Manually adjusted values until slightly underdamped response is reached.</p>
+<p>The new gain values are: Kp = 0.10 Vs /rad and Ki= 1.20 V /rad.</p>
+<p><strong><em>Step 4:</em></strong> Please see &quot;Discussion&quot;.</p>
+<p><strong><em>Step 5:</em></strong> Please see &quot;Discussion&quot;.</p>
+<h2 id="discussion">Discussion</h2>
+<h3 id="proportional-control-5.1.1">Proportional Control (5.1.1)</h3>
+<p>By examining Figures 1-5, it can be seen that using a proportional controller by itself results in an inaccurate model. The model best out of all the samples is when kp = 0.4 V s / rad, (see Figure 4), however as kp increases, the frequency and overshoot of oscillations increase as well. Furthermore, the settling time of the system increases as kp increases, but the rise time is decreases as kp decreases. The plots are consistent with the analysis performed in the prelab, increasing kp increases error, and the steady state error is a constant.</p>
+<h3 id="integral-control-5.1.2">Integral Control (5.1.2)</h3>
+<p>Figures 6-11 illustrate the behaviour of the model as the value of the integral constant, ki, varies from a minimum of 0.1 V /rad to a maximum of 1.9 V /rad. As the value of ki increases, the rise time decreases, but peak overshoot increases. When ki = 0.16 V / rad, the system gives the quickest response with no visible overshoot (see Figure 11). The analysis in section 4.2 is consistent with the experimental results because the steady-state error is 0 (see Figures 6-8 and 11).</p>
+<h3 id="proportional-and-integral-control-5.1.3">Proportional and Integral Control (5.1.3)</h3>
+<p>The tracking error when kp is constant at 0.1 V s / rad and ki varies from (0.5 to 5.0 V /rad) (See Figures 12-16) increases past 1.5 V /rad. This suggests the ideal value for kp lies between 0.5 to 1.5 V /rad and aligns with predicted values in 4.3.3.</p>
+<p>As ki is constant at 0.5 V/rad and kp varies from 0.05 V s /rad to 0.30 V s / rad, the tracking error increases significantly when kp is greater than 0.15 Vs /rad because of larger and more frequent oscillations (See Figures 17-21). Furthermore, the tracking error is reasonable when kp is between 0.05 and 0.15 Vs /rad, which implies the ideal value for kp lies within this range.</p>
+<p>Using the values obtained from 4.3.3, the tracking error is small and the control signal approaches the actual signal (See Figure 21). The analysis in 4.3 suggested that a PI controller would have no steady state error because the calculated steady-state velocity for a unit step input was 1.</p>
+<h3 id="closed-loop-systems-response-to-disturbances-5.2">Closed-loop System’s Response to Disturbances (5.2)</h3>
+<p>Figures (22-26) suggest that purely proportional and purely integral controllers behave irregularly to responses, however, purely integral controllers respond better to disturbances, whereas purely proportional controllers experience greater fluctuation.</p>
+<p>Tracking error when a disturbance is applied to a proportional and integral controller is relatively small compared to tracking errors for purely proportional and purely integral controllers (see Figure 26).</p>
+<h3 id="manual-tuning-of-pi-controller-ziegler-nichols-5.3">Manual Tuning of PI Controller: Ziegler-Nichols (5.3)</h3>
+<p>Finding the value of kpc involved finding a value for gain that resulted in stable oscillation. Also, the critical period for critical gain can be computed by counting periods and dividing by time elapsed. See Figures 27 and 28.</p>
+<table>
+<tr>
+<pre><code>&lt;td&gt;Description&lt;/td&gt;
+&lt;td&gt;Symbol&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;In-LabResult&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Units&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Properties of PI Control&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Critical proportional gain&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;kpc&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;Vs/rad&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Critical period for kpc&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Tpc&lt;/td&gt;
+&lt;td&gt;0.9&lt;/td&gt;
+&lt;td&gt;s&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Ziegler-Nichols design&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Proportional gain&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;kp&lt;/td&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;Vs/rad&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+<tr>
+<pre><code>&lt;td&gt;Integral gain&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;ki&lt;/td&gt;
+&lt;td&gt;0.278&lt;/td&gt;
+&lt;td&gt;V/rad&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;</code></pre>
+</tr>
+</table>
+<p>Manually adjusting the values of kp, and ki resulted in the tracking error becoming negligible once steady state was achieved, peak overshoot was relatively small, settling time and rise time were desirable .</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Individually, purely proportional and purely integral controllers have desirable quantities, but behave different circumstances. Using a proportional and integral controller compensate for the shortcomings of purely proportional and purely integral controllers while increasing reliability. The mathematical models predicted accurately the response of the system for each control method.</p>
+<h2 id="references">References</h2>
+<p>[1] Dr. P. Agathoklis et al. 2016. Laboratory Manual for ELEC 360 Control Systems I. University of Victoria, Canada.</p>
+</body>
+</html>
