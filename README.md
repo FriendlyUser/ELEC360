@@ -15,45 +15,11 @@ Generally, it is a bad idea to store pdf output on Github, who knew
 ### Additional Notes
 A list of files that are ignore is included below
 
-```
-# LaTeX temporary files
-*.aux
-*.log
-*.toc
-*.xdy
+Book is modern control systems from Ogata.
 
-# PDF output - usually a bad idea to keep this in Git
-*.pdf
+https://www.amazon.ca/Modern-Control-Engineering-Katsuhiko-Ogata/dp/0136156738/ref=asc_df_0136156738/?tag=googleshopc0c-20&linkCode=df0&hvadid=292998652735&hvpos=&hvnetw=g&hvrand=1374356498661899240&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9001502&hvtargid=pla-435319428878&psc=1
 
-# Zip files
-*.zip
 
-# Latexmk
-*.fdb_latexmk
-
-# SyncTeX
-*.synctex.gz
-
-# LaTeX Beamer
-*.snm
-*.vrb
-*.nav
-*.out
-*.ilg
-
-# BibTeX
-*.bbl
-*.blg
-
-# SVN Files, and text files
-*.svn
-*.txt 
-# folders specific for me
-/Notes/repo/
-/Notes/Ref/
-/Assignments/A1/Circuits/.svn
-/Assignments/A1/Circuits/repo
-```
 ### Useful Links
 Think about how I want to structure my documents
 * http://www.cds.caltech.edu/~murray/amwiki/index.php/Second_Edition
